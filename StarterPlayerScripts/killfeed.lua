@@ -91,64 +91,6 @@ local function addKill_upvr(arg1, arg2, arg3, arg4) -- Line 93, Named "addKill"
     end
     createKillEntry_result1_upvr.LayoutOrder = 0
     createKillEntry_result1_upvr.Parent = Frame_2_upvr
-    for _, v_2 in pairs(createKillEntry_result1_upvr:GetDescendants()) do
-        if v_2:IsA("TextLabel") then
-            v_2.TextTransparency = 1
-        elseif v_2:IsA("ImageLabel") then
-            v_2.ImageTransparency = 1
-        end
-    end
-    TweenService_upvr:Create(createKillEntry_result1_upvr, TweenInfo.new(0.2), {
-        BackgroundTransparency = 0.3;
-    }):Play()
-    for _, v_3 in pairs(createKillEntry_result1_upvr:GetDescendants()) do
-        if v_3:IsA("TextLabel") then
-            TweenService_upvr:Create(v_3, TweenInfo.new(0.2), {
-                TextTransparency = 0;
-            }):Play()
-        elseif v_3:IsA("ImageLabel") then
-            TweenService_upvr:Create(v_3, TweenInfo.new(0.2), {
-                ImageTransparency = 0;
-            }):Play()
-        end
-    end
-    task.delay(5, function() -- Line 130
-        --[[ Upvalues[2]:
-            [1]: createKillEntry_result1_upvr (readonly)
-            [2]: TweenService_upvr (copied, readonly)
-        ]]
-        if createKillEntry_result1_upvr and createKillEntry_result1_upvr.Parent then
-            TweenService_upvr:Create(createKillEntry_result1_upvr, TweenInfo.new(0.3), {
-                BackgroundTransparency = 1;
-            }):Play()
-            for _, v_4 in pairs(createKillEntry_result1_upvr:GetDescendants()) do
-                if v_4:IsA("TextLabel") then
-                    TweenService_upvr:Create(v_4, TweenInfo.new(0.3), {
-                        TextTransparency = 1;
-                    }):Play()
-                elseif v_4:IsA("ImageLabel") then
-                    TweenService_upvr:Create(v_4, TweenInfo.new(0.3), {
-                        ImageTransparency = 1;
-                    }):Play()
-                end
-            end
-            task.wait(0.3)
-            createKillEntry_result1_upvr:Destroy()
-        end
-    end)
-    local tbl = {}
-    for i_5, v_5 in pairs(Frame_2_upvr:GetChildren()) do
-        if v_5:IsA("Frame") then
-            table.insert(tbl, v_5)
-        end
-    end
-    if 8 < #tbl then
-        for _ = 9, #tbl do
-            i_5 = tbl[_]:Destroy
-            i_5()
-            local _
-        end
-    end
 end
 local KillFeedEvent = game:GetService("ReplicatedStorage"):FindFirstChild("KillFeedEvent")
 if KillFeedEvent then
