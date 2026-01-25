@@ -1,0 +1,184 @@
+-- Script Path: game:GetService("StarterPlayer").StarterPlayerScripts.LocalScript5
+-- Took 0.33s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 19:53:20
+-- Luau version 6, Types version 3
+-- Time taken: 0.010095 seconds
+
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local tbl_upvr_3 = {
+    AWP = "rbxassetid://139265934828410";
+    ["Zeus x27"] = "rbxassetid://80630992676238";
+    Headshot = "rbxassetid://101980367890591";
+    AirKill = "rbxassetid://124386298743066";
+}
+local tbl_upvr_2 = {
+    LIFETIME = 5;
+    FADE_TIME = 0.5;
+    MAX_ITEMS = 6;
+}
+local tbl_upvr = {
+    BG = Color3.fromRGB(45, 45, 50);
+    BORDER_RED = Color3.fromRGB(220, 20, 20);
+    KILLER_BLUE = Color3.fromRGB(100, 150, 255);
+    VICTIM_YELLOW = Color3.fromRGB(255, 200, 80);
+    WHITE = Color3.fromRGB(255, 255, 255);
+}
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "CleanKillFeed"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.Parent = LocalPlayer_upvr:WaitForChild("PlayerGui")
+local Frame_upvr = Instance.new("Frame")
+Frame_upvr.Name = "FeedContainer"
+Frame_upvr.Size = UDim2.new(0, 300, 0.5, 0)
+Frame_upvr.Position = UDim2.new(1, -10, 0, 40)
+Frame_upvr.AnchorPoint = Vector2.new(1, 0)
+Frame_upvr.BackgroundTransparency = 1
+Frame_upvr.Parent = ScreenGui
+local UIListLayout_2 = Instance.new("UIListLayout")
+UIListLayout_2.Parent = Frame_upvr
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_2.VerticalAlignment = Enum.VerticalAlignment.Top
+UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Right
+UIListLayout_2.Padding = UDim.new(0, 4)
+local TweenService_upvr = game:GetService("TweenService")
+game:GetService("ReplicatedStorage"):WaitForChild("kfd").OnClientEvent:Connect(function(arg1, arg2, arg3, arg4, arg5) -- Line 53, Named "createKillEntry"
+    --[[ Upvalues[6]:
+        [1]: Frame_upvr (readonly)
+        [2]: tbl_upvr_2 (readonly)
+        [3]: tbl_upvr (readonly)
+        [4]: LocalPlayer_upvr (readonly)
+        [5]: tbl_upvr_3 (readonly)
+        [6]: TweenService_upvr (readonly)
+    ]]
+    local tbl = {}
+    for _, v in ipairs(Frame_upvr:GetChildren()) do
+        if v:IsA("Frame") then
+            table.insert(tbl, v)
+        end
+    end
+    if tbl_upvr_2.MAX_ITEMS <= #tbl then
+        tbl[1]:Destroy()
+    end
+    local Frame_upvr_2 = Instance.new("Frame")
+    Frame_upvr_2.Name = "Entry"
+    Frame_upvr_2.Size = UDim2.new(0, 0, 0, 24)
+    Frame_upvr_2.AutomaticSize = Enum.AutomaticSize.X
+    Frame_upvr_2.BackgroundColor3 = tbl_upvr.BG
+    Frame_upvr_2.BackgroundTransparency = 0.3
+    Frame_upvr_2.BorderSizePixel = 0
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 4)
+    UICorner.Parent = Frame_upvr_2
+    local UIStroke_upvr = Instance.new("UIStroke")
+    UIStroke_upvr.Thickness = 1
+    UIStroke_upvr.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    UIStroke_upvr.Color = tbl_upvr.BORDER_RED
+    if arg1 == LocalPlayer_upvr.Name then
+        UIStroke_upvr.Enabled = true
+        Frame_upvr_2.BackgroundTransparency = 0.15
+    else
+        UIStroke_upvr.Enabled = false
+    end
+    UIStroke_upvr.Parent = Frame_upvr_2
+    local UIListLayout = Instance.new("UIListLayout")
+    UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+    UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+    UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout.Padding = UDim.new(0, 6)
+    UIListLayout.Parent = Frame_upvr_2
+    local UIPadding = Instance.new("UIPadding")
+    UIPadding.PaddingLeft = UDim.new(0, 8)
+    UIPadding.PaddingRight = UDim.new(0, 8)
+    UIPadding.Parent = Frame_upvr_2
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.LayoutOrder = 1
+    TextLabel.Text = arg1
+    TextLabel.Font = Enum.Font.GothamBold
+    TextLabel.TextSize = 13
+    TextLabel.TextColor3 = tbl_upvr.KILLER_BLUE
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.AutomaticSize = Enum.AutomaticSize.XY
+    TextLabel.Parent = Frame_upvr_2
+    if arg5 then
+        local ImageLabel_2 = Instance.new("ImageLabel")
+        ImageLabel_2.LayoutOrder = 2
+        ImageLabel_2.Image = tbl_upvr_3.AirKill
+        ImageLabel_2.BackgroundTransparency = 1
+        ImageLabel_2.ScaleType = Enum.ScaleType.Crop
+        ImageLabel_2.ImageColor3 = tbl_upvr.WHITE
+        ImageLabel_2.Size = UDim2.new(0, 20, 0, 20)
+        ImageLabel_2.Parent = Frame_upvr_2
+    end
+    local ImageLabel_3 = Instance.new("ImageLabel")
+    ImageLabel_3.LayoutOrder = 3
+    local var25 = tbl_upvr_3[arg4 or "AWP"]
+    if not var25 then
+        var25 = tbl_upvr_3.AWP
+    end
+    ImageLabel_3.Image = var25
+    ImageLabel_3.BackgroundTransparency = 1
+    ImageLabel_3.ScaleType = Enum.ScaleType.Crop
+    ImageLabel_3.ImageColor3 = tbl_upvr.WHITE
+    ImageLabel_3.Size = UDim2.new(0, 42, 0, 20)
+    ImageLabel_3.Parent = Frame_upvr_2
+    local var26 = 4
+    if arg3 then
+        local ImageLabel = Instance.new("ImageLabel")
+        ImageLabel.LayoutOrder = var26
+        ImageLabel.Image = tbl_upvr_3.Headshot
+        ImageLabel.BackgroundTransparency = 1
+        ImageLabel.ScaleType = Enum.ScaleType.Crop
+        ImageLabel.ImageColor3 = tbl_upvr.WHITE
+        ImageLabel.Size = UDim2.new(0, 20, 0, 20)
+        ImageLabel.Parent = Frame_upvr_2
+        var26 += 1
+    end
+    local TextLabel_2 = Instance.new("TextLabel")
+    TextLabel_2.LayoutOrder = var26
+    TextLabel_2.Text = arg2
+    TextLabel_2.Font = Enum.Font.GothamBold
+    TextLabel_2.TextSize = 13
+    TextLabel_2.TextColor3 = tbl_upvr.VICTIM_YELLOW
+    TextLabel_2.BackgroundTransparency = 1
+    TextLabel_2.AutomaticSize = Enum.AutomaticSize.XY
+    TextLabel_2.Parent = Frame_upvr_2
+    Frame_upvr_2.Parent = Frame_upvr
+    task.delay(tbl_upvr_2.LIFETIME, function() -- Line 156
+        --[[ Upvalues[4]:
+            [1]: Frame_upvr_2 (readonly)
+            [2]: tbl_upvr_2 (copied, readonly)
+            [3]: TweenService_upvr (copied, readonly)
+            [4]: UIStroke_upvr (readonly)
+        ]]
+        if not Frame_upvr_2.Parent then
+        else
+            local TweenInfo_new_result1 = TweenInfo.new(tbl_upvr_2.FADE_TIME, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+            TweenService_upvr:Create(Frame_upvr_2, TweenInfo_new_result1, {
+                BackgroundTransparency = 1;
+            }):Play()
+            if UIStroke_upvr.Enabled then
+                TweenService_upvr:Create(UIStroke_upvr, TweenInfo_new_result1, {
+                    Transparency = 1;
+                }):Play()
+            end
+            for _, v_2 in pairs(Frame_upvr_2:GetDescendants()) do
+                if v_2:IsA("TextLabel") then
+                    TweenService_upvr:Create(v_2, TweenInfo_new_result1, {
+                        TextTransparency = 1;
+                    }):Play()
+                elseif v_2:IsA("ImageLabel") then
+                    TweenService_upvr:Create(v_2, TweenInfo_new_result1, {
+                        ImageTransparency = 1;
+                    }):Play()
+                end
+            end
+            task.wait(tbl_upvr_2.FADE_TIME)
+            Frame_upvr_2:Destroy()
+        end
+    end)
+end)

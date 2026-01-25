@@ -1,0 +1,448 @@
+-- Script Path: game:GetService("StarterPlayer").StarterPlayerScripts.PlayerModule.CameraModule
+-- Took 0.46s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 19:54:54
+-- Luau version 6, Types version 3
+-- Time taken: 0.034139 seconds
+
+local tbl_upvr_3 = {}
+tbl_upvr_3.__index = tbl_upvr_3
+local tbl_2_upvr = {"CameraMinZoomDistance", "CameraMaxZoomDistance", "CameraMode", "DevCameraOcclusionMode", "DevComputerCameraMode", "DevTouchCameraMode", "DevComputerMovementMode", "DevTouchMovementMode", "DevEnableMouseLock"}
+local tbl_upvr = {"ComputerCameraMovementMode", "ComputerMovementMode", "ControlMode", "GamepadCameraSensitivity", "MouseSensitivity", "RotationType", "TouchCameraMovementMode", "TouchMovementMode"}
+local Players_upvr = game:GetService("Players")
+local UserInputService_upvr = game:GetService("UserInputService")
+local UserGameSettings_upvr = UserSettings():GetService("UserGameSettings")
+local CommonUtils = script.Parent:WaitForChild("CommonUtils")
+local module = require(CommonUtils:WaitForChild("FlagUtil"))
+local module_upvr_7 = require(script:WaitForChild("CameraUtils"))
+if not Players_upvr.LocalPlayer then
+    return {}
+end
+assert(Players_upvr.LocalPlayer, "Strict typing check")
+local PlayerScripts = Players_upvr.LocalPlayer:WaitForChild("PlayerScripts")
+PlayerScripts:RegisterTouchCameraMovementMode(Enum.TouchCameraMovementMode.Default)
+PlayerScripts:RegisterTouchCameraMovementMode(Enum.TouchCameraMovementMode.Follow)
+PlayerScripts:RegisterTouchCameraMovementMode(Enum.TouchCameraMovementMode.Classic)
+PlayerScripts:RegisterComputerCameraMovementMode(Enum.ComputerCameraMovementMode.Default)
+PlayerScripts:RegisterComputerCameraMovementMode(Enum.ComputerCameraMovementMode.Follow)
+PlayerScripts:RegisterComputerCameraMovementMode(Enum.ComputerCameraMovementMode.Classic)
+PlayerScripts:RegisterComputerCameraMovementMode(Enum.ComputerCameraMovementMode.CameraToggle)
+local any_getUserFlag_result1_upvr_2 = module.getUserFlag("UserPlayerConnectionMemoryLeak")
+local module_upvr_10 = require(script:WaitForChild("TransparencyController"))
+local module_upvr_2 = require(CommonUtils:WaitForChild("ConnectionUtil"))
+local module_upvr_8 = require(script:WaitForChild("MouseLockController"))
+local RunService_upvr = game:GetService("RunService")
+function tbl_upvr_3.new() -- Line 144
+    --[[ Upvalues[11]:
+        [1]: module_upvr_10 (readonly)
+        [2]: any_getUserFlag_result1_upvr_2 (readonly)
+        [3]: module_upvr_2 (readonly)
+        [4]: tbl_upvr_3 (readonly)
+        [5]: Players_upvr (readonly)
+        [6]: module_upvr_8 (readonly)
+        [7]: RunService_upvr (readonly)
+        [8]: tbl_2_upvr (readonly)
+        [9]: tbl_upvr (readonly)
+        [10]: UserGameSettings_upvr (readonly)
+        [11]: UserInputService_upvr (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    local tbl = {}
+    local any_new_result1 = module_upvr_10.new()
+    tbl.activeTransparencyController = any_new_result1
+    if any_getUserFlag_result1_upvr_2 then
+        any_new_result1 = module_upvr_2.new()
+    else
+        any_new_result1 = nil
+    end
+    tbl.connectionUtil = any_new_result1
+    local setmetatable_result1 = setmetatable(tbl, tbl_upvr_3)
+    setmetatable_result1.activeCameraController = nil
+    setmetatable_result1.activeOcclusionModule = nil
+    setmetatable_result1.activeMouseLockController = nil
+    setmetatable_result1.currentComputerCameraMovementMode = nil
+    setmetatable_result1.cameraSubjectChangedConn = nil
+    setmetatable_result1.cameraTypeChangedConn = nil
+    for var50, v in pairs(Players_upvr:GetPlayers()) do
+        setmetatable_result1:OnPlayerAdded(v)
+        local var46_upvr
+    end
+    Players_upvr.PlayerAdded:Connect(function(arg1) -- Line 167
+        --[[ Upvalues[1]:
+            [1]: var46_upvr (readonly)
+        ]]
+        var46_upvr:OnPlayerAdded(arg1)
+    end)
+    if any_getUserFlag_result1_upvr_2 then
+        Players_upvr.PlayerRemoving:Connect(function(arg1) -- Line 172
+            --[[ Upvalues[1]:
+                [1]: var46_upvr (readonly)
+            ]]
+            var46_upvr:OnPlayerRemoving(arg1)
+        end)
+    end
+    var46_upvr.activeTransparencyController:Enable(true)
+    var46_upvr.activeMouseLockController = module_upvr_8.new()
+    assert(var46_upvr.activeMouseLockController, "Strict typing check")
+    local any_GetBindableToggleEvent_result1 = var46_upvr.activeMouseLockController:GetBindableToggleEvent()
+    if any_GetBindableToggleEvent_result1 then
+        function var50() -- Line 184
+            --[[ Upvalues[1]:
+                [1]: var46_upvr (readonly)
+            ]]
+            var46_upvr:OnMouseLockToggled()
+        end
+        any_GetBindableToggleEvent_result1:Connect(var50)
+    end
+    var46_upvr:ActivateCameraController()
+    var46_upvr:ActivateOcclusionModule(Players_upvr.LocalPlayer.DevCameraOcclusionMode)
+    var46_upvr:OnCurrentCameraChanged()
+    RunService_upvr:BindToRenderStep("cameraRenderUpdate", Enum.RenderPriority.Camera.Value, function(arg1) -- Line 192
+        --[[ Upvalues[1]:
+            [1]: var46_upvr (readonly)
+        ]]
+        var46_upvr:Update(arg1)
+    end)
+    for _, v_2_upvr in pairs(tbl_2_upvr) do
+        Players_upvr.LocalPlayer:GetPropertyChangedSignal(v_2_upvr):Connect(function() -- Line 196
+            --[[ Upvalues[2]:
+                [1]: var46_upvr (readonly)
+                [2]: v_2_upvr (readonly)
+            ]]
+            var46_upvr:OnLocalPlayerCameraPropertyChanged(v_2_upvr)
+        end)
+        local var56_upvr
+    end
+    for _, v_3_upvr in pairs(tbl_upvr) do
+        UserGameSettings_upvr:GetPropertyChangedSignal(v_3_upvr):Connect(function() -- Line 202
+            --[[ Upvalues[2]:
+                [1]: var56_upvr (readonly)
+                [2]: v_3_upvr (readonly)
+            ]]
+            var56_upvr:OnUserGameSettingsPropertyChanged(v_3_upvr)
+        end)
+        local var61_upvr
+    end
+    game.Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function() -- Line 206
+        --[[ Upvalues[1]:
+            [1]: var61_upvr (readonly)
+        ]]
+        var61_upvr:OnCurrentCameraChanged()
+    end)
+    UserInputService_upvr:GetPropertyChangedSignal("PreferredInput"):Connect(function() -- Line 209
+        --[[ Upvalues[1]:
+            [1]: var61_upvr (readonly)
+        ]]
+        var61_upvr:OnPreferredInputChanged()
+    end)
+    return var61_upvr
+end
+function tbl_upvr_3.GetCameraMovementModeFromSettings(arg1) -- Line 216
+    --[[ Upvalues[4]:
+        [1]: Players_upvr (readonly)
+        [2]: module_upvr_7 (readonly)
+        [3]: UserInputService_upvr (readonly)
+        [4]: UserGameSettings_upvr (readonly)
+    ]]
+    local var64
+    if Players_upvr.LocalPlayer.CameraMode == Enum.CameraMode.LockFirstPerson then
+        var64 = module_upvr_7
+        var64 = Enum.ComputerCameraMovementMode.Classic
+        return var64.ConvertCameraModeEnumToStandard(var64)
+    end
+    local var65
+    var64 = nil
+    if UserInputService_upvr.PreferredInput == Enum.PreferredInput.Touch then
+        var65 = module_upvr_7.ConvertCameraModeEnumToStandard(Players_upvr.LocalPlayer.DevTouchCameraMode)
+        var64 = module_upvr_7.ConvertCameraModeEnumToStandard(UserGameSettings_upvr.TouchCameraMovementMode)
+    else
+        var65 = module_upvr_7.ConvertCameraModeEnumToStandard(Players_upvr.LocalPlayer.DevComputerCameraMode)
+        var64 = module_upvr_7.ConvertCameraModeEnumToStandard(UserGameSettings_upvr.ComputerCameraMovementMode)
+    end
+    if var65 == Enum.DevComputerCameraMovementMode.UserChoice then
+        return var64
+    end
+    return var65
+end
+local module_upvr_5 = require(script:WaitForChild("Poppercam"))
+local module_upvr_4 = require(script:WaitForChild("Invisicam"))
+local tbl_3_upvr = {}
+function tbl_upvr_3.ActivateOcclusionModule(arg1, arg2) -- Line 241
+    --[[ Upvalues[4]:
+        [1]: module_upvr_5 (readonly)
+        [2]: module_upvr_4 (readonly)
+        [3]: tbl_3_upvr (readonly)
+        [4]: Players_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 54 start (CF ANALYSIS FAILED)
+    local var69
+    if arg2 == Enum.DevCameraOcclusionMode.Zoom then
+        var69 = module_upvr_5
+    elseif arg2 == Enum.DevCameraOcclusionMode.Invisicam then
+        var69 = module_upvr_4
+    else
+        warn("CameraScript ActivateOcclusionModule called with unsupported mode")
+        return
+    end
+    arg1.occlusionMode = arg2
+    -- KONSTANTERROR: [0] 1. Error Block 54 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [23] 17. Error Block 9 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [23] 17. Error Block 9 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [30] 21. Error Block 38 start (CF ANALYSIS FAILED)
+    if not arg1.activeOcclusionModule:GetEnabled() then
+        arg1.activeOcclusionModule:Enable(true)
+    end
+    do
+        return
+    end
+    -- KONSTANTERROR: [30] 21. Error Block 38 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [43] 30. Error Block 13 start (CF ANALYSIS FAILED)
+    arg1.activeOcclusionModule = tbl_3_upvr[var69]
+    -- KONSTANTERROR: [43] 30. Error Block 13 end (CF ANALYSIS FAILED)
+end
+function tbl_upvr_3.ShouldUseVehicleCamera(arg1) -- Line 320
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    local CurrentCamera_5 = workspace.CurrentCamera
+    local var77
+    if not CurrentCamera_5 then
+        return false
+    end
+    local CameraType_3 = CurrentCamera_5.CameraType
+    local var80 = true
+    var77 = Enum.CameraType.Custom
+    if CameraType_3 ~= var77 then
+        var77 = Enum.CameraType.Follow
+        if CameraType_3 ~= var77 then
+            var80 = false
+        else
+            var80 = true
+        end
+    end
+    local function INLINED_2() -- Internal function, doesn't exist in bytecode
+        var77 = CurrentCamera_5.CameraSubject:IsA("VehicleSeat")
+        return var77
+    end
+    if not CurrentCamera_5.CameraSubject or not INLINED_2() then
+        var77 = false
+    end
+    if arg1.occlusionMode == Enum.DevCameraOcclusionMode.Invisicam then
+    else
+    end
+    if var77 then
+        if var80 then
+        end
+    end
+    return true
+end
+local module_upvr_3 = require(script:WaitForChild("LegacyCamera"))
+local VRService_upvr = game:GetService("VRService")
+local module_upvr_9 = require(script:WaitForChild("VRCamera"))
+local module_upvr_6 = require(script:WaitForChild("ClassicCamera"))
+local module_upvr_13 = require(script:WaitForChild("OrbitalCamera"))
+local module_upvr = require(script:WaitForChild("VRVehicleCamera"))
+local module_upvr_12 = require(script:WaitForChild("VehicleCamera"))
+local tbl_upvr_2 = {}
+local any_getUserFlag_result1_upvr = module.getUserFlag("UserPSFixCameraControllerReset")
+function tbl_upvr_3.ActivateCameraController(arg1) -- Line 336
+    --[[ Upvalues[9]:
+        [1]: module_upvr_3 (readonly)
+        [2]: VRService_upvr (readonly)
+        [3]: module_upvr_9 (readonly)
+        [4]: module_upvr_6 (readonly)
+        [5]: module_upvr_13 (readonly)
+        [6]: module_upvr (readonly)
+        [7]: module_upvr_12 (readonly)
+        [8]: tbl_upvr_2 (readonly)
+        [9]: any_getUserFlag_result1_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 104 start (CF ANALYSIS FAILED)
+    local CameraType = workspace.CurrentCamera.CameraType
+    if CameraType == Enum.CameraType.Scriptable then
+        if arg1.activeCameraController then
+            arg1.activeCameraController:Enable(false)
+            arg1.activeCameraController = nil
+        end
+        return
+    end
+    if CameraType == Enum.CameraType.Custom then
+        -- KONSTANTWARNING: GOTO [76] #48
+    end
+    -- KONSTANTERROR: [0] 1. Error Block 104 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [36] 24. Error Block 98 start (CF ANALYSIS FAILED)
+    if CameraType == Enum.CameraType.Track then
+        -- KONSTANTWARNING: GOTO [76] #48
+    end
+    -- KONSTANTERROR: [36] 24. Error Block 98 end (CF ANALYSIS FAILED)
+end
+function tbl_upvr_3.OnCameraSubjectChanged(arg1) -- Line 442
+    local CurrentCamera = workspace.CurrentCamera
+    local var92
+    if CurrentCamera then
+        var92 = CurrentCamera.CameraSubject
+    else
+        var92 = nil
+    end
+    if arg1.activeTransparencyController then
+        arg1.activeTransparencyController:SetSubject(var92)
+    end
+    if arg1.activeOcclusionModule then
+        arg1.activeOcclusionModule:OnCameraSubjectChanged(var92)
+    end
+    arg1:ActivateCameraController()
+end
+function tbl_upvr_3.OnCameraTypeChanged(arg1, arg2) -- Line 457
+    --[[ Upvalues[2]:
+        [1]: UserInputService_upvr (readonly)
+        [2]: module_upvr_7 (readonly)
+    ]]
+    if arg2 == Enum.CameraType.Scriptable and UserInputService_upvr.MouseBehavior == Enum.MouseBehavior.LockCenter then
+        module_upvr_7.restoreMouseBehavior()
+    end
+    arg1:ActivateCameraController()
+end
+function tbl_upvr_3.OnCurrentCameraChanged(arg1) -- Line 469
+    local CurrentCamera_4_upvr = game.Workspace.CurrentCamera
+    if not CurrentCamera_4_upvr then
+    else
+        if arg1.cameraSubjectChangedConn then
+            arg1.cameraSubjectChangedConn:Disconnect()
+        end
+        if arg1.cameraTypeChangedConn then
+            arg1.cameraTypeChangedConn:Disconnect()
+        end
+        arg1.cameraSubjectChangedConn = CurrentCamera_4_upvr:GetPropertyChangedSignal("CameraSubject"):Connect(function() -- Line 481
+            --[[ Upvalues[1]:
+                [1]: arg1 (readonly)
+            ]]
+            arg1:OnCameraSubjectChanged()
+        end)
+        arg1.cameraTypeChangedConn = CurrentCamera_4_upvr:GetPropertyChangedSignal("CameraType"):Connect(function() -- Line 485
+            --[[ Upvalues[2]:
+                [1]: arg1 (readonly)
+                [2]: CurrentCamera_4_upvr (readonly)
+            ]]
+            arg1:OnCameraTypeChanged(CurrentCamera_4_upvr.CameraType)
+        end)
+        arg1:OnCameraSubjectChanged()
+        arg1:OnCameraTypeChanged(CurrentCamera_4_upvr.CameraType)
+    end
+end
+function tbl_upvr_3.OnLocalPlayerCameraPropertyChanged(arg1, arg2) -- Line 493
+    --[[ Upvalues[1]:
+        [1]: Players_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [33] 21. Error Block 34 start (CF ANALYSIS FAILED)
+    if Players_upvr.LocalPlayer.CameraMode == Enum.CameraMode.Classic then
+        arg1:ActivateCameraController()
+        return
+    end
+    warn("Unhandled value for property player.CameraMode: ", Players_upvr.LocalPlayer.CameraMode)
+    do
+        return
+    end
+    -- KONSTANTERROR: [33] 21. Error Block 34 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [56] 36. Error Block 12 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [56] 36. Error Block 12 end (CF ANALYSIS FAILED)
+end
+function tbl_upvr_3.OnUserGameSettingsPropertyChanged(arg1, arg2) -- Line 535
+    if arg2 == "ComputerCameraMovementMode" or arg2 == "TouchCameraMovementMode" then
+        arg1:ActivateCameraController()
+    end
+end
+function tbl_upvr_3.OnPreferredInputChanged(arg1) -- Line 541
+    arg1:ActivateCameraController()
+end
+local module_upvr_11 = require(script:WaitForChild("CameraInput"))
+function tbl_upvr_3.Update(arg1, arg2) -- Line 551
+    --[[ Upvalues[1]:
+        [1]: module_upvr_11 (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    if arg1.activeCameraController then
+        arg1.activeCameraController:UpdateMouseBehavior()
+        local any_Update_result1_2, any_Update_result2_2 = arg1.activeCameraController:Update(arg2)
+        if arg1.activeOcclusionModule then
+            local any_Update_result1, any_Update_result2 = arg1.activeOcclusionModule:Update(arg2, any_Update_result1_2, any_Update_result2_2)
+            any_Update_result1_2 = any_Update_result1
+        end
+        local CurrentCamera_2 = game.Workspace.CurrentCamera
+        CurrentCamera_2.CFrame = any_Update_result1_2
+        CurrentCamera_2.Focus = any_Update_result2
+        if arg1.activeTransparencyController then
+            arg1.activeTransparencyController:Update(arg2)
+        end
+        if module_upvr_11.getInputEnabled() then
+            module_upvr_11.resetInputForFrameEnd()
+        end
+    end
+end
+function tbl_upvr_3.OnCharacterAdded(arg1, arg2, arg3) -- Line 577
+    if arg1.activeOcclusionModule then
+        arg1.activeOcclusionModule:CharacterAdded(arg2, arg3)
+    end
+end
+function tbl_upvr_3.OnCharacterRemoving(arg1, arg2, arg3) -- Line 583
+    if arg1.activeOcclusionModule then
+        arg1.activeOcclusionModule:CharacterRemoving(arg2, arg3)
+    end
+end
+function tbl_upvr_3.OnPlayerAdded(arg1, arg2) -- Line 589
+    --[[ Upvalues[1]:
+        [1]: any_getUserFlag_result1_upvr_2 (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [5] 5. Error Block 3 start (CF ANALYSIS FAILED)
+    arg1.connectionUtil:trackConnection(`{arg2.UserId}CharacterAdded`, arg2.CharacterAdded:Connect(function(arg1_2) -- Line 593
+        --[[ Upvalues[2]:
+            [1]: arg1 (readonly)
+            [2]: arg2 (readonly)
+        ]]
+        arg1:OnCharacterAdded(arg1_2, arg2)
+    end))
+    arg1.connectionUtil:trackConnection(`{arg2.UserId}CharacterRemoving`, arg2.CharacterRemoving:Connect(function(arg1_3) -- Line 596
+        --[[ Upvalues[2]:
+            [1]: arg1 (readonly)
+            [2]: arg2 (readonly)
+        ]]
+        arg1:OnCharacterRemoving(arg1_3, arg2)
+    end))
+    do
+        return
+    end
+    -- KONSTANTERROR: [5] 5. Error Block 3 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [46] 34. Error Block 4 start (CF ANALYSIS FAILED)
+    arg2.CharacterAdded:Connect(function(arg1_4) -- Line 601
+        --[[ Upvalues[2]:
+            [1]: arg1 (readonly)
+            [2]: arg2 (readonly)
+        ]]
+        arg1:OnCharacterAdded(arg1_4, arg2)
+    end)
+    arg2.CharacterRemoving:Connect(function(arg1_5) -- Line 604
+        --[[ Upvalues[2]:
+            [1]: arg1 (readonly)
+            [2]: arg2 (readonly)
+        ]]
+        arg1:OnCharacterRemoving(arg1_5, arg2)
+    end)
+    -- KONSTANTERROR: [46] 34. Error Block 4 end (CF ANALYSIS FAILED)
+end
+function tbl_upvr_3.OnPlayerRemoving(arg1, arg2) -- Line 610
+    if arg1.connectionUtil then
+        arg1.connectionUtil:disconnect(`{arg2.UserId}CharacterAdded`)
+        arg1.connectionUtil:disconnect(`{arg2.UserId}CharacterRemoving`)
+    end
+end
+function tbl_upvr_3.OnMouseLockToggled(arg1) -- Line 618
+    if arg1.activeMouseLockController and arg1.activeCameraController then
+        arg1.activeCameraController:SetIsMouseLocked(arg1.activeMouseLockController:GetIsMouseLocked())
+        arg1.activeCameraController:SetMouseLockOffset(arg1.activeMouseLockController:GetMouseLockOffset())
+    end
+end
+tbl_upvr_3.new()
+return {}
