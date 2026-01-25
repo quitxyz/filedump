@@ -5,7 +5,7 @@
 -- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
 -- Decompiled on 2026-01-25 00:48:06
 -- Luau version 6, Types version 3
--- Time taken: 0.016961 seconds
+-- Time taken: 0.016961 seconds 
 
 local Players_upvr = game:GetService("Players")
 local LocalPlayer_upvr = Players_upvr.LocalPlayer
