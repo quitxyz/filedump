@@ -9782,6 +9782,16382 @@ Function Constants: Unknown Name
 
 
 ----// XEClient/other_fakelag_1769302679.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.misc.ScrollingFrame.Frame1.toggle1.LocalScript
+-- Took 0.31s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:57:52
+-- Luau version 6, Types version 3
+-- Time taken: 0.010700 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local RunService_upvr = game:GetService("RunService")
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Frame2_upvr = script.Parent.Frame2
+local var5_upvw = false
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local function setAnimSpeed_upvr(arg1) -- Line 29, Named "setAnimSpeed"
+    --[[ Upvalues[1]:
+        [1]: LocalPlayer_upvr (readonly)
+    ]]
+    local Character_2 = LocalPlayer_upvr.Character
+    if Character_2 then
+        local Humanoid_2 = Character_2:FindFirstChild("Humanoid")
+        if Humanoid_2 then
+            for _, v in pairs(Humanoid_2:GetPlayingAnimationTracks()) do
+                v:AdjustSpeed(arg1)
+            end
+        end
+    end
+end
+local function _() -- Line 43, Named "startLagLoop"
+    --[[ Upvalues[3]:
+        [1]: var5_upvw (read and write)
+        [2]: setAnimSpeed_upvr (readonly)
+        [3]: RunService_upvr (readonly)
+    ]]
+    task.spawn(function() -- Line 44
+        --[[ Upvalues[3]:
+            [1]: var5_upvw (copied, read and write)
+            [2]: setAnimSpeed_upvr (copied, readonly)
+            [3]: RunService_upvr (copied, readonly)
+        ]]
+        while var5_upvw do
+            setAnimSpeed_upvr(1)
+            task.wait(math.random(10, 30) / 100)
+            if not var5_upvw then break end
+            setAnimSpeed_upvr(0)
+            while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                setAnimSpeed_upvr(0)
+                RunService_upvr.Heartbeat:Wait()
+            end
+        end
+        setAnimSpeed_upvr(1)
+    end)
+end
+local function setFakelagEnabled_upvr(arg1, arg2) -- Line 76, Named "setFakelagEnabled"
+    --[[ Upvalues[8]:
+        [1]: var5_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: setAnimSpeed_upvr (readonly)
+        [8]: RunService_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    var5_upvw = arg1
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [3] 4. Error Block 19 start (CF ANALYSIS FAILED)
+    local var24 = udim2_upvr_2
+    if not var24 then
+        -- KONSTANTERROR: [5] 6. Error Block 3 start (CF ANALYSIS FAILED)
+        var24 = udim2_upvr
+        -- KONSTANTERROR: [5] 6. Error Block 3 end (CF ANALYSIS FAILED)
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var24;
+    }):Play()
+    if var5_upvw then
+        task.spawn(function() -- Line 44
+            --[[ Upvalues[3]:
+                [1]: var5_upvw (copied, read and write)
+                [2]: setAnimSpeed_upvr (copied, readonly)
+                [3]: RunService_upvr (copied, readonly)
+            ]]
+            while var5_upvw do
+                setAnimSpeed_upvr(1)
+                task.wait(math.random(10, 30) / 100)
+                if not var5_upvw then break end
+                setAnimSpeed_upvr(0)
+                while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                    setAnimSpeed_upvr(0)
+                    RunService_upvr.Heartbeat:Wait()
+                end
+            end
+            setAnimSpeed_upvr(1)
+        end)
+    else
+        setAnimSpeed_upvr(1)
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("fakelag", var5_upvw)
+    end
+    -- KONSTANTERROR: [3] 4. Error Block 19 end (CF ANALYSIS FAILED)
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 97
+    --[[ Upvalues[2]:
+        [1]: setFakelagEnabled_upvr (readonly)
+        [2]: var5_upvw (read and write)
+    ]]
+    setFakelagEnabled_upvr(not var5_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.fakelag = var5_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 106
+        --[[ Upvalues[9]:
+            [1]: var5_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: setAnimSpeed_upvr (readonly)
+            [8]: RunService_upvr (readonly)
+            [9]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "fakelag" then
+            var5_upvw = arg2
+            if not var5_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+            if var5_upvw then
+                task.spawn(function() -- Line 44
+                    --[[ Upvalues[3]:
+                        [1]: var5_upvw (copied, read and write)
+                        [2]: setAnimSpeed_upvr (copied, readonly)
+                        [3]: RunService_upvr (copied, readonly)
+                    ]]
+                    while var5_upvw do
+                        setAnimSpeed_upvr(1)
+                        task.wait(math.random(10, 30) / 100)
+                        if not var5_upvw then break end
+                        setAnimSpeed_upvr(0)
+                        while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                            setAnimSpeed_upvr(0)
+                            RunService_upvr.Heartbeat:Wait()
+                        end
+                    end
+                    setAnimSpeed_upvr(1)
+                end)
+            else
+                setAnimSpeed_upvr(1)
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+onConfigLoad_upvr = LocalPlayer_upvr.CharacterAdded
+onConfigLoad_upvr = onConfigLoad_upvr:Connect
+onConfigLoad_upvr(function() -- Line 117
+    --[[ Upvalues[3]:
+        [1]: var5_upvw (read and write)
+        [2]: setAnimSpeed_upvr (readonly)
+        [3]: RunService_upvr (readonly)
+    ]]
+    if var5_upvw then
+        task.wait(0.5)
+        task.spawn(function() -- Line 44
+            --[[ Upvalues[3]:
+                [1]: var5_upvw (copied, read and write)
+                [2]: setAnimSpeed_upvr (copied, readonly)
+                [3]: RunService_upvr (copied, readonly)
+            ]]
+            while var5_upvw do
+                setAnimSpeed_upvr(1)
+                task.wait(math.random(10, 30) / 100)
+                if not var5_upvw then break end
+                setAnimSpeed_upvr(0)
+                while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                    setAnimSpeed_upvr(0)
+                    RunService_upvr.Heartbeat:Wait()
+                end
+            end
+            setAnimSpeed_upvr(1)
+        end)
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.misc.ScrollingFrame.Frame1.toggle1.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [number] = 0.5
+        5 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = fakelag
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = task
+        7 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setFakelagEnabled
+
+Function Upvalues: setFakelagEnabled
+
+Function Constants: setFakelagEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = task
+        6 [string] = spawn
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = fakelag
+
+====================================================================================================
+
+Function Dump: startLagLoop
+
+Function Upvalues: startLagLoop
+
+Function Constants: startLagLoop
+        1 [string] = task
+        2 [string] = spawn
+
+====================================================================================================
+
+Function Dump: setAnimSpeed
+
+Function Upvalues: setAnimSpeed
+
+Function Constants: setAnimSpeed
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = pairs
+        6 [string] = GetPlayingAnimationTracks
+        7 [string] = AdjustSpeed
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [function] = setAnimSpeed
+        3 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [number] = 0.5
+        5 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = setAnimSpeed
+        8 [Instance] = Run Service
+        9 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = fakelag
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = task
+        7 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setFakelagEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setFakelagEnabled
+
+Function Upvalues: setFakelagEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = setAnimSpeed
+        8 [Instance] = Run Service
+
+Function Constants: setFakelagEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = task
+        6 [string] = spawn
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = fakelag
+
+====================================================================================================
+
+Function Dump: setAnimSpeed
+
+Function Upvalues: setAnimSpeed
+        1 [Instance] = quit_xyz
+
+Function Constants: setAnimSpeed
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = pairs
+        6 [string] = GetPlayingAnimationTracks
+        7 [string] = AdjustSpeed
+
+====================================================================================================
+]]
+
+
+----// XEClient/other_fakelag_1769302701.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.misc.ScrollingFrame.Frame1.toggle1.LocalScript
+-- Took 0.31s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:58:19
+-- Luau version 6, Types version 3
+-- Time taken: 0.010147 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local RunService_upvr = game:GetService("RunService")
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Frame2_upvr = script.Parent.Frame2
+local var5_upvw = false
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local function setAnimSpeed_upvr(arg1) -- Line 29, Named "setAnimSpeed"
+    --[[ Upvalues[1]:
+        [1]: LocalPlayer_upvr (readonly)
+    ]]
+    local Character_2 = LocalPlayer_upvr.Character
+    if Character_2 then
+        local Humanoid_2 = Character_2:FindFirstChild("Humanoid")
+        if Humanoid_2 then
+            for _, v in pairs(Humanoid_2:GetPlayingAnimationTracks()) do
+                v:AdjustSpeed(arg1)
+            end
+        end
+    end
+end
+local function _() -- Line 43, Named "startLagLoop"
+    --[[ Upvalues[3]:
+        [1]: var5_upvw (read and write)
+        [2]: setAnimSpeed_upvr (readonly)
+        [3]: RunService_upvr (readonly)
+    ]]
+    task.spawn(function() -- Line 44
+        --[[ Upvalues[3]:
+            [1]: var5_upvw (copied, read and write)
+            [2]: setAnimSpeed_upvr (copied, readonly)
+            [3]: RunService_upvr (copied, readonly)
+        ]]
+        while var5_upvw do
+            setAnimSpeed_upvr(1)
+            task.wait(math.random(10, 30) / 100)
+            if not var5_upvw then break end
+            setAnimSpeed_upvr(0)
+            while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                setAnimSpeed_upvr(0)
+                RunService_upvr.Heartbeat:Wait()
+            end
+        end
+        setAnimSpeed_upvr(1)
+    end)
+end
+local function setFakelagEnabled_upvr(arg1, arg2) -- Line 76, Named "setFakelagEnabled"
+    --[[ Upvalues[8]:
+        [1]: var5_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: setAnimSpeed_upvr (readonly)
+        [8]: RunService_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    var5_upvw = arg1
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [3] 4. Error Block 19 start (CF ANALYSIS FAILED)
+    local var24 = udim2_upvr_2
+    if not var24 then
+        -- KONSTANTERROR: [5] 6. Error Block 3 start (CF ANALYSIS FAILED)
+        var24 = udim2_upvr
+        -- KONSTANTERROR: [5] 6. Error Block 3 end (CF ANALYSIS FAILED)
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var24;
+    }):Play()
+    if var5_upvw then
+        task.spawn(function() -- Line 44
+            --[[ Upvalues[3]:
+                [1]: var5_upvw (copied, read and write)
+                [2]: setAnimSpeed_upvr (copied, readonly)
+                [3]: RunService_upvr (copied, readonly)
+            ]]
+            while var5_upvw do
+                setAnimSpeed_upvr(1)
+                task.wait(math.random(10, 30) / 100)
+                if not var5_upvw then break end
+                setAnimSpeed_upvr(0)
+                while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                    setAnimSpeed_upvr(0)
+                    RunService_upvr.Heartbeat:Wait()
+                end
+            end
+            setAnimSpeed_upvr(1)
+        end)
+    else
+        setAnimSpeed_upvr(1)
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("fakelag", var5_upvw)
+    end
+    -- KONSTANTERROR: [3] 4. Error Block 19 end (CF ANALYSIS FAILED)
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 97
+    --[[ Upvalues[2]:
+        [1]: setFakelagEnabled_upvr (readonly)
+        [2]: var5_upvw (read and write)
+    ]]
+    setFakelagEnabled_upvr(not var5_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.fakelag = var5_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 106
+        --[[ Upvalues[9]:
+            [1]: var5_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: setAnimSpeed_upvr (readonly)
+            [8]: RunService_upvr (readonly)
+            [9]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "fakelag" then
+            var5_upvw = arg2
+            if not var5_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+            if var5_upvw then
+                task.spawn(function() -- Line 44
+                    --[[ Upvalues[3]:
+                        [1]: var5_upvw (copied, read and write)
+                        [2]: setAnimSpeed_upvr (copied, readonly)
+                        [3]: RunService_upvr (copied, readonly)
+                    ]]
+                    while var5_upvw do
+                        setAnimSpeed_upvr(1)
+                        task.wait(math.random(10, 30) / 100)
+                        if not var5_upvw then break end
+                        setAnimSpeed_upvr(0)
+                        while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                            setAnimSpeed_upvr(0)
+                            RunService_upvr.Heartbeat:Wait()
+                        end
+                    end
+                    setAnimSpeed_upvr(1)
+                end)
+            else
+                setAnimSpeed_upvr(1)
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+onConfigLoad_upvr = LocalPlayer_upvr.CharacterAdded
+onConfigLoad_upvr = onConfigLoad_upvr:Connect
+onConfigLoad_upvr(function() -- Line 117
+    --[[ Upvalues[3]:
+        [1]: var5_upvw (read and write)
+        [2]: setAnimSpeed_upvr (readonly)
+        [3]: RunService_upvr (readonly)
+    ]]
+    if var5_upvw then
+        task.wait(0.5)
+        task.spawn(function() -- Line 44
+            --[[ Upvalues[3]:
+                [1]: var5_upvw (copied, read and write)
+                [2]: setAnimSpeed_upvr (copied, readonly)
+                [3]: RunService_upvr (copied, readonly)
+            ]]
+            while var5_upvw do
+                setAnimSpeed_upvr(1)
+                task.wait(math.random(10, 30) / 100)
+                if not var5_upvw then break end
+                setAnimSpeed_upvr(0)
+                while tick() < tick() + math.random(15, 50) / 100 and var5_upvw do
+                    setAnimSpeed_upvr(0)
+                    RunService_upvr.Heartbeat:Wait()
+                end
+            end
+            setAnimSpeed_upvr(1)
+        end)
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.misc.ScrollingFrame.Frame1.toggle1.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [number] = 0.5
+        5 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = fakelag
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = task
+        7 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setFakelagEnabled
+
+Function Upvalues: setFakelagEnabled
+
+Function Constants: setFakelagEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = task
+        6 [string] = spawn
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = fakelag
+
+====================================================================================================
+
+Function Dump: startLagLoop
+
+Function Upvalues: startLagLoop
+
+Function Constants: startLagLoop
+        1 [string] = task
+        2 [string] = spawn
+
+====================================================================================================
+
+Function Dump: setAnimSpeed
+
+Function Upvalues: setAnimSpeed
+
+Function Constants: setAnimSpeed
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = pairs
+        6 [string] = GetPlayingAnimationTracks
+        7 [string] = AdjustSpeed
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [function] = setAnimSpeed
+        3 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [number] = 0.5
+        5 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = setAnimSpeed
+        8 [Instance] = Run Service
+        9 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = fakelag
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = task
+        7 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setFakelagEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setFakelagEnabled
+
+Function Upvalues: setFakelagEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = setAnimSpeed
+        8 [Instance] = Run Service
+
+Function Constants: setFakelagEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = task
+        6 [string] = spawn
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = fakelag
+
+====================================================================================================
+
+Function Dump: setAnimSpeed
+
+Function Upvalues: setAnimSpeed
+        1 [Instance] = quit_xyz
+
+Function Constants: setAnimSpeed
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = pairs
+        6 [string] = GetPlayingAnimationTracks
+        7 [string] = AdjustSpeed
+
+====================================================================================================
+]]
+
+
+----// XEClient/other_unknown_1769301285.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.storage.wt.container.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:34:43
+-- Luau version 6, Types version 3
+-- Time taken: 0.002532 seconds
+
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Parent_upvr = script.Parent
+Parent_upvr:WaitForChild("nick").Text = LocalPlayer_upvr.Name
+local var4_upvw = 0
+local var5_upvw = 0
+local var6_upvw = 1
+local UIGradient_upvr = Parent_upvr:WaitForChild("client"):WaitForChild("UIGradient")
+local clientcolor_upvr = Parent_upvr.Parent.Parent:WaitForChild("clientcolor")
+game:GetService("RunService").RenderStepped:Connect(function(arg1) -- Line 29
+    --[[ Upvalues[7]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: var4_upvw (read and write)
+        [3]: Parent_upvr (readonly)
+        [4]: var5_upvw (read and write)
+        [5]: var6_upvw (read and write)
+        [6]: UIGradient_upvr (readonly)
+        [7]: clientcolor_upvr (readonly)
+    ]]
+    var4_upvw += (math.floor(LocalPlayer_upvr:GetNetworkPing() * 1000) - var4_upvw) * math.clamp(arg1 * 10, 0, 1)
+    Parent_upvr.ping.Text = string.format("%dms", var4_upvw)
+    var5_upvw = (var5_upvw + 30 * arg1) % 360
+    if 360 <= var5_upvw then
+        var5_upvw = 360
+        var6_upvw = -1
+    elseif var5_upvw <= 0 then
+        var5_upvw = 0
+        var6_upvw = 1
+    end
+    UIGradient_upvr.Rotation = var5_upvw
+    local Value = clientcolor_upvr.Value
+    UIGradient_upvr.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Value), ColorSequenceKeypoint.new(1, Value:Lerp(Color3.new(1, 1, 1), 0.3))})
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.storage.wt.container.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [number] = 1000
+        2 [string] = GetNetworkPing
+        3 [string] = math
+        4 [string] = floor
+        6 [number] = 10
+        7 [string] = clamp
+        9 [string] = ping
+        10 [string] = string
+        11 [string] = format
+        13 [string] = %dms
+        14 [string] = Text
+        15 [number] = 360
+        16 [string] = Rotation
+        17 [string] = Value
+        18 [string] = ColorSequence
+        19 [string] = new
+        21 [string] = ColorSequenceKeypoint
+        23 [string] = Color3
+        25 [number] = 0.3
+        26 [string] = Lerp
+        27 [string] = Color
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = quit_xyz
+        2 [number] = 375.0000000000001
+        3 [Instance] = container
+        4 [number] = 337.08951575215906
+        5 [number] = 1
+        6 [Instance] = UIGradient
+        7 [Instance] = clientcolor
+
+Function Constants: Unknown Name
+        1 [number] = 1000
+        2 [string] = GetNetworkPing
+        3 [string] = math
+        4 [string] = floor
+        6 [number] = 10
+        7 [string] = clamp
+        9 [string] = ping
+        10 [string] = string
+        11 [string] = format
+        13 [string] = %dms
+        14 [string] = Text
+        15 [number] = 360
+        16 [string] = Rotation
+        17 [string] = Value
+        18 [string] = ColorSequence
+        19 [string] = new
+        21 [string] = ColorSequenceKeypoint
+        23 [string] = Color3
+        25 [number] = 0.3
+        26 [string] = Lerp
+        27 [string] = Color
+
+====================================================================================================
+]]
+
+
+----// XEClient/other_unknown_1769301316.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.TextButton:GetChildren()[2]
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:35:02
+-- Luau version 6, Types version 3
+-- Time taken: 0.002994 seconds
+
+local Parent_upvr = script.Parent
+local var2_upvw = false
+local var3_upvw
+local var4_upvw
+local var5_upvw
+local function _(arg1) -- Line 7, Named "update"
+    --[[ Upvalues[3]:
+        [1]: var4_upvw (read and write)
+        [2]: Parent_upvr (readonly)
+        [3]: var5_upvw (read and write)
+    ]]
+    local var6 = arg1.Position - var4_upvw
+    Parent_upvr.Position = UDim2.new(var5_upvw.X.Scale, var5_upvw.X.Offset + var6.X, var5_upvw.Y.Scale, var5_upvw.Y.Offset + var6.Y)
+end
+Parent_upvr.InputBegan:Connect(function(arg1) -- Line 17
+    --[[ Upvalues[4]:
+        [1]: var2_upvw (read and write)
+        [2]: var4_upvw (read and write)
+        [3]: var5_upvw (read and write)
+        [4]: Parent_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var2_upvw = true
+        var4_upvw = arg1.Position
+        var5_upvw = Parent_upvr.Position
+        arg1.Changed:Connect(function() -- Line 23
+            --[[ Upvalues[2]:
+                [1]: arg1 (readonly)
+                [2]: var2_upvw (copied, read and write)
+            ]]
+            if arg1.UserInputState == Enum.UserInputState.End then
+                var2_upvw = false
+            end
+        end)
+    end
+end)
+Parent_upvr.InputChanged:Connect(function(arg1) -- Line 31
+    --[[ Upvalues[1]:
+        [1]: var3_upvw (read and write)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseMovement then
+        var3_upvw = arg1
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(arg1) -- Line 37
+    --[[ Upvalues[5]:
+        [1]: var3_upvw (read and write)
+        [2]: var2_upvw (read and write)
+        [3]: var4_upvw (read and write)
+        [4]: Parent_upvr (readonly)
+        [5]: var5_upvw (read and write)
+    ]]
+    if arg1 == var3_upvw and var2_upvw then
+        local var11 = arg1.Position - var4_upvw
+        Parent_upvr.Position = UDim2.new(var5_upvw.X.Scale, var5_upvw.X.Offset + var11.X, var5_upvw.Y.Scale, var5_upvw.Y.Offset + var11.Y)
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.TextButton:GetChildren()[2]
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Position
+        2 [string] = UDim2
+        3 [string] = new
+        5 [string] = X
+        6 [string] = Scale
+        7 [string] = Offset
+        8 [string] = Y
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseMovement
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = Position
+        6 [string] = Changed
+        7 [string] = Connect
+
+====================================================================================================
+
+Function Dump: update
+
+Function Upvalues: update
+
+Function Constants: update
+        1 [string] = Position
+        2 [string] = UDim2
+        3 [string] = new
+        5 [string] = X
+        6 [string] = Scale
+        7 [string] = Offset
+        8 [string] = Y
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseMovement
+        4 [EnumItem] = Enum.UserInputType.MouseMovement
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        4 [Instance] = TextButton
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = Position
+        6 [string] = Changed
+        7 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        2 [boolean] = false
+        4 [Instance] = TextButton
+
+Function Constants: Unknown Name
+        1 [string] = Position
+        2 [string] = UDim2
+        3 [string] = new
+        5 [string] = X
+        6 [string] = Scale
+        7 [string] = Offset
+        8 [string] = Y
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_AntiFToggle_1769301645.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle2.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:40:42
+-- Luau version 6, Types version 3
+-- Time taken: 0.003661 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local AntiF_upvr = script.Parent.Parent:FindFirstChild("AntiF")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local function setToggle_upvr(arg1, arg2) -- Line 14, Named "setToggle"
+    --[[ Upvalues[7]:
+        [1]: var7_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: AntiF_upvr (readonly)
+    ]]
+    var7_upvw = arg1
+    local var8
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var8 = udim2_upvr
+        return var8
+    end
+    if not var7_upvw or not INLINED() then
+        var8 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var8;
+    }):Play()
+    if AntiF_upvr then
+        AntiF_upvr.Value = var7_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("AntiFToggle", var7_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 31
+    --[[ Upvalues[2]:
+        [1]: setToggle_upvr (readonly)
+        [2]: var7_upvw (read and write)
+    ]]
+    setToggle_upvr(not var7_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.AntiFToggle = var7_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 41
+        --[[ Upvalues[8]:
+            [1]: var7_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: AntiF_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "AntiFToggle" then
+            var7_upvw = arg2
+            if not var7_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+            if AntiF_upvr then
+                AntiF_upvr.Value = var7_upvw
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle2.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AntiFToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggle
+
+Function Upvalues: setToggle
+
+Function Constants: setToggle
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = AntiFToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggle
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = AntiF
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AntiFToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: setToggle
+
+Function Upvalues: setToggle
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = AntiF
+
+Function Constants: setToggle
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = AntiFToggle
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_AutoS_1769301797.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:43:14
+-- Luau version 6, Types version 3
+-- Time taken: 0.004022 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local AutoS_upvr = script.Parent.Parent.Parent.Frame:WaitForChild("AutoS")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local function setAutoSEnabled_upvr(arg1, arg2) -- Line 11, Named "setAutoSEnabled"
+    --[[ Upvalues[6]:
+        [1]: AutoS_upvr (readonly)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    AutoS_upvr.Value = arg1
+    local var7
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var7 = udim2_upvr_2
+        return var7
+    end
+    if not arg1 or not INLINED() then
+        var7 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var7;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("AutoS", arg1)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 23
+    --[[ Upvalues[2]:
+        [1]: setAutoSEnabled_upvr (readonly)
+        [2]: AutoS_upvr (readonly)
+    ]]
+    setAutoSEnabled_upvr(not AutoS_upvr.Value, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.AutoS = AutoS_upvr.Value
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 33
+        --[[ Upvalues[7]:
+            [1]: AutoS_upvr (readonly)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "AutoS" then
+            AutoS_upvr.Value = arg2
+            if not arg2 or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AutoS
+        2 [string] = Value
+        3 [string] = Position
+        5 [string] = Create
+        6 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: setAutoSEnabled
+
+Function Upvalues: setAutoSEnabled
+
+Function Constants: setAutoSEnabled
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = AutoS
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = AutoS
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AutoS
+        2 [string] = Value
+        3 [string] = Position
+        5 [string] = Create
+        6 [string] = Play
+
+====================================================================================================
+
+Function Dump: setAutoSEnabled
+
+Function Upvalues: setAutoSEnabled
+        1 [Instance] = AutoS
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setAutoSEnabled
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = AutoS
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAutoSEnabled
+        2 [Instance] = AutoS
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_AutoShoot_1769301632.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle.LocalScript
+-- Took 0.58s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:40:25
+-- Luau version 6, Types version 3
+-- Time taken: 0.114343 seconds
+
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+local TweenService_upvr = game:GetService("TweenService")
+local Players_upvr = game:GetService("Players")
+local RunService_upvr = game:GetService("RunService")
+local Workspace_upvr = game:GetService("Workspace")
+local CurrentCamera_upvr = Workspace_upvr.CurrentCamera
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer_upvr = Players_upvr.LocalPlayer
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var12_upvw
+if not ReplicatedStorage:FindFirstChild("DTMarker") then
+    var12_upvw = "RemoteEvent"
+    local any_upvw = Instance.new(var12_upvw)
+    any_upvw.Name = "DTMarker"
+    any_upvw.Parent = ReplicatedStorage
+end
+var12_upvw = script.Parent
+local DT = var12_upvw.Parent:FindFirstChild("DT")
+local function INLINED() -- Internal function, doesn't exist in bytecode
+    var12_upvw = DT.Value
+    return var12_upvw
+end
+if not DT or not INLINED() then
+    var12_upvw = false
+end
+if DT then
+    DT.Changed:Connect(function(arg1) -- Line 34
+        --[[ Upvalues[1]:
+            [1]: var12_upvw (read and write)
+        ]]
+        var12_upvw = arg1
+    end)
+end
+local var16_upvw = false
+local var17_upvw
+local function setAutoShootEnabled_upvr(arg1, arg2) -- Line 41, Named "setAutoShootEnabled"
+    --[[ Upvalues[7]:
+        [1]: var16_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: var17_upvw (read and write)
+    ]]
+    var16_upvw = arg1
+    local var18
+    local function INLINED_2() -- Internal function, doesn't exist in bytecode
+        var18 = udim2_upvr_2
+        return var18
+    end
+    if not var16_upvw or not INLINED_2() then
+        var18 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var18;
+    }):Play()
+    if not var16_upvw then
+        var17_upvw = nil
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("AutoShoot", var16_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 55
+    --[[ Upvalues[2]:
+        [1]: setAutoShootEnabled_upvr (readonly)
+        [2]: var16_upvw (read and write)
+    ]]
+    setAutoShootEnabled_upvr(not var16_upvw, true)
+end)
+local var21_upvw = 0
+local var22_upvw = false
+local var23_upvw = 0
+local var24_upvw = false
+local Fov = script.Parent.Parent:FindFirstChild("Fov")
+if not Fov or not Fov.Value then
+    local var26_upvw = 360
+end
+if Fov then
+    Fov.Changed:Connect(function(arg1) -- Line 79
+        --[[ Upvalues[1]:
+            [1]: var26_upvw (read and write)
+        ]]
+        var26_upvw = arg1
+    end)
+end
+local Prediction = script.Parent.Parent:FindFirstChild("Prediction")
+if not Prediction or not Prediction.Value then
+    local var29_upvw = false
+end
+if Prediction then
+    Prediction.Changed:Connect(function(arg1) -- Line 88
+        --[[ Upvalues[1]:
+            [1]: var29_upvw (read and write)
+        ]]
+        var29_upvw = arg1
+    end)
+end
+local Head_2 = script.Parent.Parent:FindFirstChild("Head")
+local Legs = script.Parent.Parent:FindFirstChild("Legs")
+local Torso = script.Parent.Parent:FindFirstChild("Torso")
+if not Head_2 or not Head_2.Value then
+end
+if not Legs or not Legs.Value then
+end
+if not Torso or not Torso.Value then
+end
+if Head_2 then
+    local var35_upvw = true
+    Head_2.Changed:Connect(function(arg1) -- Line 100
+        --[[ Upvalues[1]:
+            [1]: var35_upvw (read and write)
+        ]]
+        var35_upvw = arg1
+    end)
+end
+if Legs then
+    local var37_upvw = true
+    Legs.Changed:Connect(function(arg1) -- Line 101
+        --[[ Upvalues[1]:
+            [1]: var37_upvw (read and write)
+        ]]
+        var37_upvw = arg1
+    end)
+end
+if Torso then
+    local var39_upvw = true
+    Torso.Changed:Connect(function(arg1) -- Line 102
+        --[[ Upvalues[1]:
+            [1]: var39_upvw (read and write)
+        ]]
+        var39_upvw = arg1
+    end)
+end
+local BAim = script.Parent.Parent:FindFirstChild("BAim")
+local Hitchance = script.Parent.Parent:FindFirstChild("Hitchance")
+local MinDamage = script.Parent.Parent:FindFirstChild("MinDamage")
+local AutoS = script.Parent.Parent:FindFirstChild("AutoS")
+if not BAim or not BAim.Value then
+end
+if not Hitchance or not Hitchance.Value then
+    local var44_upvw = 100
+end
+if not MinDamage or not MinDamage.Value then
+    local var45_upvw = 0
+end
+if not AutoS or not AutoS.Value then
+    local var46_upvw = false
+end
+if BAim then
+    local var48_upvw = false
+    BAim.Changed:Connect(function(arg1) -- Line 117
+        --[[ Upvalues[1]:
+            [1]: var48_upvw (read and write)
+        ]]
+        var48_upvw = arg1
+    end)
+end
+if Hitchance then
+    Hitchance.Changed:Connect(function(arg1) -- Line 118
+        --[[ Upvalues[1]:
+            [1]: var44_upvw (read and write)
+        ]]
+        var44_upvw = arg1
+    end)
+end
+if MinDamage then
+    MinDamage.Changed:Connect(function(arg1) -- Line 119
+        --[[ Upvalues[1]:
+            [1]: var45_upvw (read and write)
+        ]]
+        var45_upvw = arg1
+    end)
+end
+if AutoS then
+    AutoS.Changed:Connect(function(arg1) -- Line 120
+        --[[ Upvalues[1]:
+            [1]: var46_upvw (read and write)
+        ]]
+        var46_upvw = arg1
+    end)
+end
+local tbl_4_upvr = {
+    Head = 4;
+    UpperTorso = 1;
+    LowerTorso = 1;
+    Torso = 1;
+    HumanoidRootPart = 1;
+    LeftUpperArm = 0.75;
+    LeftLowerArm = 0.75;
+    LeftHand = 0.75;
+    RightUpperArm = 0.75;
+    RightLowerArm = 0.75;
+    RightHand = 0.75;
+    LeftUpperLeg = 0.6;
+    LeftLowerLeg = 0.6;
+    LeftFoot = 0.6;
+    RightUpperLeg = 0.6;
+    RightLowerLeg = 0.6;
+    RightFoot = 0.6;
+    ["Left Leg"] = 0.6;
+    ["Right Leg"] = 0.6;
+}
+local function getToolComponents_upvr() -- Line 146, Named "getToolComponents"
+    --[[ Upvalues[1]:
+        [1]: LocalPlayer_upvr (readonly)
+    ]]
+    local Character_3 = LocalPlayer_upvr.Character
+    if not Character_3 then
+        return nil
+    end
+    local class_Tool = Character_3:FindFirstChildOfClass("Tool")
+    if not class_Tool then
+        return nil
+    end
+    local Remotes = class_Tool:FindFirstChild("Remotes")
+    if not Remotes then
+        return nil
+    end
+    local FireShot = Remotes:FindFirstChild("FireShot")
+    if not FireShot then
+        return nil
+    end
+    return {
+        tool = class_Tool;
+        fireShot = FireShot;
+        reload = Remotes:FindFirstChild("Reload");
+        handle = class_Tool:FindFirstChild("Handle");
+    }
+end
+local var58_upvw = 0
+local function performDoubleTapTeleport_upvr() -- Line 172, Named "performDoubleTapTeleport"
+    --[[ Upvalues[5]:
+        [1]: var58_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: var12_upvw (read and write)
+        [4]: any_upvw (read and write)
+        [5]: Workspace_upvr (readonly)
+    ]]
+    local var59
+    if os.clock() - var58_upvw < var59 then
+    else
+        var59 = LocalPlayer_upvr:FindFirstChild("leaderstats")
+        if var59 then
+            var59 = LocalPlayer_upvr:FindFirstChild("leaderstats"):FindFirstChild("leavemealonexd")
+        end
+        if not var12_upvw then
+            if var59 and var59.Value ~= true then
+                var59.Value = true
+            end
+            return
+        end
+        var58_upvw = os.clock()
+        if var59 then
+            var59.Value = false
+        end
+        local Character_8_upvr = LocalPlayer_upvr.Character
+        if not Character_8_upvr then return end
+        local Humanoid_3 = Character_8_upvr:FindFirstChild("Humanoid")
+        local HumanoidRootPart = Character_8_upvr:FindFirstChild("HumanoidRootPart")
+        if not Humanoid_3 or not HumanoidRootPart or Humanoid_3.Health <= 0 then return end
+        pcall(function() -- Line 195
+            --[[ Upvalues[1]:
+                [1]: any_upvw (copied, read and write)
+            ]]
+            any_upvw:FireServer("start", 4)
+        end)
+        local MoveDirection = Humanoid_3.MoveDirection
+        if MoveDirection.Magnitude < 0.05 then
+            MoveDirection = HumanoidRootPart.CFrame.LookVector
+        end
+        local Unit_4 = Vector3.new(MoveDirection.X, 0, MoveDirection.Z).Unit
+        local Position = HumanoidRootPart.Position
+        local var68 = Position + Unit_4 * 4
+        local RaycastParams_new_result1 = RaycastParams.new()
+        RaycastParams_new_result1.FilterDescendantsInstances = {Character_8_upvr}
+        RaycastParams_new_result1.FilterType = Enum.RaycastFilterType.Exclude
+        RaycastParams_new_result1.IgnoreWater = true
+        local any_Raycast_result1_2 = Workspace_upvr:Raycast(Position, var68 - Position, RaycastParams_new_result1)
+        if any_Raycast_result1_2 then
+            var68 = Position + Unit_4 * math.max(0, (any_Raycast_result1_2.Position - Position).Magnitude - 2)
+        end
+        local any_Raycast_result1_3 = Workspace_upvr:Raycast(var68 + Vector3.new(0, 5, 0), Vector3.new(0, -20, 0), RaycastParams_new_result1)
+        if not any_Raycast_result1_3 then
+            pcall(function() -- Line 230
+                --[[ Upvalues[1]:
+                    [1]: any_upvw (copied, read and write)
+                ]]
+                any_upvw:FireServer("cancel")
+            end)
+            return
+        end
+        HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+        HumanoidRootPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+        Character_8_upvr:PivotTo(CFrame.new(Vector3.new(var68.X, any_Raycast_result1_3.Position.Y + Humanoid_3.HipHeight + 0.5, var68.Z)) * HumanoidRootPart.CFrame.Rotation)
+        task.defer(function() -- Line 244
+            --[[ Upvalues[2]:
+                [1]: Character_8_upvr (readonly)
+                [2]: any_upvw (copied, read and write)
+            ]]
+            if Character_8_upvr and Character_8_upvr:FindFirstChild("HumanoidRootPart") then
+                Character_8_upvr.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+            end
+            task.wait(0.1)
+            pcall(function() -- Line 250
+                --[[ Upvalues[1]:
+                    [1]: any_upvw (copied, read and write)
+                ]]
+                any_upvw:FireServer("end")
+            end)
+        end)
+    end
+end
+local aahelp_upvr = ReplicatedStorage:WaitForChild("aahelp", 5)
+local aahelp1_upvr = ReplicatedStorage:WaitForChild("aahelp1", 5)
+local var78_upvw = 0
+local function disableAntiAimsAndRotate_upvr(arg1) -- Line 260, Named "disableAntiAimsAndRotate"
+    --[[ Upvalues[4]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: aahelp_upvr (readonly)
+        [3]: aahelp1_upvr (readonly)
+        [4]: var78_upvw (read and write)
+    ]]
+    local Character_5_upvr = LocalPlayer_upvr.Character
+    if not Character_5_upvr then
+    else
+        local HumanoidRootPart_3_upvr = Character_5_upvr:FindFirstChild("HumanoidRootPart")
+        if not HumanoidRootPart_3_upvr then return end
+        if aahelp_upvr then
+            aahelp_upvr:FireServer("disable")
+        end
+        if aahelp1_upvr then
+            aahelp1_upvr:FireServer("disable")
+        end
+        task.wait(0.01)
+        local Unit = Vector3.new(arg1.X, 0, arg1.Z).Unit
+        if 0.1 < Unit.Magnitude then
+            HumanoidRootPart_3_upvr.CFrame = CFrame.new(HumanoidRootPart_3_upvr.Position, HumanoidRootPart_3_upvr.Position + Unit)
+        end
+        var78_upvw = tick() + 0.15
+        local Rotation_upvr = HumanoidRootPart_3_upvr.CFrame.Rotation
+        task.delay(0.15, function() -- Line 291
+            --[[ Upvalues[5]:
+                [1]: Character_5_upvr (readonly)
+                [2]: HumanoidRootPart_3_upvr (readonly)
+                [3]: Rotation_upvr (readonly)
+                [4]: aahelp_upvr (copied, readonly)
+                [5]: aahelp1_upvr (copied, readonly)
+            ]]
+            if Character_5_upvr and HumanoidRootPart_3_upvr and HumanoidRootPart_3_upvr.Parent then
+                HumanoidRootPart_3_upvr.CFrame = CFrame.new(HumanoidRootPart_3_upvr.Position) * Rotation_upvr
+            end
+            if aahelp_upvr then
+                aahelp_upvr:FireServer("enable")
+            end
+            if aahelp1_upvr then
+                aahelp1_upvr:FireServer("enable")
+            end
+        end)
+    end
+end
+local var84_upvw = false
+local var85_upvw = false
+local function applyAutoStop_upvr() -- Line 314, Named "applyAutoStop"
+    --[[ Upvalues[4]:
+        [1]: var46_upvw (read and write)
+        [2]: var84_upvw (read and write)
+        [3]: var85_upvw (read and write)
+        [4]: LocalPlayer_upvr (readonly)
+    ]]
+    if not var46_upvw then
+    else
+        if var84_upvw or var85_upvw then return end
+        local Character_9 = LocalPlayer_upvr.Character
+        if not Character_9 then return end
+        local Humanoid_5_upvr = Character_9:FindFirstChild("Humanoid")
+        local HumanoidRootPart_2 = Character_9:FindFirstChild("HumanoidRootPart")
+        if not Humanoid_5_upvr or not HumanoidRootPart_2 then return end
+        if Humanoid_5_upvr.FloorMaterial == Enum.Material.Air then return end
+        var84_upvw = true
+        var85_upvw = true
+        local BodyVelocity_upvr = Instance.new("BodyVelocity")
+        BodyVelocity_upvr.Name = "AutoStopVelocity"
+        BodyVelocity_upvr.Velocity = Vector3.new(0, 0, 0)
+        BodyVelocity_upvr.MaxForce = Vector3.new(100000, 0, 100000)
+        BodyVelocity_upvr.P = 10000
+        BodyVelocity_upvr.Parent = HumanoidRootPart_2
+        Humanoid_5_upvr.WalkSpeed = 0
+        local WalkSpeed_upvr = Humanoid_5_upvr.WalkSpeed
+        task.delay(0.3, function() -- Line 342
+            --[[ Upvalues[5]:
+                [1]: BodyVelocity_upvr (readonly)
+                [2]: Humanoid_5_upvr (readonly)
+                [3]: WalkSpeed_upvr (readonly)
+                [4]: var85_upvw (copied, read and write)
+                [5]: var84_upvw (copied, read and write)
+            ]]
+            if BodyVelocity_upvr and BodyVelocity_upvr.Parent then
+                BodyVelocity_upvr:Destroy()
+            end
+            if Humanoid_5_upvr and Humanoid_5_upvr.Parent then
+                Humanoid_5_upvr.WalkSpeed = WalkSpeed_upvr
+            end
+            var85_upvw = false
+            var84_upvw = false
+        end)
+    end
+end
+local hit = ReplicatedStorage:FindFirstChild("hit")
+if hit then
+    hit.OnClientEvent:Connect(function() -- Line 358
+        --[[ Upvalues[1]:
+            [1]: applyAutoStop_upvr (readonly)
+        ]]
+        applyAutoStop_upvr()
+    end)
+end
+local function _() -- Line 367, Named "isPlayerAlive"
+    --[[ Upvalues[1]:
+        [1]: LocalPlayer_upvr (readonly)
+    ]]
+    local Character = LocalPlayer_upvr.Character
+    if not Character then
+        return false
+    end
+    local Humanoid_4 = Character:FindFirstChild("Humanoid")
+    if not Humanoid_4 or Humanoid_4.Health <= 0 then
+        return false
+    end
+    return true
+end
+local random_state_upvr = Random.new()
+local function _(arg1, arg2) -- Line 379, Named "randomPointInPart"
+    --[[ Upvalues[1]:
+        [1]: random_state_upvr (readonly)
+    ]]
+    if not arg1 then
+        return arg1.Position
+    end
+    if arg2 <= 0 then
+        return arg1.Position
+    end
+    local var97 = arg1.Size * arg2
+    return (arg1.Position) + (arg1.CFrame.RightVector * random_state_upvr:NextNumber(-var97.X / 2, var97.X / 2) + arg1.CFrame.UpVector * random_state_upvr:NextNumber(-var97.Y / 2, var97.Y / 2) + arg1.CFrame.LookVector * random_state_upvr:NextNumber(-var97.Z / 2, var97.Z / 2))
+end
+local function canBulletPassThrough_upvr(arg1) -- Line 398, Named "canBulletPassThrough"
+    if not arg1 or not arg1:IsA("BasePart") then
+        return false
+    end
+    local any_lower_result1_2 = arg1.Name:lower()
+    if any_lower_result1_2:find("hamik") or any_lower_result1_2:find("paletka") then
+        return true
+    end
+    local function INLINED_3() -- Internal function, doesn't exist in bytecode
+        local any_lower_result1 = arg1.Parent.Name:lower()
+        return any_lower_result1:find("hamik")
+    end
+    if arg1.Parent and (INLINED_3() or any_lower_result1:find("paletka")) then
+        return true
+    end
+    if 0.2 < arg1.Transparency then
+        return true
+    end
+    if not arg1.CanCollide then
+        return true
+    end
+    if arg1:IsA("Decal") or arg1:IsA("ParticleEmitter") or arg1:IsA("Beam") or arg1:IsA("Trail") then
+        return true
+    end
+    return false
+end
+local function isPartOfCharacter_upvr(arg1) -- Line 424, Named "isPartOfCharacter"
+    if not arg1 or not arg1:IsA("BasePart") then
+        return false
+    end
+    local Parent = arg1.Parent
+    if not Parent then
+        return false
+    end
+    if Parent:FindFirstChild("Humanoid") then
+        return true
+    end
+    if Parent:IsA("Accessory") or Parent:IsA("Hat") then
+        return true
+    end
+    return false
+end
+local function strictWallCheck_upvr(arg1, arg2, arg3, arg4) -- Line 436, Named "strictWallCheck"
+    --[[ Upvalues[4]:
+        [1]: Workspace_upvr (readonly)
+        [2]: canBulletPassThrough_upvr (readonly)
+        [3]: strictWallCheck_upvr (readonly)
+        [4]: isPartOfCharacter_upvr (readonly)
+    ]]
+    if not arg1 or not arg2 then
+        return false, "invalid_positions"
+    end
+    local var105 = arg2 - arg1
+    local Magnitude = var105.Magnitude
+    if Magnitude < 0.1 or 1000 < Magnitude then
+        return false, "invalid_distance"
+    end
+    local tbl_2 = {}
+    tbl_2[1] = arg3
+    tbl_2[2] = arg4
+    for _, v in ipairs(arg3:GetDescendants()) do
+        if v:IsA("BasePart") then
+            table.insert(tbl_2, v)
+        end
+    end
+    for _, v_2 in ipairs(arg4:GetDescendants()) do
+        if v_2:IsA("BasePart") then
+            table.insert(tbl_2, v_2)
+        end
+    end
+    local RaycastParams_new_result1_2 = RaycastParams.new()
+    RaycastParams_new_result1_2.FilterDescendantsInstances = tbl_2
+    RaycastParams_new_result1_2.FilterType = Enum.RaycastFilterType.Exclude
+    RaycastParams_new_result1_2.IgnoreWater = true
+    local any_Raycast_result1 = Workspace_upvr:Raycast(arg1, var105, RaycastParams_new_result1_2)
+    if not any_Raycast_result1 then
+        return true, "clear"
+    end
+    local Instance = any_Raycast_result1.Instance
+    if Instance:IsDescendantOf(arg4) then
+        return true, "hit_target"
+    end
+    if canBulletPassThrough_upvr(Instance) then
+        local var117 = any_Raycast_result1.Position + var105.Unit * 0.1
+        if (arg2 - var117).Magnitude < 0.1 then
+            return true, "transparent_pass"
+        end
+        return strictWallCheck_upvr(var117, arg2, arg3, arg4)
+    end
+    if isPartOfCharacter_upvr(Instance) then
+        local var118 = any_Raycast_result1.Position + var105.Unit * 0.1
+        if (arg2 - var118).Magnitude < 0.1 then
+            return true, "passed_other_player"
+        end
+        return strictWallCheck_upvr(var118, arg2, arg3, arg4)
+    end
+    return false, "wall_blocking"
+end
+local function multiPointWallCheck_upvr(arg1, arg2, arg3, arg4) -- Line 502, Named "multiPointWallCheck"
+    --[[ Upvalues[1]:
+        [1]: strictWallCheck_upvr (readonly)
+    ]]
+    if not arg1 or not arg2 or not arg3 or not arg4 then
+        return false
+    end
+    local strictWallCheck_upvr_result1, _ = strictWallCheck_upvr(arg1, arg2, arg3, arg4)
+    if strictWallCheck_upvr_result1 then
+        return true
+    end
+    for _, v_3 in ipairs({Vector3.new(0, 0.30000, 0), Vector3.new(0, -0.3000, 0)}) do
+        local strictWallCheck_result1, _ = strictWallCheck_upvr(arg1, arg2 + v_3, arg3, arg4)
+        if strictWallCheck_result1 then
+            return true
+        end
+    end
+    return false
+end
+local function predictPartPosition_upvr(arg1, arg2) -- Line 536, Named "predictPartPosition"
+    --[[ Upvalues[2]:
+        [1]: var29_upvw (read and write)
+        [2]: CurrentCamera_upvr (readonly)
+    ]]
+    if not var29_upvw or not arg2 then
+        return arg1.Position
+    end
+    local AssemblyLinearVelocity = arg2.AssemblyLinearVelocity
+    if not AssemblyLinearVelocity then
+        AssemblyLinearVelocity = Vector3.new()
+    end
+    if AssemblyLinearVelocity.Magnitude < 3 then
+        return arg1.Position
+    end
+    return arg1.Position + AssemblyLinearVelocity * math.clamp((arg1.Position - CurrentCamera_upvr.CFrame.Position).Magnitude / 1000, 0.08, 0.2) * 1.2
+end
+local function _(arg1) -- Line 560, Named "isInFOV"
+    --[[ Upvalues[2]:
+        [1]: var26_upvw (read and write)
+        [2]: CurrentCamera_upvr (readonly)
+    ]]
+    if 360 <= var26_upvw then
+        return true
+    end
+    local any_WorldToViewportPoint_result1, any_WorldToViewportPoint_result2 = CurrentCamera_upvr:WorldToViewportPoint(arg1)
+    if not any_WorldToViewportPoint_result2 then
+        return false
+    end
+    local ViewportSize = CurrentCamera_upvr.ViewportSize
+    local var133 = any_WorldToViewportPoint_result1.X - ViewportSize.X * 0.5
+    local var134 = any_WorldToViewportPoint_result1.Y - ViewportSize.Y * 0.5
+    local var135 = var133 * var133
+    if var135 + var134 * var134 > var26_upvw * var26_upvw then
+        var135 = false
+    else
+        var135 = true
+    end
+    return var135
+end
+local function _(arg1, arg2) -- Line 580, Named "calculatePotentialDamage"
+    --[[ Upvalues[1]:
+        [1]: tbl_4_upvr (readonly)
+    ]]
+    local var136 = 54 * (tbl_4_upvr[arg1] or 0.5)
+    if 300 < arg2 then
+        var136 *= 0.3
+    elseif 200 < arg2 then
+        var136 *= 0.5
+    elseif 100 < arg2 then
+        var136 *= 0.8
+    end
+    return math.floor(var136)
+end
+local function _(arg1, arg2) -- Line 596, Named "checkMinDamage"
+    --[[ Upvalues[2]:
+        [1]: var45_upvw (read and write)
+        [2]: tbl_4_upvr (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    -- KONSTANTERROR: [0] 1. Error Block 23 start (CF ANALYSIS FAILED)
+    local var137
+    if var45_upvw <= 0 then
+        return true
+    end
+    var137 = tbl_4_upvr[arg1.Name]
+    var137 = 54 * (var137 or 0.5)
+    if 300 < arg2 then
+        var137 *= 0.3
+        -- KONSTANTWARNING: GOTO [27] #23
+    end
+    -- KONSTANTERROR: [0] 1. Error Block 23 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [18] 16. Error Block 24 start (CF ANALYSIS FAILED)
+    if 200 < arg2 then
+        var137 *= 0.5
+    elseif 100 < arg2 then
+        var137 *= 0.8
+    end
+    if var45_upvw > math.floor(var137) then
+    else
+    end
+    do
+        return true
+    end
+    -- KONSTANTERROR: [18] 16. Error Block 24 end (CF ANALYSIS FAILED)
+end
+local function _() -- Line 606, Named "checkHitchance"
+    --[[ Upvalues[2]:
+        [1]: var44_upvw (read and write)
+        [2]: random_state_upvr (readonly)
+    ]]
+    local var138
+    if var138 <= var44_upvw then
+        return true
+    end
+    var138 = 0
+    if var44_upvw <= var138 then
+        return false
+    end
+    if random_state_upvr:NextInteger(1, 100) > var44_upvw then
+        var138 = false
+    else
+        var138 = true
+    end
+    return var138
+end
+local tbl_3_upvr = {}
+local function updateActivePlayersList_upvr() -- Line 623, Named "updateActivePlayersList"
+    --[[ Upvalues[3]:
+        [1]: tbl_3_upvr (readonly)
+        [2]: Players_upvr (readonly)
+        [3]: LocalPlayer_upvr (readonly)
+    ]]
+    table.clear(tbl_3_upvr)
+    for _, v_4 in ipairs(Players_upvr:GetPlayers()) do
+        if v_4 ~= LocalPlayer_upvr and (not v_4.Team or not LocalPlayer_upvr.Team or v_4.Team ~= LocalPlayer_upvr.Team) then
+            local Character_4 = v_4.Character
+            if Character_4 then
+                local Humanoid_8 = Character_4:FindFirstChild("Humanoid")
+                if Humanoid_8 and 0 < Humanoid_8.Health and Character_4:FindFirstChild("HumanoidRootPart") then
+                    local tbl = {
+                        player = v_4;
+                        character = Character_4;
+                        humanoid = Humanoid_8;
+                    }
+                    -- KONSTANTERROR: Expression was reused, decompilation is incorrect
+                    tbl.rootPart = Character_4:FindFirstChild("HumanoidRootPart")
+                    table.insert(tbl_3_upvr, tbl)
+                end
+            end
+        end
+    end
+end
+local var156_upvw = 0
+local function findBestTarget_upvr() -- Line 648, Named "findBestTarget"
+    --[[ Upvalues[13]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: var156_upvw (read and write)
+        [3]: updateActivePlayersList_upvr (readonly)
+        [4]: tbl_3_upvr (readonly)
+        [5]: CurrentCamera_upvr (readonly)
+        [6]: var48_upvw (read and write)
+        [7]: var35_upvw (read and write)
+        [8]: var39_upvw (read and write)
+        [9]: var37_upvw (read and write)
+        [10]: var26_upvw (read and write)
+        [11]: var45_upvw (read and write)
+        [12]: tbl_4_upvr (readonly)
+        [13]: multiPointWallCheck_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 104 start (CF ANALYSIS FAILED)
+    local Character_13 = LocalPlayer_upvr.Character
+    local var158
+    if not Character_13 then
+        var158 = false
+    else
+        local Humanoid_6 = Character_13:FindFirstChild("Humanoid")
+        if not Humanoid_6 or Humanoid_6.Health <= 0 then
+            var158 = false
+        else
+            var158 = true
+        end
+    end
+    if not var158 then
+        var158 = nil
+        return var158
+    end
+    var158 = tick()
+    if 0.5 <= var158 - var156_upvw then
+        var156_upvw = var158
+        updateActivePlayersList_upvr()
+    end
+    if #tbl_3_upvr == 0 then
+        return nil
+    end
+    if not LocalPlayer_upvr.Character:FindFirstChild("Head") then
+        return nil
+    end
+    local _ = CurrentCamera_upvr.ViewportSize
+    local _ = 1
+    -- KONSTANTERROR: [0] 1. Error Block 104 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [346] 264. Error Block 80 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [346] 264. Error Block 80 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [72] 58. Error Block 18 start (CF ANALYSIS FAILED)
+    -- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [346.14]
+    -- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [346.132226]
+    -- KONSTANTERROR: [72] 58. Error Block 18 end (CF ANALYSIS FAILED)
+end
+local function isGrounded_upvr(arg1, arg2) -- Line 758, Named "isGrounded"
+    --[[ Upvalues[2]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: Workspace_upvr (readonly)
+    ]]
+    if not arg1 or not arg2 then
+        return false
+    end
+    if arg1.FloorMaterial ~= Enum.Material.Air then
+        return true
+    end
+    local RaycastParams_new_result1_3 = RaycastParams.new()
+    RaycastParams_new_result1_3.FilterDescendantsInstances = {LocalPlayer_upvr.Character}
+    RaycastParams_new_result1_3.FilterType = Enum.RaycastFilterType.Exclude
+    if Workspace_upvr:Raycast(arg2.Position, Vector3.new(0, -3.5, 0), RaycastParams_new_result1_3) == nil then
+    else
+    end
+    return true
+end
+local function _(arg1) -- Line 781, Named "isPlayerJumping"
+    if not arg1 then
+        return true
+    end
+    local any_GetState_result1_2 = arg1:GetState()
+    local var168 = true
+    if any_GetState_result1_2 ~= Enum.HumanoidStateType.Jumping then
+        var168 = true
+        if any_GetState_result1_2 ~= Enum.HumanoidStateType.Freefall then
+            if any_GetState_result1_2 ~= Enum.HumanoidStateType.FallingDown then
+                var168 = false
+            else
+                var168 = true
+            end
+        end
+    end
+    return var168
+end
+local var169_upvw
+local function _() -- Line 796, Named "startTargeting"
+    --[[ Upvalues[19]:
+        [1]: var169_upvw (read and write)
+        [2]: RunService_upvr (readonly)
+        [3]: var16_upvw (read and write)
+        [4]: var17_upvw (read and write)
+        [5]: var24_upvw (read and write)
+        [6]: LocalPlayer_upvr (readonly)
+        [7]: isGrounded_upvr (readonly)
+        [8]: var21_upvw (read and write)
+        [9]: var22_upvw (read and write)
+        [10]: getToolComponents_upvr (readonly)
+        [11]: findBestTarget_upvr (readonly)
+        [12]: var23_upvw (read and write)
+        [13]: var29_upvw (read and write)
+        [14]: predictPartPosition_upvr (readonly)
+        [15]: multiPointWallCheck_upvr (readonly)
+        [16]: var44_upvw (read and write)
+        [17]: random_state_upvr (readonly)
+        [18]: disableAntiAimsAndRotate_upvr (readonly)
+        [19]: performDoubleTapTeleport_upvr (readonly)
+    ]]
+    if var169_upvw then
+    else
+        var169_upvw = RunService_upvr.RenderStepped:Connect(function(arg1) -- Line 799
+            --[[ Upvalues[17]:
+                [1]: var16_upvw (copied, read and write)
+                [2]: var17_upvw (copied, read and write)
+                [3]: var24_upvw (copied, read and write)
+                [4]: LocalPlayer_upvr (copied, readonly)
+                [5]: isGrounded_upvr (copied, readonly)
+                [6]: var21_upvw (copied, read and write)
+                [7]: var22_upvw (copied, read and write)
+                [8]: getToolComponents_upvr (copied, readonly)
+                [9]: findBestTarget_upvr (copied, readonly)
+                [10]: var23_upvw (copied, read and write)
+                [11]: var29_upvw (copied, read and write)
+                [12]: predictPartPosition_upvr (copied, readonly)
+                [13]: multiPointWallCheck_upvr (copied, readonly)
+                [14]: var44_upvw (copied, read and write)
+                [15]: random_state_upvr (copied, readonly)
+                [16]: disableAntiAimsAndRotate_upvr (copied, readonly)
+                [17]: performDoubleTapTeleport_upvr (copied, readonly)
+            ]]
+            -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+            -- KONSTANTERROR: [0] 1. Error Block 106 start (CF ANALYSIS FAILED)
+            local var191
+            if not var191 then
+                var191 = nil
+                var17_upvw = var191
+                var191 = false
+                var24_upvw = var191
+            else
+                local Character_7 = LocalPlayer_upvr.Character
+                if not Character_7 then
+                    var191 = false
+                    -- KONSTANTWARNING: GOTO [26] #23
+                end
+                -- KONSTANTERROR: [0] 1. Error Block 106 end (CF ANALYSIS FAILED)
+                -- KONSTANTERROR: [13] 13. Error Block 133 start (CF ANALYSIS FAILED)
+                local Humanoid_7 = Character_7:FindFirstChild("Humanoid")
+                if not Humanoid_7 or Humanoid_7.Health <= 0 then
+                    var191 = false
+                else
+                    var191 = true
+                end
+                if not var191 then
+                    var191 = nil
+                    var17_upvw = var191
+                    var191 = false
+                    var24_upvw = var191
+                    return
+                end
+                var191 = LocalPlayer_upvr.Character
+                local var194 = var191
+                if var194 then
+                    var194 = var191:FindFirstChild("Humanoid")
+                end
+                Humanoid_7 = var191
+                local var195 = Humanoid_7
+                if var195 then
+                    var195 = var191:FindFirstChild("HumanoidRootPart")
+                end
+                if not var194 then
+                else
+                    local any_GetState_result1_4 = var194:GetState()
+                    if any_GetState_result1_4 ~= Enum.HumanoidStateType.Jumping and any_GetState_result1_4 ~= Enum.HumanoidStateType.Freefall then
+                        if any_GetState_result1_4 ~= Enum.HumanoidStateType.FallingDown then
+                        else
+                        end
+                    end
+                end
+                if true then
+                    var17_upvw = nil
+                    return
+                end
+                if not isGrounded_upvr(var194, var195) then
+                    var17_upvw = nil
+                    return
+                end
+                local tick_result1 = tick()
+                if tick_result1 - var21_upvw < 1.3 then return end
+                if var22_upvw then return end
+                local getToolComponents_upvr_result1_upvr_3 = getToolComponents_upvr()
+                if not getToolComponents_upvr_result1_upvr_3 then
+                    var17_upvw = nil
+                    var24_upvw = false
+                    return
+                end
+                local findBestTarget_upvr_result1_upvr_3 = findBestTarget_upvr()
+                if not findBestTarget_upvr_result1_upvr_3 then
+                    if not var24_upvw then
+                        var24_upvw = true
+                        var23_upvw = tick_result1
+                    end
+                    var17_upvw = nil
+                    return
+                end
+                if var24_upvw then
+                    var24_upvw = false
+                    var23_upvw = tick_result1
+                end
+                if tick_result1 - var23_upvw < 0.05 then return end
+                var17_upvw = findBestTarget_upvr_result1_upvr_3
+                local var200
+                if var29_upvw then
+                    var200 = predictPartPosition_upvr(findBestTarget_upvr_result1_upvr_3.targetPart, findBestTarget_upvr_result1_upvr_3.rootPart)
+                else
+                    var200 = findBestTarget_upvr_result1_upvr_3.targetPart.Position
+                end
+                if not var200 then return end
+                local Character_2 = LocalPlayer_upvr.Character
+                local Head = Character_2:FindFirstChild("Head")
+                if not Head then return end
+                if not multiPointWallCheck_upvr(Head.Position, var200, Character_2, findBestTarget_upvr_result1_upvr_3.character) then return end
+                if 100 <= var44_upvw then
+                    -- KONSTANTWARNING: GOTO [183] #155
+                end
+                if var44_upvw <= 0 then
+                    -- KONSTANTWARNING: GOTO [183] #155
+                end
+                if random_state_upvr:NextInteger(1, 100) > var44_upvw then
+                else
+                end
+                if not true then return end
+                local Position_3_upvr = Head.Position
+                local var204 = var200 - Position_3_upvr
+                local Unit_upvr = var204.Unit
+                if not var194 then
+                    var204 = true
+                else
+                    local any_GetState_result1_8 = var194:GetState()
+                    var204 = true
+                    if any_GetState_result1_8 ~= Enum.HumanoidStateType.Jumping then
+                        var204 = true
+                        if any_GetState_result1_8 ~= Enum.HumanoidStateType.Freefall then
+                            if any_GetState_result1_8 ~= Enum.HumanoidStateType.FallingDown then
+                                var204 = false
+                            else
+                                var204 = true
+                            end
+                        end
+                    end
+                end
+                if var204 then return end
+                var22_upvw = true
+                disableAntiAimsAndRotate_upvr(Unit_upvr)
+                local pcall_result1_2, pcall_result2_3 = pcall(function() -- Line 908
+                    --[[ Upvalues[4]:
+                        [1]: getToolComponents_upvr_result1_upvr_3 (readonly)
+                        [2]: Position_3_upvr (readonly)
+                        [3]: Unit_upvr (readonly)
+                        [4]: findBestTarget_upvr_result1_upvr_3 (readonly)
+                    ]]
+                    getToolComponents_upvr_result1_upvr_3.fireShot:FireServer(Position_3_upvr, Unit_upvr, findBestTarget_upvr_result1_upvr_3.targetPart)
+                end)
+                if pcall_result1_2 then
+                    var21_upvw = tick_result1
+                    performDoubleTapTeleport_upvr()
+                else
+                    warn("AutoShoot Error:", pcall_result2_3)
+                end
+                task.delay(0.1, function() -- Line 920
+                    --[[ Upvalues[1]:
+                        [1]: var22_upvw (copied, read and write)
+                    ]]
+                    var22_upvw = false
+                end)
+                -- KONSTANTERROR: [13] 13. Error Block 133 end (CF ANALYSIS FAILED)
+            end
+        end)
+    end
+end
+local tbl_6_upvr = {}
+task.spawn(function() -- Line 930
+    --[[ Upvalues[1]:
+        [1]: tbl_6_upvr (readonly)
+    ]]
+    while task.wait(2) do
+        for i_5, v_5 in pairs(tbl_6_upvr) do
+            if 3 < tick() - v_5.time then
+                tbl_6_upvr[i_5] = nil
+            end
+        end
+    end
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.AutoShoot = var16_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 949
+        --[[ Upvalues[8]:
+            [1]: var16_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: var17_upvw (read and write)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "AutoShoot" then
+            var16_upvw = arg2
+            if not var16_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+            if not var16_upvw then
+                var17_upvw = nil
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+if var169_upvw then
+else
+    onConfigLoad_upvr = RunService_upvr.RenderStepped
+    onConfigLoad_upvr = onConfigLoad_upvr:Connect(function(arg1) -- Line 799
+        --[[ Upvalues[17]:
+            [1]: var16_upvw (read and write)
+            [2]: var17_upvw (read and write)
+            [3]: var24_upvw (read and write)
+            [4]: LocalPlayer_upvr (readonly)
+            [5]: isGrounded_upvr (readonly)
+            [6]: var21_upvw (read and write)
+            [7]: var22_upvw (read and write)
+            [8]: getToolComponents_upvr (readonly)
+            [9]: findBestTarget_upvr (readonly)
+            [10]: var23_upvw (read and write)
+            [11]: var29_upvw (read and write)
+            [12]: predictPartPosition_upvr (readonly)
+            [13]: multiPointWallCheck_upvr (readonly)
+            [14]: var44_upvw (read and write)
+            [15]: random_state_upvr (readonly)
+            [16]: disableAntiAimsAndRotate_upvr (readonly)
+            [17]: performDoubleTapTeleport_upvr (readonly)
+        ]]
+        -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+        -- KONSTANTERROR: [0] 1. Error Block 106 start (CF ANALYSIS FAILED)
+        local var222
+        if not var222 then
+            var222 = nil
+            var17_upvw = var222
+            var222 = false
+            var24_upvw = var222
+        else
+            local Character_11 = LocalPlayer_upvr.Character
+            if not Character_11 then
+                var222 = false
+                -- KONSTANTWARNING: GOTO [26] #23
+            end
+            -- KONSTANTERROR: [0] 1. Error Block 106 end (CF ANALYSIS FAILED)
+            -- KONSTANTERROR: [13] 13. Error Block 133 start (CF ANALYSIS FAILED)
+            local Humanoid = Character_11:FindFirstChild("Humanoid")
+            if not Humanoid or Humanoid.Health <= 0 then
+                var222 = false
+            else
+                var222 = true
+            end
+            if not var222 then
+                var222 = nil
+                var17_upvw = var222
+                var222 = false
+                var24_upvw = var222
+                return
+            end
+            var222 = LocalPlayer_upvr.Character
+            local var225 = var222
+            if var225 then
+                var225 = var222:FindFirstChild("Humanoid")
+            end
+            Humanoid = var222
+            local var226 = Humanoid
+            if var226 then
+                var226 = var222:FindFirstChild("HumanoidRootPart")
+            end
+            if not var225 then
+            else
+                local any_GetState_result1_7 = var225:GetState()
+                if any_GetState_result1_7 ~= Enum.HumanoidStateType.Jumping and any_GetState_result1_7 ~= Enum.HumanoidStateType.Freefall then
+                    if any_GetState_result1_7 ~= Enum.HumanoidStateType.FallingDown then
+                    else
+                    end
+                end
+            end
+            if true then
+                var17_upvw = nil
+                return
+            end
+            if not isGrounded_upvr(var225, var226) then
+                var17_upvw = nil
+                return
+            end
+            local tick_result1_3 = tick()
+            if tick_result1_3 - var21_upvw < 1.3 then return end
+            if var22_upvw then return end
+            local getToolComponents_upvr_result1_upvr = getToolComponents_upvr()
+            if not getToolComponents_upvr_result1_upvr then
+                var17_upvw = nil
+                var24_upvw = false
+                return
+            end
+            local findBestTarget_upvr_result1_upvr_2 = findBestTarget_upvr()
+            if not findBestTarget_upvr_result1_upvr_2 then
+                if not var24_upvw then
+                    var24_upvw = true
+                    var23_upvw = tick_result1_3
+                end
+                var17_upvw = nil
+                return
+            end
+            if var24_upvw then
+                var24_upvw = false
+                var23_upvw = tick_result1_3
+            end
+            if tick_result1_3 - var23_upvw < 0.05 then return end
+            var17_upvw = findBestTarget_upvr_result1_upvr_2
+            local var231
+            if var29_upvw then
+                var231 = predictPartPosition_upvr(findBestTarget_upvr_result1_upvr_2.targetPart, findBestTarget_upvr_result1_upvr_2.rootPart)
+            else
+                var231 = findBestTarget_upvr_result1_upvr_2.targetPart.Position
+            end
+            if not var231 then return end
+            local Character_10 = LocalPlayer_upvr.Character
+            local Head_3 = Character_10:FindFirstChild("Head")
+            if not Head_3 then return end
+            if not multiPointWallCheck_upvr(Head_3.Position, var231, Character_10, findBestTarget_upvr_result1_upvr_2.character) then return end
+            if 100 <= var44_upvw then
+                -- KONSTANTWARNING: GOTO [183] #155
+            end
+            if var44_upvw <= 0 then
+                -- KONSTANTWARNING: GOTO [183] #155
+            end
+            if random_state_upvr:NextInteger(1, 100) > var44_upvw then
+            else
+            end
+            if not true then return end
+            local Position_2_upvr = Head_3.Position
+            local var235 = var231 - Position_2_upvr
+            local Unit_2_upvr = var235.Unit
+            if not var225 then
+                var235 = true
+            else
+                local any_GetState_result1_6 = var225:GetState()
+                var235 = true
+                if any_GetState_result1_6 ~= Enum.HumanoidStateType.Jumping then
+                    var235 = true
+                    if any_GetState_result1_6 ~= Enum.HumanoidStateType.Freefall then
+                        if any_GetState_result1_6 ~= Enum.HumanoidStateType.FallingDown then
+                            var235 = false
+                        else
+                            var235 = true
+                        end
+                    end
+                end
+            end
+            if var235 then return end
+            var22_upvw = true
+            disableAntiAimsAndRotate_upvr(Unit_2_upvr)
+            local pcall_result1, pcall_result2 = pcall(function() -- Line 908
+                --[[ Upvalues[4]:
+                    [1]: getToolComponents_upvr_result1_upvr (readonly)
+                    [2]: Position_2_upvr (readonly)
+                    [3]: Unit_2_upvr (readonly)
+                    [4]: findBestTarget_upvr_result1_upvr_2 (readonly)
+                ]]
+                getToolComponents_upvr_result1_upvr.fireShot:FireServer(Position_2_upvr, Unit_2_upvr, findBestTarget_upvr_result1_upvr_2.targetPart)
+            end)
+            if pcall_result1 then
+                var21_upvw = tick_result1_3
+                performDoubleTapTeleport_upvr()
+            else
+                warn("AutoShoot Error:", pcall_result2)
+            end
+            task.delay(0.1, function() -- Line 920
+                --[[ Upvalues[1]:
+                    [1]: var22_upvw (copied, read and write)
+                ]]
+                var22_upvw = false
+            end)
+            -- KONSTANTERROR: [13] 13. Error Block 133 end (CF ANALYSIS FAILED)
+        end
+    end)
+    var169_upvw = onConfigLoad_upvr
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = HumanoidRootPart
+        6 [string] = GetState
+        7 [string] = Enum
+        8 [string] = HumanoidStateType
+        9 [string] = Jumping
+        11 [string] = Freefall
+        13 [string] = FallingDown
+        15 [string] = tick
+        17 [number] = 1.3
+        18 [number] = 0.05
+        19 [string] = targetPart
+        20 [string] = rootPart
+        21 [string] = Position
+        22 [string] = Head
+        23 [string] = character
+        24 [string] = NextInteger
+        25 [string] = Unit
+        26 [string] = pcall
+        28 [string] = warn
+        30 [string] = AutoShoot Error:
+        31 [string] = task
+        32 [string] = delay
+        34 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AutoShoot
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = pairs
+        6 [string] = tick
+        8 [string] = time
+
+====================================================================================================
+
+Function Dump: startTargeting
+
+Function Upvalues: startTargeting
+
+Function Constants: startTargeting
+        1 [string] = RenderStepped
+        2 [string] = Connect
+
+====================================================================================================
+
+Function Dump: isPlayerJumping
+
+Function Upvalues: isPlayerJumping
+
+Function Constants: isPlayerJumping
+        1 [string] = GetState
+        2 [string] = Enum
+        3 [string] = HumanoidStateType
+        4 [string] = Jumping
+        6 [string] = Freefall
+        8 [string] = FallingDown
+
+====================================================================================================
+
+Function Dump: isGrounded
+
+Function Upvalues: isGrounded
+
+Function Constants: isGrounded
+        1 [string] = FloorMaterial
+        2 [string] = Enum
+        3 [string] = Material
+        4 [string] = Air
+        6 [string] = RaycastParams
+        7 [string] = new
+        9 [string] = Character
+        10 [string] = FilterDescendantsInstances
+        11 [string] = RaycastFilterType
+        12 [string] = Exclude
+        14 [string] = FilterType
+        15 [string] = Position
+        16 [Vector3] = 0, -3.5, 0
+        17 [string] = Raycast
+
+====================================================================================================
+
+Function Dump: findBestTarget
+
+Function Upvalues: findBestTarget
+
+Function Constants: findBestTarget
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = tick
+        7 [number] = 0.5
+        8 [number] = 0
+        9 [string] = Head
+        10 [string] = Position
+        11 [number] = inf
+        12 [string] = ViewportSize
+        13 [string] = X
+        14 [string] = Y
+        15 [string] = CFrame
+        16 [string] = humanoid
+        17 [string] = character
+        18 [string] = part
+        19 [string] = priority
+        21 [string] = table
+        22 [string] = insert
+        24 [string] = Torso
+        25 [string] = UpperTorso
+        26 [string] = LowerTorso
+        27 [string] = LeftUpperLeg
+        28 [string] = RightUpperLeg
+        29 [string] = HumanoidRootPart
+        30 [string] = WorldToViewportPoint
+        31 [string] = rootPart
+        32 [string] = Magnitude
+        33 [string] = Name
+        34 [number] = 0.3
+        35 [number] = 0.8
+        36 [string] = math
+        37 [string] = floor
+        39 [string] = sqrt
+        41 [string] = player
+        42 [string] = targetPart
+        43 [string] = distance
+
+====================================================================================================
+
+Function Dump: updateActivePlayersList
+
+Function Upvalues: updateActivePlayersList
+
+Function Constants: updateActivePlayersList
+        1 [string] = table
+        2 [string] = clear
+        4 [string] = ipairs
+        6 [string] = GetPlayers
+        7 [string] = Team
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = FindFirstChild
+        11 [string] = HumanoidRootPart
+        12 [string] = Health
+        13 [string] = player
+        14 [string] = character
+        15 [string] = humanoid
+        16 [string] = rootPart
+        18 [string] = insert
+
+====================================================================================================
+
+Function Dump: checkHitchance
+
+Function Upvalues: checkHitchance
+
+Function Constants: checkHitchance
+        1 [string] = NextInteger
+
+====================================================================================================
+
+Function Dump: checkMinDamage
+
+Function Upvalues: checkMinDamage
+
+Function Constants: checkMinDamage
+        1 [string] = Name
+        2 [number] = 0.5
+        3 [number] = 0.3
+        4 [number] = 0.8
+        5 [string] = math
+        6 [string] = floor
+
+====================================================================================================
+
+Function Dump: calculatePotentialDamage
+
+Function Upvalues: calculatePotentialDamage
+
+Function Constants: calculatePotentialDamage
+        1 [number] = 0.5
+        2 [number] = 0.3
+        3 [number] = 0.8
+        4 [string] = math
+        5 [string] = floor
+
+====================================================================================================
+
+Function Dump: isInFOV
+
+Function Upvalues: isInFOV
+
+Function Constants: isInFOV
+        1 [string] = WorldToViewportPoint
+        2 [string] = ViewportSize
+        3 [number] = 0.5
+        4 [string] = X
+        5 [string] = Y
+
+====================================================================================================
+
+Function Dump: predictPartPosition
+
+Function Upvalues: predictPartPosition
+
+Function Constants: predictPartPosition
+        1 [string] = Position
+        2 [string] = AssemblyLinearVelocity
+        3 [string] = Vector3
+        4 [string] = new
+        6 [string] = Magnitude
+        7 [string] = CFrame
+        8 [number] = 1000
+        9 [number] = 0.08
+        10 [number] = 0.2
+        11 [string] = math
+        12 [string] = clamp
+        14 [number] = 1.2
+
+====================================================================================================
+
+Function Dump: multiPointWallCheck
+
+Function Upvalues: multiPointWallCheck
+
+Function Constants: multiPointWallCheck
+        1 [Vector3] = 0, 0.30000001192092896, 0
+        2 [Vector3] = 0, -0.30000001192092896, 0
+        3 [string] = ipairs
+
+====================================================================================================
+
+Function Dump: strictWallCheck
+
+Function Upvalues: strictWallCheck
+
+Function Constants: strictWallCheck
+        1 [string] = invalid_positions
+        2 [string] = Magnitude
+        3 [number] = 0.1
+        4 [string] = invalid_distance
+        5 [string] = ipairs
+        7 [string] = GetDescendants
+        8 [string] = BasePart
+        9 [string] = IsA
+        10 [string] = table
+        11 [string] = insert
+        13 [string] = RaycastParams
+        14 [string] = new
+        16 [string] = FilterDescendantsInstances
+        17 [string] = Enum
+        18 [string] = RaycastFilterType
+        19 [string] = Exclude
+        21 [string] = FilterType
+        22 [string] = IgnoreWater
+        23 [string] = Raycast
+        24 [string] = clear
+        25 [string] = Instance
+        26 [string] = IsDescendantOf
+        27 [string] = hit_target
+        28 [string] = Position
+        29 [string] = Unit
+        30 [string] = transparent_pass
+        31 [string] = passed_other_player
+        32 [string] = wall_blocking
+
+====================================================================================================
+
+Function Dump: isPartOfCharacter
+
+Function Upvalues: isPartOfCharacter
+
+Function Constants: isPartOfCharacter
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Parent
+        4 [string] = Humanoid
+        5 [string] = FindFirstChild
+        6 [string] = Accessory
+        7 [string] = Hat
+
+====================================================================================================
+
+Function Dump: canBulletPassThrough
+
+Function Upvalues: canBulletPassThrough
+
+Function Constants: canBulletPassThrough
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Name
+        4 [string] = lower
+        5 [string] = hamik
+        6 [string] = find
+        7 [string] = paletka
+        8 [string] = Parent
+        9 [string] = Transparency
+        10 [number] = 0.2
+        11 [string] = CanCollide
+        12 [string] = Decal
+        13 [string] = ParticleEmitter
+        14 [string] = Beam
+        15 [string] = Trail
+
+====================================================================================================
+
+Function Dump: randomPointInPart
+
+Function Upvalues: randomPointInPart
+
+Function Constants: randomPointInPart
+        1 [string] = Position
+        2 [string] = Size
+        3 [number] = 2
+        4 [string] = X
+        5 [string] = NextNumber
+        6 [string] = Y
+        7 [string] = Z
+        8 [string] = CFrame
+        9 [string] = RightVector
+        10 [string] = UpVector
+        11 [string] = LookVector
+
+====================================================================================================
+
+Function Dump: isPlayerAlive
+
+Function Upvalues: isPlayerAlive
+
+Function Constants: isPlayerAlive
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: applyAutoStop
+
+Function Upvalues: applyAutoStop
+
+Function Constants: applyAutoStop
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = HumanoidRootPart
+        5 [string] = FloorMaterial
+        6 [string] = Enum
+        7 [string] = Material
+        8 [string] = Air
+        10 [string] = Instance
+        11 [string] = new
+        13 [string] = BodyVelocity
+        14 [string] = AutoStopVelocity
+        15 [string] = Name
+        16 [Vector3] = 0, 0, 0
+        17 [string] = Velocity
+        18 [Vector3] = 100000, 0, 100000
+        19 [string] = MaxForce
+        20 [string] = P
+        21 [string] = Parent
+        22 [string] = WalkSpeed
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.3
+
+====================================================================================================
+
+Function Dump: disableAntiAimsAndRotate
+
+Function Upvalues: disableAntiAimsAndRotate
+
+Function Constants: disableAntiAimsAndRotate
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = CFrame
+        5 [string] = Rotation
+        6 [string] = disable
+        7 [string] = FireServer
+        8 [string] = task
+        9 [string] = wait
+        11 [number] = 0.01
+        12 [string] = X
+        13 [string] = Z
+        14 [string] = Vector3
+        15 [string] = new
+        17 [string] = Unit
+        18 [string] = Magnitude
+        19 [number] = 0.1
+        21 [string] = Position
+        22 [number] = 0.15
+        23 [string] = tick
+        25 [string] = delay
+
+====================================================================================================
+
+Function Dump: performDoubleTapTeleport
+
+Function Upvalues: performDoubleTapTeleport
+
+Function Constants: performDoubleTapTeleport
+        1 [string] = os
+        2 [string] = clock
+        4 [string] = leaderstats
+        5 [string] = FindFirstChild
+        6 [string] = leavemealonexd
+        7 [string] = Value
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = HumanoidRootPart
+        11 [string] = Health
+        12 [string] = pcall
+        14 [string] = MoveDirection
+        15 [string] = Magnitude
+        16 [number] = 0.05
+        17 [string] = CFrame
+        18 [string] = LookVector
+        19 [string] = X
+        20 [string] = Z
+        21 [string] = Vector3
+        22 [string] = new
+        24 [string] = Unit
+        25 [string] = Position
+        26 [number] = 4
+        27 [string] = RaycastParams
+        29 [string] = FilterDescendantsInstances
+        30 [string] = Enum
+        31 [string] = RaycastFilterType
+        32 [string] = Exclude
+        34 [string] = FilterType
+        35 [string] = IgnoreWater
+        36 [string] = Raycast
+        37 [number] = 2
+        38 [string] = math
+        39 [string] = max
+        41 [Vector3] = 0, 5, 0
+        42 [Vector3] = 0, -20, 0
+        43 [number] = 0.5
+        44 [string] = Y
+        45 [string] = HipHeight
+        46 [Vector3] = 0, 0, 0
+        47 [string] = AssemblyLinearVelocity
+        48 [string] = AssemblyAngularVelocity
+        50 [string] = Rotation
+        51 [string] = PivotTo
+        52 [string] = task
+        53 [string] = defer
+
+====================================================================================================
+
+Function Dump: getToolComponents
+
+Function Upvalues: getToolComponents
+
+Function Constants: getToolComponents
+        1 [string] = Character
+        2 [string] = Tool
+        3 [string] = FindFirstChildOfClass
+        4 [string] = Remotes
+        5 [string] = FindFirstChild
+        6 [string] = FireShot
+        7 [string] = Handle
+        8 [string] = tool
+        9 [string] = fireShot
+        10 [string] = reload
+        11 [string] = handle
+        13 [string] = Reload
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAutoShootEnabled
+
+Function Upvalues: setAutoShootEnabled
+
+Function Constants: setAutoShootEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = AutoShoot
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: findBestTarget
+
+Function Upvalues: findBestTarget
+        1 [Instance] = quit_xyz
+        2 [number] = 0
+        3 [function] = updateActivePlayersList
+        4 [table]:
+        4 [table] table: 0xeef23f7a2c4e90b5
+        5 [Instance] = Camera
+        6 [boolean] = false
+        7 [boolean] = true
+        8 [boolean] = true
+        9 [boolean] = true
+        10 [number] = 0
+        11 [number] = 0
+        12 [table]:
+        12 [table] table: 0x925167b04c2f9df5
+                1 [number] = 0.6
+                2 [number] = 0.75
+                3 [number] = 0.6
+                4 [number] = 1
+                5 [number] = 1
+                6 [number] = 0.6
+                7 [number] = 0.6
+                8 [number] = 0.6
+                9 [number] = 1
+                10 [number] = 4
+                11 [number] = 1
+                12 [number] = 0.75
+                13 [number] = 0.75
+                14 [number] = 0.75
+                15 [number] = 0.6
+                16 [number] = 0.6
+                17 [number] = 0.75
+                18 [number] = 0.6
+                19 [number] = 0.75
+        13 [function] = multiPointWallCheck
+
+Function Constants: findBestTarget
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = tick
+        7 [number] = 0.5
+        8 [number] = 0
+        9 [string] = Head
+        10 [string] = Position
+        11 [number] = inf
+        12 [string] = ViewportSize
+        13 [string] = X
+        14 [string] = Y
+        15 [string] = CFrame
+        16 [string] = humanoid
+        17 [string] = character
+        18 [string] = part
+        19 [string] = priority
+        21 [string] = table
+        22 [string] = insert
+        24 [string] = Torso
+        25 [string] = UpperTorso
+        26 [string] = LowerTorso
+        27 [string] = LeftUpperLeg
+        28 [string] = RightUpperLeg
+        29 [string] = HumanoidRootPart
+        30 [string] = WorldToViewportPoint
+        31 [string] = rootPart
+        32 [string] = Magnitude
+        33 [string] = Name
+        34 [number] = 0.3
+        35 [number] = 0.8
+        36 [string] = math
+        37 [string] = floor
+        39 [string] = sqrt
+        41 [string] = player
+        42 [string] = targetPart
+        43 [string] = distance
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [number] = 0
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = true
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = true
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = true
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [number] = 0
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: predictPartPosition
+
+Function Upvalues: predictPartPosition
+        1 [boolean] = false
+        2 [Instance] = Camera
+
+Function Constants: predictPartPosition
+        1 [string] = Position
+        2 [string] = AssemblyLinearVelocity
+        3 [string] = Vector3
+        4 [string] = new
+        6 [string] = Magnitude
+        7 [string] = CFrame
+        8 [number] = 1000
+        9 [number] = 0.08
+        10 [number] = 0.2
+        11 [string] = math
+        12 [string] = clamp
+        14 [number] = 1.2
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAutoShootEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        3 [boolean] = false
+        4 [Instance] = quit_xyz
+        5 [function] = isGrounded
+        6 [number] = 0
+        7 [boolean] = false
+        8 [function] = getToolComponents
+        9 [function] = findBestTarget
+        10 [number] = 0
+        11 [boolean] = false
+        12 [function] = predictPartPosition
+        13 [function] = multiPointWallCheck
+        14 [number] = 100
+        15 [Random] = Random
+        16 [function] = disableAntiAimsAndRotate
+        17 [function] = performDoubleTapTeleport
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = HumanoidRootPart
+        6 [string] = GetState
+        7 [string] = Enum
+        8 [string] = HumanoidStateType
+        9 [string] = Jumping
+        10 [EnumItem] = Enum.HumanoidStateType.Jumping
+        11 [string] = Freefall
+        12 [EnumItem] = Enum.HumanoidStateType.Freefall
+        13 [string] = FallingDown
+        14 [EnumItem] = Enum.HumanoidStateType.FallingDown
+        15 [string] = tick
+        17 [number] = 1.3
+        18 [number] = 0.05
+        19 [string] = targetPart
+        20 [string] = rootPart
+        21 [string] = Position
+        22 [string] = Head
+        23 [string] = character
+        24 [string] = NextInteger
+        25 [string] = Unit
+        26 [string] = pcall
+        28 [string] = warn
+        30 [string] = AutoShoot Error:
+        31 [string] = task
+        32 [string] = delay
+        34 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AutoShoot
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: setAutoShootEnabled
+
+Function Upvalues: setAutoShootEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setAutoShootEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = AutoShoot
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [table]:
+        1 [table] table: 0xc25f290b80e79d65
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = pairs
+        6 [string] = tick
+        8 [string] = time
+
+====================================================================================================
+
+Function Dump: multiPointWallCheck
+
+Function Upvalues: multiPointWallCheck
+        1 [function] = strictWallCheck
+
+Function Constants: multiPointWallCheck
+        1 [Vector3] = 0, 0.30000001192092896, 0
+        2 [Vector3] = 0, -0.30000001192092896, 0
+        3 [string] = ipairs
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = applyAutoStop
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: getToolComponents
+
+Function Upvalues: getToolComponents
+        1 [Instance] = quit_xyz
+
+Function Constants: getToolComponents
+        1 [string] = Character
+        2 [string] = Tool
+        3 [string] = FindFirstChildOfClass
+        4 [string] = Remotes
+        5 [string] = FindFirstChild
+        6 [string] = FireShot
+        7 [string] = Handle
+        8 [string] = tool
+        9 [string] = fireShot
+        10 [string] = reload
+        11 [string] = handle
+        13 [string] = Reload
+
+====================================================================================================
+
+Function Dump: isPartOfCharacter
+
+Function Upvalues: isPartOfCharacter
+
+Function Constants: isPartOfCharacter
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Parent
+        4 [string] = Humanoid
+        5 [string] = FindFirstChild
+        6 [string] = Accessory
+        7 [string] = Hat
+
+====================================================================================================
+
+Function Dump: canBulletPassThrough
+
+Function Upvalues: canBulletPassThrough
+
+Function Constants: canBulletPassThrough
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Name
+        4 [string] = lower
+        5 [string] = hamik
+        6 [string] = find
+        7 [string] = paletka
+        8 [string] = Parent
+        9 [string] = Transparency
+        10 [number] = 0.2
+        11 [string] = CanCollide
+        12 [string] = Decal
+        13 [string] = ParticleEmitter
+        14 [string] = Beam
+        15 [string] = Trail
+
+====================================================================================================
+
+Function Dump: performDoubleTapTeleport
+
+Function Upvalues: performDoubleTapTeleport
+        1 [number] = 0
+        2 [Instance] = quit_xyz
+        3 [boolean] = false
+        4 [Instance] = DTMarker
+        5 [Instance] = Workspace
+
+Function Constants: performDoubleTapTeleport
+        1 [string] = os
+        2 [string] = clock
+        4 [string] = leaderstats
+        5 [string] = FindFirstChild
+        6 [string] = leavemealonexd
+        7 [string] = Value
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = HumanoidRootPart
+        11 [string] = Health
+        12 [string] = pcall
+        14 [string] = MoveDirection
+        15 [string] = Magnitude
+        16 [number] = 0.05
+        17 [string] = CFrame
+        18 [string] = LookVector
+        19 [string] = X
+        20 [string] = Z
+        21 [string] = Vector3
+        22 [string] = new
+        24 [string] = Unit
+        25 [string] = Position
+        26 [number] = 4
+        27 [string] = RaycastParams
+        29 [string] = FilterDescendantsInstances
+        30 [string] = Enum
+        31 [string] = RaycastFilterType
+        32 [string] = Exclude
+        33 [EnumItem] = Enum.RaycastFilterType.Exclude
+        34 [string] = FilterType
+        35 [string] = IgnoreWater
+        36 [string] = Raycast
+        37 [number] = 2
+        38 [string] = math
+        39 [string] = max
+        41 [Vector3] = 0, 5, 0
+        42 [Vector3] = 0, -20, 0
+        43 [number] = 0.5
+        44 [string] = Y
+        45 [string] = HipHeight
+        46 [Vector3] = 0, 0, 0
+        47 [string] = AssemblyLinearVelocity
+        48 [string] = AssemblyAngularVelocity
+        50 [string] = Rotation
+        51 [string] = PivotTo
+        52 [string] = task
+        53 [string] = defer
+
+====================================================================================================
+
+Function Dump: updateActivePlayersList
+
+Function Upvalues: updateActivePlayersList
+        1 [table] (Recursive table detected)
+        2 [Instance] = Players
+        3 [Instance] = quit_xyz
+
+Function Constants: updateActivePlayersList
+        1 [string] = table
+        2 [string] = clear
+        4 [string] = ipairs
+        6 [string] = GetPlayers
+        7 [string] = Team
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = FindFirstChild
+        11 [string] = HumanoidRootPart
+        12 [string] = Health
+        13 [string] = player
+        14 [string] = character
+        15 [string] = humanoid
+        16 [string] = rootPart
+        18 [string] = insert
+
+====================================================================================================
+
+Function Dump: applyAutoStop
+
+Function Upvalues: applyAutoStop
+        1 [boolean] = false
+        2 [boolean] = false
+        3 [boolean] = false
+        4 [Instance] = quit_xyz
+
+Function Constants: applyAutoStop
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = HumanoidRootPart
+        5 [string] = FloorMaterial
+        6 [string] = Enum
+        7 [string] = Material
+        8 [string] = Air
+        9 [EnumItem] = Enum.Material.Air
+        10 [string] = Instance
+        11 [string] = new
+        13 [string] = BodyVelocity
+        14 [string] = AutoStopVelocity
+        15 [string] = Name
+        16 [Vector3] = 0, 0, 0
+        17 [string] = Velocity
+        18 [Vector3] = 100000, 0, 100000
+        19 [string] = MaxForce
+        20 [string] = P
+        21 [string] = Parent
+        22 [string] = WalkSpeed
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.3
+
+====================================================================================================
+
+Function Dump: disableAntiAimsAndRotate
+
+Function Upvalues: disableAntiAimsAndRotate
+        1 [Instance] = quit_xyz
+        2 [Instance] = aahelp
+        3 [Instance] = aahelp1
+        4 [number] = 0
+
+Function Constants: disableAntiAimsAndRotate
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = CFrame
+        5 [string] = Rotation
+        6 [string] = disable
+        7 [string] = FireServer
+        8 [string] = task
+        9 [string] = wait
+        11 [number] = 0.01
+        12 [string] = X
+        13 [string] = Z
+        14 [string] = Vector3
+        15 [string] = new
+        17 [string] = Unit
+        18 [string] = Magnitude
+        19 [number] = 0.1
+        21 [string] = Position
+        22 [number] = 0.15
+        23 [string] = tick
+        25 [string] = delay
+
+====================================================================================================
+
+Function Dump: strictWallCheck
+
+Function Upvalues: strictWallCheck
+        1 [Instance] = Workspace
+        2 [function] = canBulletPassThrough
+        3 [function] = strictWallCheck
+        4 [function] = isPartOfCharacter
+
+Function Constants: strictWallCheck
+        1 [string] = invalid_positions
+        2 [string] = Magnitude
+        3 [number] = 0.1
+        4 [string] = invalid_distance
+        5 [string] = ipairs
+        7 [string] = GetDescendants
+        8 [string] = BasePart
+        9 [string] = IsA
+        10 [string] = table
+        11 [string] = insert
+        13 [string] = RaycastParams
+        14 [string] = new
+        16 [string] = FilterDescendantsInstances
+        17 [string] = Enum
+        18 [string] = RaycastFilterType
+        19 [string] = Exclude
+        20 [EnumItem] = Enum.RaycastFilterType.Exclude
+        21 [string] = FilterType
+        22 [string] = IgnoreWater
+        23 [string] = Raycast
+        24 [string] = clear
+        25 [string] = Instance
+        26 [string] = IsDescendantOf
+        27 [string] = hit_target
+        28 [string] = Position
+        29 [string] = Unit
+        30 [string] = transparent_pass
+        31 [string] = passed_other_player
+        32 [string] = wall_blocking
+
+====================================================================================================
+
+Function Dump: isGrounded
+
+Function Upvalues: isGrounded
+        1 [Instance] = quit_xyz
+        2 [Instance] = Workspace
+
+Function Constants: isGrounded
+        1 [string] = FloorMaterial
+        2 [string] = Enum
+        3 [string] = Material
+        4 [string] = Air
+        5 [EnumItem] = Enum.Material.Air
+        6 [string] = RaycastParams
+        7 [string] = new
+        9 [string] = Character
+        10 [string] = FilterDescendantsInstances
+        11 [string] = RaycastFilterType
+        12 [string] = Exclude
+        13 [EnumItem] = Enum.RaycastFilterType.Exclude
+        14 [string] = FilterType
+        15 [string] = Position
+        16 [Vector3] = 0, -3.5, 0
+        17 [string] = Raycast
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_AutoShoot_1769301632.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle.LocalScript
+-- Took 0.58s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:40:25
+-- Luau version 6, Types version 3
+-- Time taken: 0.114343 seconds
+
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+local TweenService_upvr = game:GetService("TweenService")
+local Players_upvr = game:GetService("Players")
+local RunService_upvr = game:GetService("RunService")
+local Workspace_upvr = game:GetService("Workspace")
+local CurrentCamera_upvr = Workspace_upvr.CurrentCamera
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer_upvr = Players_upvr.LocalPlayer
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var12_upvw
+if not ReplicatedStorage:FindFirstChild("DTMarker") then
+    var12_upvw = "RemoteEvent"
+    local any_upvw = Instance.new(var12_upvw)
+    any_upvw.Name = "DTMarker"
+    any_upvw.Parent = ReplicatedStorage
+end
+var12_upvw = script.Parent
+local DT = var12_upvw.Parent:FindFirstChild("DT")
+local function INLINED() -- Internal function, doesn't exist in bytecode
+    var12_upvw = DT.Value
+    return var12_upvw
+end
+if not DT or not INLINED() then
+    var12_upvw = false
+end
+if DT then
+    DT.Changed:Connect(function(arg1) -- Line 34
+        --[[ Upvalues[1]:
+            [1]: var12_upvw (read and write)
+        ]]
+        var12_upvw = arg1
+    end)
+end
+local var16_upvw = false
+local var17_upvw
+local function setAutoShootEnabled_upvr(arg1, arg2) -- Line 41, Named "setAutoShootEnabled"
+    --[[ Upvalues[7]:
+        [1]: var16_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: var17_upvw (read and write)
+    ]]
+    var16_upvw = arg1
+    local var18
+    local function INLINED_2() -- Internal function, doesn't exist in bytecode
+        var18 = udim2_upvr_2
+        return var18
+    end
+    if not var16_upvw or not INLINED_2() then
+        var18 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var18;
+    }):Play()
+    if not var16_upvw then
+        var17_upvw = nil
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("AutoShoot", var16_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 55
+    --[[ Upvalues[2]:
+        [1]: setAutoShootEnabled_upvr (readonly)
+        [2]: var16_upvw (read and write)
+    ]]
+    setAutoShootEnabled_upvr(not var16_upvw, true)
+end)
+local var21_upvw = 0
+local var22_upvw = false
+local var23_upvw = 0
+local var24_upvw = false
+local Fov = script.Parent.Parent:FindFirstChild("Fov")
+if not Fov or not Fov.Value then
+    local var26_upvw = 360
+end
+if Fov then
+    Fov.Changed:Connect(function(arg1) -- Line 79
+        --[[ Upvalues[1]:
+            [1]: var26_upvw (read and write)
+        ]]
+        var26_upvw = arg1
+    end)
+end
+local Prediction = script.Parent.Parent:FindFirstChild("Prediction")
+if not Prediction or not Prediction.Value then
+    local var29_upvw = false
+end
+if Prediction then
+    Prediction.Changed:Connect(function(arg1) -- Line 88
+        --[[ Upvalues[1]:
+            [1]: var29_upvw (read and write)
+        ]]
+        var29_upvw = arg1
+    end)
+end
+local Head_2 = script.Parent.Parent:FindFirstChild("Head")
+local Legs = script.Parent.Parent:FindFirstChild("Legs")
+local Torso = script.Parent.Parent:FindFirstChild("Torso")
+if not Head_2 or not Head_2.Value then
+end
+if not Legs or not Legs.Value then
+end
+if not Torso or not Torso.Value then
+end
+if Head_2 then
+    local var35_upvw = true
+    Head_2.Changed:Connect(function(arg1) -- Line 100
+        --[[ Upvalues[1]:
+            [1]: var35_upvw (read and write)
+        ]]
+        var35_upvw = arg1
+    end)
+end
+if Legs then
+    local var37_upvw = true
+    Legs.Changed:Connect(function(arg1) -- Line 101
+        --[[ Upvalues[1]:
+            [1]: var37_upvw (read and write)
+        ]]
+        var37_upvw = arg1
+    end)
+end
+if Torso then
+    local var39_upvw = true
+    Torso.Changed:Connect(function(arg1) -- Line 102
+        --[[ Upvalues[1]:
+            [1]: var39_upvw (read and write)
+        ]]
+        var39_upvw = arg1
+    end)
+end
+local BAim = script.Parent.Parent:FindFirstChild("BAim")
+local Hitchance = script.Parent.Parent:FindFirstChild("Hitchance")
+local MinDamage = script.Parent.Parent:FindFirstChild("MinDamage")
+local AutoS = script.Parent.Parent:FindFirstChild("AutoS")
+if not BAim or not BAim.Value then
+end
+if not Hitchance or not Hitchance.Value then
+    local var44_upvw = 100
+end
+if not MinDamage or not MinDamage.Value then
+    local var45_upvw = 0
+end
+if not AutoS or not AutoS.Value then
+    local var46_upvw = false
+end
+if BAim then
+    local var48_upvw = false
+    BAim.Changed:Connect(function(arg1) -- Line 117
+        --[[ Upvalues[1]:
+            [1]: var48_upvw (read and write)
+        ]]
+        var48_upvw = arg1
+    end)
+end
+if Hitchance then
+    Hitchance.Changed:Connect(function(arg1) -- Line 118
+        --[[ Upvalues[1]:
+            [1]: var44_upvw (read and write)
+        ]]
+        var44_upvw = arg1
+    end)
+end
+if MinDamage then
+    MinDamage.Changed:Connect(function(arg1) -- Line 119
+        --[[ Upvalues[1]:
+            [1]: var45_upvw (read and write)
+        ]]
+        var45_upvw = arg1
+    end)
+end
+if AutoS then
+    AutoS.Changed:Connect(function(arg1) -- Line 120
+        --[[ Upvalues[1]:
+            [1]: var46_upvw (read and write)
+        ]]
+        var46_upvw = arg1
+    end)
+end
+local tbl_4_upvr = {
+    Head = 4;
+    UpperTorso = 1;
+    LowerTorso = 1;
+    Torso = 1;
+    HumanoidRootPart = 1;
+    LeftUpperArm = 0.75;
+    LeftLowerArm = 0.75;
+    LeftHand = 0.75;
+    RightUpperArm = 0.75;
+    RightLowerArm = 0.75;
+    RightHand = 0.75;
+    LeftUpperLeg = 0.6;
+    LeftLowerLeg = 0.6;
+    LeftFoot = 0.6;
+    RightUpperLeg = 0.6;
+    RightLowerLeg = 0.6;
+    RightFoot = 0.6;
+    ["Left Leg"] = 0.6;
+    ["Right Leg"] = 0.6;
+}
+local function getToolComponents_upvr() -- Line 146, Named "getToolComponents"
+    --[[ Upvalues[1]:
+        [1]: LocalPlayer_upvr (readonly)
+    ]]
+    local Character_3 = LocalPlayer_upvr.Character
+    if not Character_3 then
+        return nil
+    end
+    local class_Tool = Character_3:FindFirstChildOfClass("Tool")
+    if not class_Tool then
+        return nil
+    end
+    local Remotes = class_Tool:FindFirstChild("Remotes")
+    if not Remotes then
+        return nil
+    end
+    local FireShot = Remotes:FindFirstChild("FireShot")
+    if not FireShot then
+        return nil
+    end
+    return {
+        tool = class_Tool;
+        fireShot = FireShot;
+        reload = Remotes:FindFirstChild("Reload");
+        handle = class_Tool:FindFirstChild("Handle");
+    }
+end
+local var58_upvw = 0
+local function performDoubleTapTeleport_upvr() -- Line 172, Named "performDoubleTapTeleport"
+    --[[ Upvalues[5]:
+        [1]: var58_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: var12_upvw (read and write)
+        [4]: any_upvw (read and write)
+        [5]: Workspace_upvr (readonly)
+    ]]
+    local var59
+    if os.clock() - var58_upvw < var59 then
+    else
+        var59 = LocalPlayer_upvr:FindFirstChild("leaderstats")
+        if var59 then
+            var59 = LocalPlayer_upvr:FindFirstChild("leaderstats"):FindFirstChild("leavemealonexd")
+        end
+        if not var12_upvw then
+            if var59 and var59.Value ~= true then
+                var59.Value = true
+            end
+            return
+        end
+        var58_upvw = os.clock()
+        if var59 then
+            var59.Value = false
+        end
+        local Character_8_upvr = LocalPlayer_upvr.Character
+        if not Character_8_upvr then return end
+        local Humanoid_3 = Character_8_upvr:FindFirstChild("Humanoid")
+        local HumanoidRootPart = Character_8_upvr:FindFirstChild("HumanoidRootPart")
+        if not Humanoid_3 or not HumanoidRootPart or Humanoid_3.Health <= 0 then return end
+        pcall(function() -- Line 195
+            --[[ Upvalues[1]:
+                [1]: any_upvw (copied, read and write)
+            ]]
+            any_upvw:FireServer("start", 4)
+        end)
+        local MoveDirection = Humanoid_3.MoveDirection
+        if MoveDirection.Magnitude < 0.05 then
+            MoveDirection = HumanoidRootPart.CFrame.LookVector
+        end
+        local Unit_4 = Vector3.new(MoveDirection.X, 0, MoveDirection.Z).Unit
+        local Position = HumanoidRootPart.Position
+        local var68 = Position + Unit_4 * 4
+        local RaycastParams_new_result1 = RaycastParams.new()
+        RaycastParams_new_result1.FilterDescendantsInstances = {Character_8_upvr}
+        RaycastParams_new_result1.FilterType = Enum.RaycastFilterType.Exclude
+        RaycastParams_new_result1.IgnoreWater = true
+        local any_Raycast_result1_2 = Workspace_upvr:Raycast(Position, var68 - Position, RaycastParams_new_result1)
+        if any_Raycast_result1_2 then
+            var68 = Position + Unit_4 * math.max(0, (any_Raycast_result1_2.Position - Position).Magnitude - 2)
+        end
+        local any_Raycast_result1_3 = Workspace_upvr:Raycast(var68 + Vector3.new(0, 5, 0), Vector3.new(0, -20, 0), RaycastParams_new_result1)
+        if not any_Raycast_result1_3 then
+            pcall(function() -- Line 230
+                --[[ Upvalues[1]:
+                    [1]: any_upvw (copied, read and write)
+                ]]
+                any_upvw:FireServer("cancel")
+            end)
+            return
+        end
+        HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+        HumanoidRootPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+        Character_8_upvr:PivotTo(CFrame.new(Vector3.new(var68.X, any_Raycast_result1_3.Position.Y + Humanoid_3.HipHeight + 0.5, var68.Z)) * HumanoidRootPart.CFrame.Rotation)
+        task.defer(function() -- Line 244
+            --[[ Upvalues[2]:
+                [1]: Character_8_upvr (readonly)
+                [2]: any_upvw (copied, read and write)
+            ]]
+            if Character_8_upvr and Character_8_upvr:FindFirstChild("HumanoidRootPart") then
+                Character_8_upvr.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+            end
+            task.wait(0.1)
+            pcall(function() -- Line 250
+                --[[ Upvalues[1]:
+                    [1]: any_upvw (copied, read and write)
+                ]]
+                any_upvw:FireServer("end")
+            end)
+        end)
+    end
+end
+local aahelp_upvr = ReplicatedStorage:WaitForChild("aahelp", 5)
+local aahelp1_upvr = ReplicatedStorage:WaitForChild("aahelp1", 5)
+local var78_upvw = 0
+local function disableAntiAimsAndRotate_upvr(arg1) -- Line 260, Named "disableAntiAimsAndRotate"
+    --[[ Upvalues[4]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: aahelp_upvr (readonly)
+        [3]: aahelp1_upvr (readonly)
+        [4]: var78_upvw (read and write)
+    ]]
+    local Character_5_upvr = LocalPlayer_upvr.Character
+    if not Character_5_upvr then
+    else
+        local HumanoidRootPart_3_upvr = Character_5_upvr:FindFirstChild("HumanoidRootPart")
+        if not HumanoidRootPart_3_upvr then return end
+        if aahelp_upvr then
+            aahelp_upvr:FireServer("disable")
+        end
+        if aahelp1_upvr then
+            aahelp1_upvr:FireServer("disable")
+        end
+        task.wait(0.01)
+        local Unit = Vector3.new(arg1.X, 0, arg1.Z).Unit
+        if 0.1 < Unit.Magnitude then
+            HumanoidRootPart_3_upvr.CFrame = CFrame.new(HumanoidRootPart_3_upvr.Position, HumanoidRootPart_3_upvr.Position + Unit)
+        end
+        var78_upvw = tick() + 0.15
+        local Rotation_upvr = HumanoidRootPart_3_upvr.CFrame.Rotation
+        task.delay(0.15, function() -- Line 291
+            --[[ Upvalues[5]:
+                [1]: Character_5_upvr (readonly)
+                [2]: HumanoidRootPart_3_upvr (readonly)
+                [3]: Rotation_upvr (readonly)
+                [4]: aahelp_upvr (copied, readonly)
+                [5]: aahelp1_upvr (copied, readonly)
+            ]]
+            if Character_5_upvr and HumanoidRootPart_3_upvr and HumanoidRootPart_3_upvr.Parent then
+                HumanoidRootPart_3_upvr.CFrame = CFrame.new(HumanoidRootPart_3_upvr.Position) * Rotation_upvr
+            end
+            if aahelp_upvr then
+                aahelp_upvr:FireServer("enable")
+            end
+            if aahelp1_upvr then
+                aahelp1_upvr:FireServer("enable")
+            end
+        end)
+    end
+end
+local var84_upvw = false
+local var85_upvw = false
+local function applyAutoStop_upvr() -- Line 314, Named "applyAutoStop"
+    --[[ Upvalues[4]:
+        [1]: var46_upvw (read and write)
+        [2]: var84_upvw (read and write)
+        [3]: var85_upvw (read and write)
+        [4]: LocalPlayer_upvr (readonly)
+    ]]
+    if not var46_upvw then
+    else
+        if var84_upvw or var85_upvw then return end
+        local Character_9 = LocalPlayer_upvr.Character
+        if not Character_9 then return end
+        local Humanoid_5_upvr = Character_9:FindFirstChild("Humanoid")
+        local HumanoidRootPart_2 = Character_9:FindFirstChild("HumanoidRootPart")
+        if not Humanoid_5_upvr or not HumanoidRootPart_2 then return end
+        if Humanoid_5_upvr.FloorMaterial == Enum.Material.Air then return end
+        var84_upvw = true
+        var85_upvw = true
+        local BodyVelocity_upvr = Instance.new("BodyVelocity")
+        BodyVelocity_upvr.Name = "AutoStopVelocity"
+        BodyVelocity_upvr.Velocity = Vector3.new(0, 0, 0)
+        BodyVelocity_upvr.MaxForce = Vector3.new(100000, 0, 100000)
+        BodyVelocity_upvr.P = 10000
+        BodyVelocity_upvr.Parent = HumanoidRootPart_2
+        Humanoid_5_upvr.WalkSpeed = 0
+        local WalkSpeed_upvr = Humanoid_5_upvr.WalkSpeed
+        task.delay(0.3, function() -- Line 342
+            --[[ Upvalues[5]:
+                [1]: BodyVelocity_upvr (readonly)
+                [2]: Humanoid_5_upvr (readonly)
+                [3]: WalkSpeed_upvr (readonly)
+                [4]: var85_upvw (copied, read and write)
+                [5]: var84_upvw (copied, read and write)
+            ]]
+            if BodyVelocity_upvr and BodyVelocity_upvr.Parent then
+                BodyVelocity_upvr:Destroy()
+            end
+            if Humanoid_5_upvr and Humanoid_5_upvr.Parent then
+                Humanoid_5_upvr.WalkSpeed = WalkSpeed_upvr
+            end
+            var85_upvw = false
+            var84_upvw = false
+        end)
+    end
+end
+local hit = ReplicatedStorage:FindFirstChild("hit")
+if hit then
+    hit.OnClientEvent:Connect(function() -- Line 358
+        --[[ Upvalues[1]:
+            [1]: applyAutoStop_upvr (readonly)
+        ]]
+        applyAutoStop_upvr()
+    end)
+end
+local function _() -- Line 367, Named "isPlayerAlive"
+    --[[ Upvalues[1]:
+        [1]: LocalPlayer_upvr (readonly)
+    ]]
+    local Character = LocalPlayer_upvr.Character
+    if not Character then
+        return false
+    end
+    local Humanoid_4 = Character:FindFirstChild("Humanoid")
+    if not Humanoid_4 or Humanoid_4.Health <= 0 then
+        return false
+    end
+    return true
+end
+local random_state_upvr = Random.new()
+local function _(arg1, arg2) -- Line 379, Named "randomPointInPart"
+    --[[ Upvalues[1]:
+        [1]: random_state_upvr (readonly)
+    ]]
+    if not arg1 then
+        return arg1.Position
+    end
+    if arg2 <= 0 then
+        return arg1.Position
+    end
+    local var97 = arg1.Size * arg2
+    return (arg1.Position) + (arg1.CFrame.RightVector * random_state_upvr:NextNumber(-var97.X / 2, var97.X / 2) + arg1.CFrame.UpVector * random_state_upvr:NextNumber(-var97.Y / 2, var97.Y / 2) + arg1.CFrame.LookVector * random_state_upvr:NextNumber(-var97.Z / 2, var97.Z / 2))
+end
+local function canBulletPassThrough_upvr(arg1) -- Line 398, Named "canBulletPassThrough"
+    if not arg1 or not arg1:IsA("BasePart") then
+        return false
+    end
+    local any_lower_result1_2 = arg1.Name:lower()
+    if any_lower_result1_2:find("hamik") or any_lower_result1_2:find("paletka") then
+        return true
+    end
+    local function INLINED_3() -- Internal function, doesn't exist in bytecode
+        local any_lower_result1 = arg1.Parent.Name:lower()
+        return any_lower_result1:find("hamik")
+    end
+    if arg1.Parent and (INLINED_3() or any_lower_result1:find("paletka")) then
+        return true
+    end
+    if 0.2 < arg1.Transparency then
+        return true
+    end
+    if not arg1.CanCollide then
+        return true
+    end
+    if arg1:IsA("Decal") or arg1:IsA("ParticleEmitter") or arg1:IsA("Beam") or arg1:IsA("Trail") then
+        return true
+    end
+    return false
+end
+local function isPartOfCharacter_upvr(arg1) -- Line 424, Named "isPartOfCharacter"
+    if not arg1 or not arg1:IsA("BasePart") then
+        return false
+    end
+    local Parent = arg1.Parent
+    if not Parent then
+        return false
+    end
+    if Parent:FindFirstChild("Humanoid") then
+        return true
+    end
+    if Parent:IsA("Accessory") or Parent:IsA("Hat") then
+        return true
+    end
+    return false
+end
+local function strictWallCheck_upvr(arg1, arg2, arg3, arg4) -- Line 436, Named "strictWallCheck"
+    --[[ Upvalues[4]:
+        [1]: Workspace_upvr (readonly)
+        [2]: canBulletPassThrough_upvr (readonly)
+        [3]: strictWallCheck_upvr (readonly)
+        [4]: isPartOfCharacter_upvr (readonly)
+    ]]
+    if not arg1 or not arg2 then
+        return false, "invalid_positions"
+    end
+    local var105 = arg2 - arg1
+    local Magnitude = var105.Magnitude
+    if Magnitude < 0.1 or 1000 < Magnitude then
+        return false, "invalid_distance"
+    end
+    local tbl_2 = {}
+    tbl_2[1] = arg3
+    tbl_2[2] = arg4
+    for _, v in ipairs(arg3:GetDescendants()) do
+        if v:IsA("BasePart") then
+            table.insert(tbl_2, v)
+        end
+    end
+    for _, v_2 in ipairs(arg4:GetDescendants()) do
+        if v_2:IsA("BasePart") then
+            table.insert(tbl_2, v_2)
+        end
+    end
+    local RaycastParams_new_result1_2 = RaycastParams.new()
+    RaycastParams_new_result1_2.FilterDescendantsInstances = tbl_2
+    RaycastParams_new_result1_2.FilterType = Enum.RaycastFilterType.Exclude
+    RaycastParams_new_result1_2.IgnoreWater = true
+    local any_Raycast_result1 = Workspace_upvr:Raycast(arg1, var105, RaycastParams_new_result1_2)
+    if not any_Raycast_result1 then
+        return true, "clear"
+    end
+    local Instance = any_Raycast_result1.Instance
+    if Instance:IsDescendantOf(arg4) then
+        return true, "hit_target"
+    end
+    if canBulletPassThrough_upvr(Instance) then
+        local var117 = any_Raycast_result1.Position + var105.Unit * 0.1
+        if (arg2 - var117).Magnitude < 0.1 then
+            return true, "transparent_pass"
+        end
+        return strictWallCheck_upvr(var117, arg2, arg3, arg4)
+    end
+    if isPartOfCharacter_upvr(Instance) then
+        local var118 = any_Raycast_result1.Position + var105.Unit * 0.1
+        if (arg2 - var118).Magnitude < 0.1 then
+            return true, "passed_other_player"
+        end
+        return strictWallCheck_upvr(var118, arg2, arg3, arg4)
+    end
+    return false, "wall_blocking"
+end
+local function multiPointWallCheck_upvr(arg1, arg2, arg3, arg4) -- Line 502, Named "multiPointWallCheck"
+    --[[ Upvalues[1]:
+        [1]: strictWallCheck_upvr (readonly)
+    ]]
+    if not arg1 or not arg2 or not arg3 or not arg4 then
+        return false
+    end
+    local strictWallCheck_upvr_result1, _ = strictWallCheck_upvr(arg1, arg2, arg3, arg4)
+    if strictWallCheck_upvr_result1 then
+        return true
+    end
+    for _, v_3 in ipairs({Vector3.new(0, 0.30000, 0), Vector3.new(0, -0.3000, 0)}) do
+        local strictWallCheck_result1, _ = strictWallCheck_upvr(arg1, arg2 + v_3, arg3, arg4)
+        if strictWallCheck_result1 then
+            return true
+        end
+    end
+    return false
+end
+local function predictPartPosition_upvr(arg1, arg2) -- Line 536, Named "predictPartPosition"
+    --[[ Upvalues[2]:
+        [1]: var29_upvw (read and write)
+        [2]: CurrentCamera_upvr (readonly)
+    ]]
+    if not var29_upvw or not arg2 then
+        return arg1.Position
+    end
+    local AssemblyLinearVelocity = arg2.AssemblyLinearVelocity
+    if not AssemblyLinearVelocity then
+        AssemblyLinearVelocity = Vector3.new()
+    end
+    if AssemblyLinearVelocity.Magnitude < 3 then
+        return arg1.Position
+    end
+    return arg1.Position + AssemblyLinearVelocity * math.clamp((arg1.Position - CurrentCamera_upvr.CFrame.Position).Magnitude / 1000, 0.08, 0.2) * 1.2
+end
+local function _(arg1) -- Line 560, Named "isInFOV"
+    --[[ Upvalues[2]:
+        [1]: var26_upvw (read and write)
+        [2]: CurrentCamera_upvr (readonly)
+    ]]
+    if 360 <= var26_upvw then
+        return true
+    end
+    local any_WorldToViewportPoint_result1, any_WorldToViewportPoint_result2 = CurrentCamera_upvr:WorldToViewportPoint(arg1)
+    if not any_WorldToViewportPoint_result2 then
+        return false
+    end
+    local ViewportSize = CurrentCamera_upvr.ViewportSize
+    local var133 = any_WorldToViewportPoint_result1.X - ViewportSize.X * 0.5
+    local var134 = any_WorldToViewportPoint_result1.Y - ViewportSize.Y * 0.5
+    local var135 = var133 * var133
+    if var135 + var134 * var134 > var26_upvw * var26_upvw then
+        var135 = false
+    else
+        var135 = true
+    end
+    return var135
+end
+local function _(arg1, arg2) -- Line 580, Named "calculatePotentialDamage"
+    --[[ Upvalues[1]:
+        [1]: tbl_4_upvr (readonly)
+    ]]
+    local var136 = 54 * (tbl_4_upvr[arg1] or 0.5)
+    if 300 < arg2 then
+        var136 *= 0.3
+    elseif 200 < arg2 then
+        var136 *= 0.5
+    elseif 100 < arg2 then
+        var136 *= 0.8
+    end
+    return math.floor(var136)
+end
+local function _(arg1, arg2) -- Line 596, Named "checkMinDamage"
+    --[[ Upvalues[2]:
+        [1]: var45_upvw (read and write)
+        [2]: tbl_4_upvr (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    -- KONSTANTERROR: [0] 1. Error Block 23 start (CF ANALYSIS FAILED)
+    local var137
+    if var45_upvw <= 0 then
+        return true
+    end
+    var137 = tbl_4_upvr[arg1.Name]
+    var137 = 54 * (var137 or 0.5)
+    if 300 < arg2 then
+        var137 *= 0.3
+        -- KONSTANTWARNING: GOTO [27] #23
+    end
+    -- KONSTANTERROR: [0] 1. Error Block 23 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [18] 16. Error Block 24 start (CF ANALYSIS FAILED)
+    if 200 < arg2 then
+        var137 *= 0.5
+    elseif 100 < arg2 then
+        var137 *= 0.8
+    end
+    if var45_upvw > math.floor(var137) then
+    else
+    end
+    do
+        return true
+    end
+    -- KONSTANTERROR: [18] 16. Error Block 24 end (CF ANALYSIS FAILED)
+end
+local function _() -- Line 606, Named "checkHitchance"
+    --[[ Upvalues[2]:
+        [1]: var44_upvw (read and write)
+        [2]: random_state_upvr (readonly)
+    ]]
+    local var138
+    if var138 <= var44_upvw then
+        return true
+    end
+    var138 = 0
+    if var44_upvw <= var138 then
+        return false
+    end
+    if random_state_upvr:NextInteger(1, 100) > var44_upvw then
+        var138 = false
+    else
+        var138 = true
+    end
+    return var138
+end
+local tbl_3_upvr = {}
+local function updateActivePlayersList_upvr() -- Line 623, Named "updateActivePlayersList"
+    --[[ Upvalues[3]:
+        [1]: tbl_3_upvr (readonly)
+        [2]: Players_upvr (readonly)
+        [3]: LocalPlayer_upvr (readonly)
+    ]]
+    table.clear(tbl_3_upvr)
+    for _, v_4 in ipairs(Players_upvr:GetPlayers()) do
+        if v_4 ~= LocalPlayer_upvr and (not v_4.Team or not LocalPlayer_upvr.Team or v_4.Team ~= LocalPlayer_upvr.Team) then
+            local Character_4 = v_4.Character
+            if Character_4 then
+                local Humanoid_8 = Character_4:FindFirstChild("Humanoid")
+                if Humanoid_8 and 0 < Humanoid_8.Health and Character_4:FindFirstChild("HumanoidRootPart") then
+                    local tbl = {
+                        player = v_4;
+                        character = Character_4;
+                        humanoid = Humanoid_8;
+                    }
+                    -- KONSTANTERROR: Expression was reused, decompilation is incorrect
+                    tbl.rootPart = Character_4:FindFirstChild("HumanoidRootPart")
+                    table.insert(tbl_3_upvr, tbl)
+                end
+            end
+        end
+    end
+end
+local var156_upvw = 0
+local function findBestTarget_upvr() -- Line 648, Named "findBestTarget"
+    --[[ Upvalues[13]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: var156_upvw (read and write)
+        [3]: updateActivePlayersList_upvr (readonly)
+        [4]: tbl_3_upvr (readonly)
+        [5]: CurrentCamera_upvr (readonly)
+        [6]: var48_upvw (read and write)
+        [7]: var35_upvw (read and write)
+        [8]: var39_upvw (read and write)
+        [9]: var37_upvw (read and write)
+        [10]: var26_upvw (read and write)
+        [11]: var45_upvw (read and write)
+        [12]: tbl_4_upvr (readonly)
+        [13]: multiPointWallCheck_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 104 start (CF ANALYSIS FAILED)
+    local Character_13 = LocalPlayer_upvr.Character
+    local var158
+    if not Character_13 then
+        var158 = false
+    else
+        local Humanoid_6 = Character_13:FindFirstChild("Humanoid")
+        if not Humanoid_6 or Humanoid_6.Health <= 0 then
+            var158 = false
+        else
+            var158 = true
+        end
+    end
+    if not var158 then
+        var158 = nil
+        return var158
+    end
+    var158 = tick()
+    if 0.5 <= var158 - var156_upvw then
+        var156_upvw = var158
+        updateActivePlayersList_upvr()
+    end
+    if #tbl_3_upvr == 0 then
+        return nil
+    end
+    if not LocalPlayer_upvr.Character:FindFirstChild("Head") then
+        return nil
+    end
+    local _ = CurrentCamera_upvr.ViewportSize
+    local _ = 1
+    -- KONSTANTERROR: [0] 1. Error Block 104 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [346] 264. Error Block 80 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [346] 264. Error Block 80 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [72] 58. Error Block 18 start (CF ANALYSIS FAILED)
+    -- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [346.14]
+    -- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [346.132226]
+    -- KONSTANTERROR: [72] 58. Error Block 18 end (CF ANALYSIS FAILED)
+end
+local function isGrounded_upvr(arg1, arg2) -- Line 758, Named "isGrounded"
+    --[[ Upvalues[2]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: Workspace_upvr (readonly)
+    ]]
+    if not arg1 or not arg2 then
+        return false
+    end
+    if arg1.FloorMaterial ~= Enum.Material.Air then
+        return true
+    end
+    local RaycastParams_new_result1_3 = RaycastParams.new()
+    RaycastParams_new_result1_3.FilterDescendantsInstances = {LocalPlayer_upvr.Character}
+    RaycastParams_new_result1_3.FilterType = Enum.RaycastFilterType.Exclude
+    if Workspace_upvr:Raycast(arg2.Position, Vector3.new(0, -3.5, 0), RaycastParams_new_result1_3) == nil then
+    else
+    end
+    return true
+end
+local function _(arg1) -- Line 781, Named "isPlayerJumping"
+    if not arg1 then
+        return true
+    end
+    local any_GetState_result1_2 = arg1:GetState()
+    local var168 = true
+    if any_GetState_result1_2 ~= Enum.HumanoidStateType.Jumping then
+        var168 = true
+        if any_GetState_result1_2 ~= Enum.HumanoidStateType.Freefall then
+            if any_GetState_result1_2 ~= Enum.HumanoidStateType.FallingDown then
+                var168 = false
+            else
+                var168 = true
+            end
+        end
+    end
+    return var168
+end
+local var169_upvw
+local function _() -- Line 796, Named "startTargeting"
+    --[[ Upvalues[19]:
+        [1]: var169_upvw (read and write)
+        [2]: RunService_upvr (readonly)
+        [3]: var16_upvw (read and write)
+        [4]: var17_upvw (read and write)
+        [5]: var24_upvw (read and write)
+        [6]: LocalPlayer_upvr (readonly)
+        [7]: isGrounded_upvr (readonly)
+        [8]: var21_upvw (read and write)
+        [9]: var22_upvw (read and write)
+        [10]: getToolComponents_upvr (readonly)
+        [11]: findBestTarget_upvr (readonly)
+        [12]: var23_upvw (read and write)
+        [13]: var29_upvw (read and write)
+        [14]: predictPartPosition_upvr (readonly)
+        [15]: multiPointWallCheck_upvr (readonly)
+        [16]: var44_upvw (read and write)
+        [17]: random_state_upvr (readonly)
+        [18]: disableAntiAimsAndRotate_upvr (readonly)
+        [19]: performDoubleTapTeleport_upvr (readonly)
+    ]]
+    if var169_upvw then
+    else
+        var169_upvw = RunService_upvr.RenderStepped:Connect(function(arg1) -- Line 799
+            --[[ Upvalues[17]:
+                [1]: var16_upvw (copied, read and write)
+                [2]: var17_upvw (copied, read and write)
+                [3]: var24_upvw (copied, read and write)
+                [4]: LocalPlayer_upvr (copied, readonly)
+                [5]: isGrounded_upvr (copied, readonly)
+                [6]: var21_upvw (copied, read and write)
+                [7]: var22_upvw (copied, read and write)
+                [8]: getToolComponents_upvr (copied, readonly)
+                [9]: findBestTarget_upvr (copied, readonly)
+                [10]: var23_upvw (copied, read and write)
+                [11]: var29_upvw (copied, read and write)
+                [12]: predictPartPosition_upvr (copied, readonly)
+                [13]: multiPointWallCheck_upvr (copied, readonly)
+                [14]: var44_upvw (copied, read and write)
+                [15]: random_state_upvr (copied, readonly)
+                [16]: disableAntiAimsAndRotate_upvr (copied, readonly)
+                [17]: performDoubleTapTeleport_upvr (copied, readonly)
+            ]]
+            -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+            -- KONSTANTERROR: [0] 1. Error Block 106 start (CF ANALYSIS FAILED)
+            local var191
+            if not var191 then
+                var191 = nil
+                var17_upvw = var191
+                var191 = false
+                var24_upvw = var191
+            else
+                local Character_7 = LocalPlayer_upvr.Character
+                if not Character_7 then
+                    var191 = false
+                    -- KONSTANTWARNING: GOTO [26] #23
+                end
+                -- KONSTANTERROR: [0] 1. Error Block 106 end (CF ANALYSIS FAILED)
+                -- KONSTANTERROR: [13] 13. Error Block 133 start (CF ANALYSIS FAILED)
+                local Humanoid_7 = Character_7:FindFirstChild("Humanoid")
+                if not Humanoid_7 or Humanoid_7.Health <= 0 then
+                    var191 = false
+                else
+                    var191 = true
+                end
+                if not var191 then
+                    var191 = nil
+                    var17_upvw = var191
+                    var191 = false
+                    var24_upvw = var191
+                    return
+                end
+                var191 = LocalPlayer_upvr.Character
+                local var194 = var191
+                if var194 then
+                    var194 = var191:FindFirstChild("Humanoid")
+                end
+                Humanoid_7 = var191
+                local var195 = Humanoid_7
+                if var195 then
+                    var195 = var191:FindFirstChild("HumanoidRootPart")
+                end
+                if not var194 then
+                else
+                    local any_GetState_result1_4 = var194:GetState()
+                    if any_GetState_result1_4 ~= Enum.HumanoidStateType.Jumping and any_GetState_result1_4 ~= Enum.HumanoidStateType.Freefall then
+                        if any_GetState_result1_4 ~= Enum.HumanoidStateType.FallingDown then
+                        else
+                        end
+                    end
+                end
+                if true then
+                    var17_upvw = nil
+                    return
+                end
+                if not isGrounded_upvr(var194, var195) then
+                    var17_upvw = nil
+                    return
+                end
+                local tick_result1 = tick()
+                if tick_result1 - var21_upvw < 1.3 then return end
+                if var22_upvw then return end
+                local getToolComponents_upvr_result1_upvr_3 = getToolComponents_upvr()
+                if not getToolComponents_upvr_result1_upvr_3 then
+                    var17_upvw = nil
+                    var24_upvw = false
+                    return
+                end
+                local findBestTarget_upvr_result1_upvr_3 = findBestTarget_upvr()
+                if not findBestTarget_upvr_result1_upvr_3 then
+                    if not var24_upvw then
+                        var24_upvw = true
+                        var23_upvw = tick_result1
+                    end
+                    var17_upvw = nil
+                    return
+                end
+                if var24_upvw then
+                    var24_upvw = false
+                    var23_upvw = tick_result1
+                end
+                if tick_result1 - var23_upvw < 0.05 then return end
+                var17_upvw = findBestTarget_upvr_result1_upvr_3
+                local var200
+                if var29_upvw then
+                    var200 = predictPartPosition_upvr(findBestTarget_upvr_result1_upvr_3.targetPart, findBestTarget_upvr_result1_upvr_3.rootPart)
+                else
+                    var200 = findBestTarget_upvr_result1_upvr_3.targetPart.Position
+                end
+                if not var200 then return end
+                local Character_2 = LocalPlayer_upvr.Character
+                local Head = Character_2:FindFirstChild("Head")
+                if not Head then return end
+                if not multiPointWallCheck_upvr(Head.Position, var200, Character_2, findBestTarget_upvr_result1_upvr_3.character) then return end
+                if 100 <= var44_upvw then
+                    -- KONSTANTWARNING: GOTO [183] #155
+                end
+                if var44_upvw <= 0 then
+                    -- KONSTANTWARNING: GOTO [183] #155
+                end
+                if random_state_upvr:NextInteger(1, 100) > var44_upvw then
+                else
+                end
+                if not true then return end
+                local Position_3_upvr = Head.Position
+                local var204 = var200 - Position_3_upvr
+                local Unit_upvr = var204.Unit
+                if not var194 then
+                    var204 = true
+                else
+                    local any_GetState_result1_8 = var194:GetState()
+                    var204 = true
+                    if any_GetState_result1_8 ~= Enum.HumanoidStateType.Jumping then
+                        var204 = true
+                        if any_GetState_result1_8 ~= Enum.HumanoidStateType.Freefall then
+                            if any_GetState_result1_8 ~= Enum.HumanoidStateType.FallingDown then
+                                var204 = false
+                            else
+                                var204 = true
+                            end
+                        end
+                    end
+                end
+                if var204 then return end
+                var22_upvw = true
+                disableAntiAimsAndRotate_upvr(Unit_upvr)
+                local pcall_result1_2, pcall_result2_3 = pcall(function() -- Line 908
+                    --[[ Upvalues[4]:
+                        [1]: getToolComponents_upvr_result1_upvr_3 (readonly)
+                        [2]: Position_3_upvr (readonly)
+                        [3]: Unit_upvr (readonly)
+                        [4]: findBestTarget_upvr_result1_upvr_3 (readonly)
+                    ]]
+                    getToolComponents_upvr_result1_upvr_3.fireShot:FireServer(Position_3_upvr, Unit_upvr, findBestTarget_upvr_result1_upvr_3.targetPart)
+                end)
+                if pcall_result1_2 then
+                    var21_upvw = tick_result1
+                    performDoubleTapTeleport_upvr()
+                else
+                    warn("AutoShoot Error:", pcall_result2_3)
+                end
+                task.delay(0.1, function() -- Line 920
+                    --[[ Upvalues[1]:
+                        [1]: var22_upvw (copied, read and write)
+                    ]]
+                    var22_upvw = false
+                end)
+                -- KONSTANTERROR: [13] 13. Error Block 133 end (CF ANALYSIS FAILED)
+            end
+        end)
+    end
+end
+local tbl_6_upvr = {}
+task.spawn(function() -- Line 930
+    --[[ Upvalues[1]:
+        [1]: tbl_6_upvr (readonly)
+    ]]
+    while task.wait(2) do
+        for i_5, v_5 in pairs(tbl_6_upvr) do
+            if 3 < tick() - v_5.time then
+                tbl_6_upvr[i_5] = nil
+            end
+        end
+    end
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.AutoShoot = var16_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 949
+        --[[ Upvalues[8]:
+            [1]: var16_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: var17_upvw (read and write)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "AutoShoot" then
+            var16_upvw = arg2
+            if not var16_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+            if not var16_upvw then
+                var17_upvw = nil
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+if var169_upvw then
+else
+    onConfigLoad_upvr = RunService_upvr.RenderStepped
+    onConfigLoad_upvr = onConfigLoad_upvr:Connect(function(arg1) -- Line 799
+        --[[ Upvalues[17]:
+            [1]: var16_upvw (read and write)
+            [2]: var17_upvw (read and write)
+            [3]: var24_upvw (read and write)
+            [4]: LocalPlayer_upvr (readonly)
+            [5]: isGrounded_upvr (readonly)
+            [6]: var21_upvw (read and write)
+            [7]: var22_upvw (read and write)
+            [8]: getToolComponents_upvr (readonly)
+            [9]: findBestTarget_upvr (readonly)
+            [10]: var23_upvw (read and write)
+            [11]: var29_upvw (read and write)
+            [12]: predictPartPosition_upvr (readonly)
+            [13]: multiPointWallCheck_upvr (readonly)
+            [14]: var44_upvw (read and write)
+            [15]: random_state_upvr (readonly)
+            [16]: disableAntiAimsAndRotate_upvr (readonly)
+            [17]: performDoubleTapTeleport_upvr (readonly)
+        ]]
+        -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+        -- KONSTANTERROR: [0] 1. Error Block 106 start (CF ANALYSIS FAILED)
+        local var222
+        if not var222 then
+            var222 = nil
+            var17_upvw = var222
+            var222 = false
+            var24_upvw = var222
+        else
+            local Character_11 = LocalPlayer_upvr.Character
+            if not Character_11 then
+                var222 = false
+                -- KONSTANTWARNING: GOTO [26] #23
+            end
+            -- KONSTANTERROR: [0] 1. Error Block 106 end (CF ANALYSIS FAILED)
+            -- KONSTANTERROR: [13] 13. Error Block 133 start (CF ANALYSIS FAILED)
+            local Humanoid = Character_11:FindFirstChild("Humanoid")
+            if not Humanoid or Humanoid.Health <= 0 then
+                var222 = false
+            else
+                var222 = true
+            end
+            if not var222 then
+                var222 = nil
+                var17_upvw = var222
+                var222 = false
+                var24_upvw = var222
+                return
+            end
+            var222 = LocalPlayer_upvr.Character
+            local var225 = var222
+            if var225 then
+                var225 = var222:FindFirstChild("Humanoid")
+            end
+            Humanoid = var222
+            local var226 = Humanoid
+            if var226 then
+                var226 = var222:FindFirstChild("HumanoidRootPart")
+            end
+            if not var225 then
+            else
+                local any_GetState_result1_7 = var225:GetState()
+                if any_GetState_result1_7 ~= Enum.HumanoidStateType.Jumping and any_GetState_result1_7 ~= Enum.HumanoidStateType.Freefall then
+                    if any_GetState_result1_7 ~= Enum.HumanoidStateType.FallingDown then
+                    else
+                    end
+                end
+            end
+            if true then
+                var17_upvw = nil
+                return
+            end
+            if not isGrounded_upvr(var225, var226) then
+                var17_upvw = nil
+                return
+            end
+            local tick_result1_3 = tick()
+            if tick_result1_3 - var21_upvw < 1.3 then return end
+            if var22_upvw then return end
+            local getToolComponents_upvr_result1_upvr = getToolComponents_upvr()
+            if not getToolComponents_upvr_result1_upvr then
+                var17_upvw = nil
+                var24_upvw = false
+                return
+            end
+            local findBestTarget_upvr_result1_upvr_2 = findBestTarget_upvr()
+            if not findBestTarget_upvr_result1_upvr_2 then
+                if not var24_upvw then
+                    var24_upvw = true
+                    var23_upvw = tick_result1_3
+                end
+                var17_upvw = nil
+                return
+            end
+            if var24_upvw then
+                var24_upvw = false
+                var23_upvw = tick_result1_3
+            end
+            if tick_result1_3 - var23_upvw < 0.05 then return end
+            var17_upvw = findBestTarget_upvr_result1_upvr_2
+            local var231
+            if var29_upvw then
+                var231 = predictPartPosition_upvr(findBestTarget_upvr_result1_upvr_2.targetPart, findBestTarget_upvr_result1_upvr_2.rootPart)
+            else
+                var231 = findBestTarget_upvr_result1_upvr_2.targetPart.Position
+            end
+            if not var231 then return end
+            local Character_10 = LocalPlayer_upvr.Character
+            local Head_3 = Character_10:FindFirstChild("Head")
+            if not Head_3 then return end
+            if not multiPointWallCheck_upvr(Head_3.Position, var231, Character_10, findBestTarget_upvr_result1_upvr_2.character) then return end
+            if 100 <= var44_upvw then
+                -- KONSTANTWARNING: GOTO [183] #155
+            end
+            if var44_upvw <= 0 then
+                -- KONSTANTWARNING: GOTO [183] #155
+            end
+            if random_state_upvr:NextInteger(1, 100) > var44_upvw then
+            else
+            end
+            if not true then return end
+            local Position_2_upvr = Head_3.Position
+            local var235 = var231 - Position_2_upvr
+            local Unit_2_upvr = var235.Unit
+            if not var225 then
+                var235 = true
+            else
+                local any_GetState_result1_6 = var225:GetState()
+                var235 = true
+                if any_GetState_result1_6 ~= Enum.HumanoidStateType.Jumping then
+                    var235 = true
+                    if any_GetState_result1_6 ~= Enum.HumanoidStateType.Freefall then
+                        if any_GetState_result1_6 ~= Enum.HumanoidStateType.FallingDown then
+                            var235 = false
+                        else
+                            var235 = true
+                        end
+                    end
+                end
+            end
+            if var235 then return end
+            var22_upvw = true
+            disableAntiAimsAndRotate_upvr(Unit_2_upvr)
+            local pcall_result1, pcall_result2 = pcall(function() -- Line 908
+                --[[ Upvalues[4]:
+                    [1]: getToolComponents_upvr_result1_upvr (readonly)
+                    [2]: Position_2_upvr (readonly)
+                    [3]: Unit_2_upvr (readonly)
+                    [4]: findBestTarget_upvr_result1_upvr_2 (readonly)
+                ]]
+                getToolComponents_upvr_result1_upvr.fireShot:FireServer(Position_2_upvr, Unit_2_upvr, findBestTarget_upvr_result1_upvr_2.targetPart)
+            end)
+            if pcall_result1 then
+                var21_upvw = tick_result1_3
+                performDoubleTapTeleport_upvr()
+            else
+                warn("AutoShoot Error:", pcall_result2)
+            end
+            task.delay(0.1, function() -- Line 920
+                --[[ Upvalues[1]:
+                    [1]: var22_upvw (copied, read and write)
+                ]]
+                var22_upvw = false
+            end)
+            -- KONSTANTERROR: [13] 13. Error Block 133 end (CF ANALYSIS FAILED)
+        end
+    end)
+    var169_upvw = onConfigLoad_upvr
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = HumanoidRootPart
+        6 [string] = GetState
+        7 [string] = Enum
+        8 [string] = HumanoidStateType
+        9 [string] = Jumping
+        11 [string] = Freefall
+        13 [string] = FallingDown
+        15 [string] = tick
+        17 [number] = 1.3
+        18 [number] = 0.05
+        19 [string] = targetPart
+        20 [string] = rootPart
+        21 [string] = Position
+        22 [string] = Head
+        23 [string] = character
+        24 [string] = NextInteger
+        25 [string] = Unit
+        26 [string] = pcall
+        28 [string] = warn
+        30 [string] = AutoShoot Error:
+        31 [string] = task
+        32 [string] = delay
+        34 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AutoShoot
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = pairs
+        6 [string] = tick
+        8 [string] = time
+
+====================================================================================================
+
+Function Dump: startTargeting
+
+Function Upvalues: startTargeting
+
+Function Constants: startTargeting
+        1 [string] = RenderStepped
+        2 [string] = Connect
+
+====================================================================================================
+
+Function Dump: isPlayerJumping
+
+Function Upvalues: isPlayerJumping
+
+Function Constants: isPlayerJumping
+        1 [string] = GetState
+        2 [string] = Enum
+        3 [string] = HumanoidStateType
+        4 [string] = Jumping
+        6 [string] = Freefall
+        8 [string] = FallingDown
+
+====================================================================================================
+
+Function Dump: isGrounded
+
+Function Upvalues: isGrounded
+
+Function Constants: isGrounded
+        1 [string] = FloorMaterial
+        2 [string] = Enum
+        3 [string] = Material
+        4 [string] = Air
+        6 [string] = RaycastParams
+        7 [string] = new
+        9 [string] = Character
+        10 [string] = FilterDescendantsInstances
+        11 [string] = RaycastFilterType
+        12 [string] = Exclude
+        14 [string] = FilterType
+        15 [string] = Position
+        16 [Vector3] = 0, -3.5, 0
+        17 [string] = Raycast
+
+====================================================================================================
+
+Function Dump: findBestTarget
+
+Function Upvalues: findBestTarget
+
+Function Constants: findBestTarget
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = tick
+        7 [number] = 0.5
+        8 [number] = 0
+        9 [string] = Head
+        10 [string] = Position
+        11 [number] = inf
+        12 [string] = ViewportSize
+        13 [string] = X
+        14 [string] = Y
+        15 [string] = CFrame
+        16 [string] = humanoid
+        17 [string] = character
+        18 [string] = part
+        19 [string] = priority
+        21 [string] = table
+        22 [string] = insert
+        24 [string] = Torso
+        25 [string] = UpperTorso
+        26 [string] = LowerTorso
+        27 [string] = LeftUpperLeg
+        28 [string] = RightUpperLeg
+        29 [string] = HumanoidRootPart
+        30 [string] = WorldToViewportPoint
+        31 [string] = rootPart
+        32 [string] = Magnitude
+        33 [string] = Name
+        34 [number] = 0.3
+        35 [number] = 0.8
+        36 [string] = math
+        37 [string] = floor
+        39 [string] = sqrt
+        41 [string] = player
+        42 [string] = targetPart
+        43 [string] = distance
+
+====================================================================================================
+
+Function Dump: updateActivePlayersList
+
+Function Upvalues: updateActivePlayersList
+
+Function Constants: updateActivePlayersList
+        1 [string] = table
+        2 [string] = clear
+        4 [string] = ipairs
+        6 [string] = GetPlayers
+        7 [string] = Team
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = FindFirstChild
+        11 [string] = HumanoidRootPart
+        12 [string] = Health
+        13 [string] = player
+        14 [string] = character
+        15 [string] = humanoid
+        16 [string] = rootPart
+        18 [string] = insert
+
+====================================================================================================
+
+Function Dump: checkHitchance
+
+Function Upvalues: checkHitchance
+
+Function Constants: checkHitchance
+        1 [string] = NextInteger
+
+====================================================================================================
+
+Function Dump: checkMinDamage
+
+Function Upvalues: checkMinDamage
+
+Function Constants: checkMinDamage
+        1 [string] = Name
+        2 [number] = 0.5
+        3 [number] = 0.3
+        4 [number] = 0.8
+        5 [string] = math
+        6 [string] = floor
+
+====================================================================================================
+
+Function Dump: calculatePotentialDamage
+
+Function Upvalues: calculatePotentialDamage
+
+Function Constants: calculatePotentialDamage
+        1 [number] = 0.5
+        2 [number] = 0.3
+        3 [number] = 0.8
+        4 [string] = math
+        5 [string] = floor
+
+====================================================================================================
+
+Function Dump: isInFOV
+
+Function Upvalues: isInFOV
+
+Function Constants: isInFOV
+        1 [string] = WorldToViewportPoint
+        2 [string] = ViewportSize
+        3 [number] = 0.5
+        4 [string] = X
+        5 [string] = Y
+
+====================================================================================================
+
+Function Dump: predictPartPosition
+
+Function Upvalues: predictPartPosition
+
+Function Constants: predictPartPosition
+        1 [string] = Position
+        2 [string] = AssemblyLinearVelocity
+        3 [string] = Vector3
+        4 [string] = new
+        6 [string] = Magnitude
+        7 [string] = CFrame
+        8 [number] = 1000
+        9 [number] = 0.08
+        10 [number] = 0.2
+        11 [string] = math
+        12 [string] = clamp
+        14 [number] = 1.2
+
+====================================================================================================
+
+Function Dump: multiPointWallCheck
+
+Function Upvalues: multiPointWallCheck
+
+Function Constants: multiPointWallCheck
+        1 [Vector3] = 0, 0.30000001192092896, 0
+        2 [Vector3] = 0, -0.30000001192092896, 0
+        3 [string] = ipairs
+
+====================================================================================================
+
+Function Dump: strictWallCheck
+
+Function Upvalues: strictWallCheck
+
+Function Constants: strictWallCheck
+        1 [string] = invalid_positions
+        2 [string] = Magnitude
+        3 [number] = 0.1
+        4 [string] = invalid_distance
+        5 [string] = ipairs
+        7 [string] = GetDescendants
+        8 [string] = BasePart
+        9 [string] = IsA
+        10 [string] = table
+        11 [string] = insert
+        13 [string] = RaycastParams
+        14 [string] = new
+        16 [string] = FilterDescendantsInstances
+        17 [string] = Enum
+        18 [string] = RaycastFilterType
+        19 [string] = Exclude
+        21 [string] = FilterType
+        22 [string] = IgnoreWater
+        23 [string] = Raycast
+        24 [string] = clear
+        25 [string] = Instance
+        26 [string] = IsDescendantOf
+        27 [string] = hit_target
+        28 [string] = Position
+        29 [string] = Unit
+        30 [string] = transparent_pass
+        31 [string] = passed_other_player
+        32 [string] = wall_blocking
+
+====================================================================================================
+
+Function Dump: isPartOfCharacter
+
+Function Upvalues: isPartOfCharacter
+
+Function Constants: isPartOfCharacter
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Parent
+        4 [string] = Humanoid
+        5 [string] = FindFirstChild
+        6 [string] = Accessory
+        7 [string] = Hat
+
+====================================================================================================
+
+Function Dump: canBulletPassThrough
+
+Function Upvalues: canBulletPassThrough
+
+Function Constants: canBulletPassThrough
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Name
+        4 [string] = lower
+        5 [string] = hamik
+        6 [string] = find
+        7 [string] = paletka
+        8 [string] = Parent
+        9 [string] = Transparency
+        10 [number] = 0.2
+        11 [string] = CanCollide
+        12 [string] = Decal
+        13 [string] = ParticleEmitter
+        14 [string] = Beam
+        15 [string] = Trail
+
+====================================================================================================
+
+Function Dump: randomPointInPart
+
+Function Upvalues: randomPointInPart
+
+Function Constants: randomPointInPart
+        1 [string] = Position
+        2 [string] = Size
+        3 [number] = 2
+        4 [string] = X
+        5 [string] = NextNumber
+        6 [string] = Y
+        7 [string] = Z
+        8 [string] = CFrame
+        9 [string] = RightVector
+        10 [string] = UpVector
+        11 [string] = LookVector
+
+====================================================================================================
+
+Function Dump: isPlayerAlive
+
+Function Upvalues: isPlayerAlive
+
+Function Constants: isPlayerAlive
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: applyAutoStop
+
+Function Upvalues: applyAutoStop
+
+Function Constants: applyAutoStop
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = HumanoidRootPart
+        5 [string] = FloorMaterial
+        6 [string] = Enum
+        7 [string] = Material
+        8 [string] = Air
+        10 [string] = Instance
+        11 [string] = new
+        13 [string] = BodyVelocity
+        14 [string] = AutoStopVelocity
+        15 [string] = Name
+        16 [Vector3] = 0, 0, 0
+        17 [string] = Velocity
+        18 [Vector3] = 100000, 0, 100000
+        19 [string] = MaxForce
+        20 [string] = P
+        21 [string] = Parent
+        22 [string] = WalkSpeed
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.3
+
+====================================================================================================
+
+Function Dump: disableAntiAimsAndRotate
+
+Function Upvalues: disableAntiAimsAndRotate
+
+Function Constants: disableAntiAimsAndRotate
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = CFrame
+        5 [string] = Rotation
+        6 [string] = disable
+        7 [string] = FireServer
+        8 [string] = task
+        9 [string] = wait
+        11 [number] = 0.01
+        12 [string] = X
+        13 [string] = Z
+        14 [string] = Vector3
+        15 [string] = new
+        17 [string] = Unit
+        18 [string] = Magnitude
+        19 [number] = 0.1
+        21 [string] = Position
+        22 [number] = 0.15
+        23 [string] = tick
+        25 [string] = delay
+
+====================================================================================================
+
+Function Dump: performDoubleTapTeleport
+
+Function Upvalues: performDoubleTapTeleport
+
+Function Constants: performDoubleTapTeleport
+        1 [string] = os
+        2 [string] = clock
+        4 [string] = leaderstats
+        5 [string] = FindFirstChild
+        6 [string] = leavemealonexd
+        7 [string] = Value
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = HumanoidRootPart
+        11 [string] = Health
+        12 [string] = pcall
+        14 [string] = MoveDirection
+        15 [string] = Magnitude
+        16 [number] = 0.05
+        17 [string] = CFrame
+        18 [string] = LookVector
+        19 [string] = X
+        20 [string] = Z
+        21 [string] = Vector3
+        22 [string] = new
+        24 [string] = Unit
+        25 [string] = Position
+        26 [number] = 4
+        27 [string] = RaycastParams
+        29 [string] = FilterDescendantsInstances
+        30 [string] = Enum
+        31 [string] = RaycastFilterType
+        32 [string] = Exclude
+        34 [string] = FilterType
+        35 [string] = IgnoreWater
+        36 [string] = Raycast
+        37 [number] = 2
+        38 [string] = math
+        39 [string] = max
+        41 [Vector3] = 0, 5, 0
+        42 [Vector3] = 0, -20, 0
+        43 [number] = 0.5
+        44 [string] = Y
+        45 [string] = HipHeight
+        46 [Vector3] = 0, 0, 0
+        47 [string] = AssemblyLinearVelocity
+        48 [string] = AssemblyAngularVelocity
+        50 [string] = Rotation
+        51 [string] = PivotTo
+        52 [string] = task
+        53 [string] = defer
+
+====================================================================================================
+
+Function Dump: getToolComponents
+
+Function Upvalues: getToolComponents
+
+Function Constants: getToolComponents
+        1 [string] = Character
+        2 [string] = Tool
+        3 [string] = FindFirstChildOfClass
+        4 [string] = Remotes
+        5 [string] = FindFirstChild
+        6 [string] = FireShot
+        7 [string] = Handle
+        8 [string] = tool
+        9 [string] = fireShot
+        10 [string] = reload
+        11 [string] = handle
+        13 [string] = Reload
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAutoShootEnabled
+
+Function Upvalues: setAutoShootEnabled
+
+Function Constants: setAutoShootEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = AutoShoot
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: findBestTarget
+
+Function Upvalues: findBestTarget
+        1 [Instance] = quit_xyz
+        2 [number] = 0
+        3 [function] = updateActivePlayersList
+        4 [table]:
+        4 [table] table: 0xeef23f7a2c4e90b5
+        5 [Instance] = Camera
+        6 [boolean] = false
+        7 [boolean] = true
+        8 [boolean] = true
+        9 [boolean] = true
+        10 [number] = 0
+        11 [number] = 0
+        12 [table]:
+        12 [table] table: 0x925167b04c2f9df5
+                1 [number] = 0.6
+                2 [number] = 0.75
+                3 [number] = 0.6
+                4 [number] = 1
+                5 [number] = 1
+                6 [number] = 0.6
+                7 [number] = 0.6
+                8 [number] = 0.6
+                9 [number] = 1
+                10 [number] = 4
+                11 [number] = 1
+                12 [number] = 0.75
+                13 [number] = 0.75
+                14 [number] = 0.75
+                15 [number] = 0.6
+                16 [number] = 0.6
+                17 [number] = 0.75
+                18 [number] = 0.6
+                19 [number] = 0.75
+        13 [function] = multiPointWallCheck
+
+Function Constants: findBestTarget
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = tick
+        7 [number] = 0.5
+        8 [number] = 0
+        9 [string] = Head
+        10 [string] = Position
+        11 [number] = inf
+        12 [string] = ViewportSize
+        13 [string] = X
+        14 [string] = Y
+        15 [string] = CFrame
+        16 [string] = humanoid
+        17 [string] = character
+        18 [string] = part
+        19 [string] = priority
+        21 [string] = table
+        22 [string] = insert
+        24 [string] = Torso
+        25 [string] = UpperTorso
+        26 [string] = LowerTorso
+        27 [string] = LeftUpperLeg
+        28 [string] = RightUpperLeg
+        29 [string] = HumanoidRootPart
+        30 [string] = WorldToViewportPoint
+        31 [string] = rootPart
+        32 [string] = Magnitude
+        33 [string] = Name
+        34 [number] = 0.3
+        35 [number] = 0.8
+        36 [string] = math
+        37 [string] = floor
+        39 [string] = sqrt
+        41 [string] = player
+        42 [string] = targetPart
+        43 [string] = distance
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [number] = 0
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = true
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = true
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = true
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [number] = 0
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: predictPartPosition
+
+Function Upvalues: predictPartPosition
+        1 [boolean] = false
+        2 [Instance] = Camera
+
+Function Constants: predictPartPosition
+        1 [string] = Position
+        2 [string] = AssemblyLinearVelocity
+        3 [string] = Vector3
+        4 [string] = new
+        6 [string] = Magnitude
+        7 [string] = CFrame
+        8 [number] = 1000
+        9 [number] = 0.08
+        10 [number] = 0.2
+        11 [string] = math
+        12 [string] = clamp
+        14 [number] = 1.2
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAutoShootEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        3 [boolean] = false
+        4 [Instance] = quit_xyz
+        5 [function] = isGrounded
+        6 [number] = 0
+        7 [boolean] = false
+        8 [function] = getToolComponents
+        9 [function] = findBestTarget
+        10 [number] = 0
+        11 [boolean] = false
+        12 [function] = predictPartPosition
+        13 [function] = multiPointWallCheck
+        14 [number] = 100
+        15 [Random] = Random
+        16 [function] = disableAntiAimsAndRotate
+        17 [function] = performDoubleTapTeleport
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = HumanoidRootPart
+        6 [string] = GetState
+        7 [string] = Enum
+        8 [string] = HumanoidStateType
+        9 [string] = Jumping
+        10 [EnumItem] = Enum.HumanoidStateType.Jumping
+        11 [string] = Freefall
+        12 [EnumItem] = Enum.HumanoidStateType.Freefall
+        13 [string] = FallingDown
+        14 [EnumItem] = Enum.HumanoidStateType.FallingDown
+        15 [string] = tick
+        17 [number] = 1.3
+        18 [number] = 0.05
+        19 [string] = targetPart
+        20 [string] = rootPart
+        21 [string] = Position
+        22 [string] = Head
+        23 [string] = character
+        24 [string] = NextInteger
+        25 [string] = Unit
+        26 [string] = pcall
+        28 [string] = warn
+        30 [string] = AutoShoot Error:
+        31 [string] = task
+        32 [string] = delay
+        34 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AutoShoot
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: setAutoShootEnabled
+
+Function Upvalues: setAutoShootEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setAutoShootEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = AutoShoot
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [table]:
+        1 [table] table: 0xc25f290b80e79d65
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = pairs
+        6 [string] = tick
+        8 [string] = time
+
+====================================================================================================
+
+Function Dump: multiPointWallCheck
+
+Function Upvalues: multiPointWallCheck
+        1 [function] = strictWallCheck
+
+Function Constants: multiPointWallCheck
+        1 [Vector3] = 0, 0.30000001192092896, 0
+        2 [Vector3] = 0, -0.30000001192092896, 0
+        3 [string] = ipairs
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = applyAutoStop
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: getToolComponents
+
+Function Upvalues: getToolComponents
+        1 [Instance] = quit_xyz
+
+Function Constants: getToolComponents
+        1 [string] = Character
+        2 [string] = Tool
+        3 [string] = FindFirstChildOfClass
+        4 [string] = Remotes
+        5 [string] = FindFirstChild
+        6 [string] = FireShot
+        7 [string] = Handle
+        8 [string] = tool
+        9 [string] = fireShot
+        10 [string] = reload
+        11 [string] = handle
+        13 [string] = Reload
+
+====================================================================================================
+
+Function Dump: isPartOfCharacter
+
+Function Upvalues: isPartOfCharacter
+
+Function Constants: isPartOfCharacter
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Parent
+        4 [string] = Humanoid
+        5 [string] = FindFirstChild
+        6 [string] = Accessory
+        7 [string] = Hat
+
+====================================================================================================
+
+Function Dump: canBulletPassThrough
+
+Function Upvalues: canBulletPassThrough
+
+Function Constants: canBulletPassThrough
+        1 [string] = BasePart
+        2 [string] = IsA
+        3 [string] = Name
+        4 [string] = lower
+        5 [string] = hamik
+        6 [string] = find
+        7 [string] = paletka
+        8 [string] = Parent
+        9 [string] = Transparency
+        10 [number] = 0.2
+        11 [string] = CanCollide
+        12 [string] = Decal
+        13 [string] = ParticleEmitter
+        14 [string] = Beam
+        15 [string] = Trail
+
+====================================================================================================
+
+Function Dump: performDoubleTapTeleport
+
+Function Upvalues: performDoubleTapTeleport
+        1 [number] = 0
+        2 [Instance] = quit_xyz
+        3 [boolean] = false
+        4 [Instance] = DTMarker
+        5 [Instance] = Workspace
+
+Function Constants: performDoubleTapTeleport
+        1 [string] = os
+        2 [string] = clock
+        4 [string] = leaderstats
+        5 [string] = FindFirstChild
+        6 [string] = leavemealonexd
+        7 [string] = Value
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = HumanoidRootPart
+        11 [string] = Health
+        12 [string] = pcall
+        14 [string] = MoveDirection
+        15 [string] = Magnitude
+        16 [number] = 0.05
+        17 [string] = CFrame
+        18 [string] = LookVector
+        19 [string] = X
+        20 [string] = Z
+        21 [string] = Vector3
+        22 [string] = new
+        24 [string] = Unit
+        25 [string] = Position
+        26 [number] = 4
+        27 [string] = RaycastParams
+        29 [string] = FilterDescendantsInstances
+        30 [string] = Enum
+        31 [string] = RaycastFilterType
+        32 [string] = Exclude
+        33 [EnumItem] = Enum.RaycastFilterType.Exclude
+        34 [string] = FilterType
+        35 [string] = IgnoreWater
+        36 [string] = Raycast
+        37 [number] = 2
+        38 [string] = math
+        39 [string] = max
+        41 [Vector3] = 0, 5, 0
+        42 [Vector3] = 0, -20, 0
+        43 [number] = 0.5
+        44 [string] = Y
+        45 [string] = HipHeight
+        46 [Vector3] = 0, 0, 0
+        47 [string] = AssemblyLinearVelocity
+        48 [string] = AssemblyAngularVelocity
+        50 [string] = Rotation
+        51 [string] = PivotTo
+        52 [string] = task
+        53 [string] = defer
+
+====================================================================================================
+
+Function Dump: updateActivePlayersList
+
+Function Upvalues: updateActivePlayersList
+        1 [table] (Recursive table detected)
+        2 [Instance] = Players
+        3 [Instance] = quit_xyz
+
+Function Constants: updateActivePlayersList
+        1 [string] = table
+        2 [string] = clear
+        4 [string] = ipairs
+        6 [string] = GetPlayers
+        7 [string] = Team
+        8 [string] = Character
+        9 [string] = Humanoid
+        10 [string] = FindFirstChild
+        11 [string] = HumanoidRootPart
+        12 [string] = Health
+        13 [string] = player
+        14 [string] = character
+        15 [string] = humanoid
+        16 [string] = rootPart
+        18 [string] = insert
+
+====================================================================================================
+
+Function Dump: applyAutoStop
+
+Function Upvalues: applyAutoStop
+        1 [boolean] = false
+        2 [boolean] = false
+        3 [boolean] = false
+        4 [Instance] = quit_xyz
+
+Function Constants: applyAutoStop
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = HumanoidRootPart
+        5 [string] = FloorMaterial
+        6 [string] = Enum
+        7 [string] = Material
+        8 [string] = Air
+        9 [EnumItem] = Enum.Material.Air
+        10 [string] = Instance
+        11 [string] = new
+        13 [string] = BodyVelocity
+        14 [string] = AutoStopVelocity
+        15 [string] = Name
+        16 [Vector3] = 0, 0, 0
+        17 [string] = Velocity
+        18 [Vector3] = 100000, 0, 100000
+        19 [string] = MaxForce
+        20 [string] = P
+        21 [string] = Parent
+        22 [string] = WalkSpeed
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.3
+
+====================================================================================================
+
+Function Dump: disableAntiAimsAndRotate
+
+Function Upvalues: disableAntiAimsAndRotate
+        1 [Instance] = quit_xyz
+        2 [Instance] = aahelp
+        3 [Instance] = aahelp1
+        4 [number] = 0
+
+Function Constants: disableAntiAimsAndRotate
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = CFrame
+        5 [string] = Rotation
+        6 [string] = disable
+        7 [string] = FireServer
+        8 [string] = task
+        9 [string] = wait
+        11 [number] = 0.01
+        12 [string] = X
+        13 [string] = Z
+        14 [string] = Vector3
+        15 [string] = new
+        17 [string] = Unit
+        18 [string] = Magnitude
+        19 [number] = 0.1
+        21 [string] = Position
+        22 [number] = 0.15
+        23 [string] = tick
+        25 [string] = delay
+
+====================================================================================================
+
+Function Dump: strictWallCheck
+
+Function Upvalues: strictWallCheck
+        1 [Instance] = Workspace
+        2 [function] = canBulletPassThrough
+        3 [function] = strictWallCheck
+        4 [function] = isPartOfCharacter
+
+Function Constants: strictWallCheck
+        1 [string] = invalid_positions
+        2 [string] = Magnitude
+        3 [number] = 0.1
+        4 [string] = invalid_distance
+        5 [string] = ipairs
+        7 [string] = GetDescendants
+        8 [string] = BasePart
+        9 [string] = IsA
+        10 [string] = table
+        11 [string] = insert
+        13 [string] = RaycastParams
+        14 [string] = new
+        16 [string] = FilterDescendantsInstances
+        17 [string] = Enum
+        18 [string] = RaycastFilterType
+        19 [string] = Exclude
+        20 [EnumItem] = Enum.RaycastFilterType.Exclude
+        21 [string] = FilterType
+        22 [string] = IgnoreWater
+        23 [string] = Raycast
+        24 [string] = clear
+        25 [string] = Instance
+        26 [string] = IsDescendantOf
+        27 [string] = hit_target
+        28 [string] = Position
+        29 [string] = Unit
+        30 [string] = transparent_pass
+        31 [string] = passed_other_player
+        32 [string] = wall_blocking
+
+====================================================================================================
+
+Function Dump: isGrounded
+
+Function Upvalues: isGrounded
+        1 [Instance] = quit_xyz
+        2 [Instance] = Workspace
+
+Function Constants: isGrounded
+        1 [string] = FloorMaterial
+        2 [string] = Enum
+        3 [string] = Material
+        4 [string] = Air
+        5 [EnumItem] = Enum.Material.Air
+        6 [string] = RaycastParams
+        7 [string] = new
+        9 [string] = Character
+        10 [string] = FilterDescendantsInstances
+        11 [string] = RaycastFilterType
+        12 [string] = Exclude
+        13 [EnumItem] = Enum.RaycastFilterType.Exclude
+        14 [string] = FilterType
+        15 [string] = Position
+        16 [Vector3] = 0, -3.5, 0
+        17 [string] = Raycast
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_BAim_1769301806.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle1.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:43:24
+-- Luau version 6, Types version 3
+-- Time taken: 0.003650 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local BAim_upvr = script.Parent.Parent.Parent.Frame:WaitForChild("BAim")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local function setBAimEnabled_upvr(arg1, arg2) -- Line 11, Named "setBAimEnabled"
+    --[[ Upvalues[6]:
+        [1]: BAim_upvr (readonly)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    BAim_upvr.Value = arg1
+    local var7
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var7 = udim2_upvr_2
+        return var7
+    end
+    if not arg1 or not INLINED() then
+        var7 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var7;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("BAim", arg1)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 23
+    --[[ Upvalues[2]:
+        [1]: setBAimEnabled_upvr (readonly)
+        [2]: BAim_upvr (readonly)
+    ]]
+    setBAimEnabled_upvr(not BAim_upvr.Value, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.BAim = BAim_upvr.Value
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 33
+        --[[ Upvalues[7]:
+            [1]: BAim_upvr (readonly)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "BAim" then
+            BAim_upvr.Value = arg2
+            if not arg2 or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle1.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = BAim
+        2 [string] = Value
+        3 [string] = Position
+        5 [string] = Create
+        6 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: setBAimEnabled
+
+Function Upvalues: setBAimEnabled
+
+Function Constants: setBAimEnabled
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = BAim
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = BAim
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = BAim
+        2 [string] = Value
+        3 [string] = Position
+        5 [string] = Create
+        6 [string] = Play
+
+====================================================================================================
+
+Function Dump: setBAimEnabled
+
+Function Upvalues: setBAimEnabled
+        1 [Instance] = BAim
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setBAimEnabled
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = BAim
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setBAimEnabled
+        2 [Instance] = BAim
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_FOVSetting_1769301787.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.slidebar1.Frame2.TextButton.LocalScript
+-- Took 0.32s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:43:04
+-- Luau version 6, Types version 3
+-- Time taken: 0.009903 seconds
+
+local UserInputService_upvr = game:GetService("UserInputService")
+local Parent = script.Parent
+local Parent_upvr_2 = script.Parent.Parent
+local Parent_upvr = Parent_upvr_2.Parent
+local TextBox_upvr = Parent.Parent.Parent.TextBox
+local MinDamage_upvr = Parent_upvr.Parent.Parent.Frame.Parent.Frame.MinDamage
+local var7_upvw = false
+local var8_upvw = 0
+local function updateSliderPositionFromFov_upvr(arg1, arg2) -- Line 26, Named "updateSliderPositionFromFov"
+    --[[ Upvalues[3]:
+        [1]: Parent_upvr_2 (readonly)
+        [2]: TextBox_upvr (readonly)
+        [3]: MinDamage_upvr (readonly)
+    ]]
+    local clamped = math.clamp(arg1, 0, 139)
+    Parent_upvr_2.Position = UDim2.new((clamped - 0) / 139 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(clamped)
+    MinDamage_upvr.Value = clamped
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("FOVSetting", clamped)
+    end
+end
+local function updateSliderFromMouse_upvr() -- Line 43, Named "updateSliderFromMouse"
+    --[[ Upvalues[7]:
+        [1]: Parent_upvr (readonly)
+        [2]: UserInputService_upvr (readonly)
+        [3]: var8_upvw (read and write)
+        [4]: Parent_upvr_2 (readonly)
+        [5]: MinDamage_upvr (readonly)
+        [6]: TextBox_upvr (readonly)
+        [7]: var7_upvw (read and write)
+    ]]
+    local X = Parent_upvr.AbsoluteSize.X
+    local var11
+    if X <= 0 then
+    else
+        var11 = Parent_upvr.AbsolutePosition
+        local X_2 = var11.X
+        var11 = UserInputService_upvr:GetMouseLocation().X - var8_upvw
+        local var13 = X_2 + 0 * X
+        local var14 = X_2 + 0.803 * X
+        if var11 < var13 then
+            var11 = var13
+        end
+        if var14 < var11 then
+        end
+        local clamped_3 = math.clamp((var14 - X_2) / X, 0, 0.803)
+        Parent_upvr_2.Position = UDim2.new(clamped_3, 0, -0.192, 0)
+        local floored = math.floor(clamped_3 / 0.803 * 139 + 0)
+        MinDamage_upvr.Value = floored
+        TextBox_upvr.Text = tostring(floored)
+        if var7_upvw and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("FOVSetting", floored)
+        end
+    end
+end
+;(function() -- Line 75, Named "initializeWithConfig"
+    --[[ Upvalues[3]:
+        [1]: MinDamage_upvr (readonly)
+        [2]: Parent_upvr_2 (readonly)
+        [3]: TextBox_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    task.wait(1)
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [47] 30. Error Block 3 start (CF ANALYSIS FAILED)
+    local clamped_2 = math.clamp(_G.ConfigSystem.settings.FOVSetting, 0, 139)
+    Parent_upvr_2.Position = UDim2.new((clamped_2 - 0) / 139 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(clamped_2)
+    MinDamage_upvr.Value = clamped_2
+    do
+        return
+    end
+    -- KONSTANTERROR: [47] 30. Error Block 3 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [90] 62. Error Block 4 start (CF ANALYSIS FAILED)
+    local clamped_4 = math.clamp(0, 0, 139)
+    Parent_upvr_2.Position = UDim2.new((clamped_4 - 0) / 139 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(clamped_4)
+    MinDamage_upvr.Value = clamped_4
+    -- KONSTANTERROR: [90] 62. Error Block 4 end (CF ANALYSIS FAILED)
+end)()
+local var20_upvw
+local RunService_upvr = game:GetService("RunService")
+Parent.InputBegan:Connect(function(arg1) -- Line 110
+    --[[ Upvalues[7]:
+        [1]: UserInputService_upvr (readonly)
+        [2]: var8_upvw (read and write)
+        [3]: Parent_upvr_2 (readonly)
+        [4]: var7_upvw (read and write)
+        [5]: updateSliderFromMouse_upvr (readonly)
+        [6]: var20_upvw (read and write)
+        [7]: RunService_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var8_upvw = UserInputService_upvr:GetMouseLocation().X - Parent_upvr_2.AbsolutePosition.X
+        var7_upvw = true
+        updateSliderFromMouse_upvr()
+        if not var20_upvw then
+            var20_upvw = RunService_upvr.RenderStepped:Connect(function() -- Line 119
+                --[[ Upvalues[3]:
+                    [1]: var7_upvw (copied, read and write)
+                    [2]: updateSliderFromMouse_upvr (copied, readonly)
+                    [3]: var20_upvw (copied, read and write)
+                ]]
+                if var7_upvw then
+                    updateSliderFromMouse_upvr()
+                elseif var20_upvw then
+                    var20_upvw:Disconnect()
+                    var20_upvw = nil
+                end
+            end)
+        end
+    end
+end)
+UserInputService_upvr.InputEnded:Connect(function(arg1) -- Line 134
+    --[[ Upvalues[1]:
+        [1]: var7_upvw (read and write)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var7_upvw = false
+    end
+end)
+TextBox_upvr.FocusLost:Connect(function() -- Line 141
+    --[[ Upvalues[3]:
+        [1]: TextBox_upvr (readonly)
+        [2]: updateSliderPositionFromFov_upvr (readonly)
+        [3]: MinDamage_upvr (readonly)
+    ]]
+    local tonumber_result1_5 = tonumber(TextBox_upvr.Text)
+    if tonumber_result1_5 then
+        updateSliderPositionFromFov_upvr(tonumber_result1_5, true)
+    else
+        TextBox_upvr.Text = tostring(MinDamage_upvr.Value)
+    end
+end)
+local function _() -- Line 152, Named "saveOnMouseRelease"
+    --[[ Upvalues[3]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+        [3]: updateSliderPositionFromFov_upvr (readonly)
+    ]]
+    if var7_upvw then
+        local tonumber_result1_4 = tonumber(TextBox_upvr.Text)
+        if tonumber_result1_4 then
+            updateSliderPositionFromFov_upvr(tonumber_result1_4, true)
+        end
+    end
+end
+UserInputService_upvr.InputEnded:Connect(function(arg1) -- Line 163
+    --[[ Upvalues[3]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+        [3]: updateSliderPositionFromFov_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        if var7_upvw then
+            local tonumber_result1_2 = tonumber(TextBox_upvr.Text)
+            if tonumber_result1_2 then
+                updateSliderPositionFromFov_upvr(tonumber_result1_2, true)
+            end
+        end
+        var7_upvw = false
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.slidebar1.Frame2.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: saveOnMouseRelease
+
+Function Upvalues: saveOnMouseRelease
+
+Function Constants: saveOnMouseRelease
+        1 [string] = Text
+        2 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [number] = 0
+        9 [string] = Value
+        10 [string] = FOVSetting
+        11 [string] = onConfigLoad
+        12 [string] = math
+        13 [string] = clamp
+        15 [number] = 139
+        16 [number] = 0.803
+        17 [string] = UDim2
+        18 [string] = new
+        20 [number] = -0.192
+        21 [string] = Position
+        22 [string] = tostring
+        24 [string] = Text
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 139
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = FOVSetting
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 139
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = FOVSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = TextBox
+        3 [function] = updateSliderPositionFromFov
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = UserInputService
+        2 [number] = 0
+        3 [Instance] = Frame2
+        4 [boolean] = false
+        5 [function] = updateSliderFromMouse
+        7 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = MinDamage
+        4 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = FOVSetting
+        2 [string] = math
+        3 [string] = clamp
+        5 [number] = 139
+        6 [number] = 0
+        7 [number] = 0.803
+        8 [string] = UDim2
+        9 [string] = new
+        11 [number] = -0.192
+        12 [string] = Position
+        13 [string] = tostring
+        15 [string] = Text
+        16 [string] = Value
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+        1 [Instance] = slidebar1
+        2 [Instance] = UserInputService
+        3 [number] = 0
+        4 [Instance] = Frame2
+        5 [Instance] = MinDamage
+        6 [Instance] = TextBox
+        7 [boolean] = false
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 139
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = FOVSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = TextBox
+        2 [function] = updateSliderPositionFromFov
+        3 [Instance] = MinDamage
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = MinDamage
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 139
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = FOVSetting
+
+====================================================================================================
+]]
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.slidebar1.Frame2.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: saveOnMouseRelease
+
+Function Upvalues: saveOnMouseRelease
+
+Function Constants: saveOnMouseRelease
+        1 [string] = Text
+        2 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [number] = 0
+        9 [string] = Value
+        10 [string] = FOVSetting
+        11 [string] = onConfigLoad
+        12 [string] = math
+        13 [string] = clamp
+        15 [number] = 139
+        16 [number] = 0.803
+        17 [string] = UDim2
+        18 [string] = new
+        20 [number] = -0.192
+        21 [string] = Position
+        22 [string] = tostring
+        24 [string] = Text
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 139
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = FOVSetting
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 139
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = FOVSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = TextBox
+        3 [function] = updateSliderPositionFromFov
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = UserInputService
+        2 [number] = 0
+        3 [Instance] = Frame2
+        4 [boolean] = false
+        5 [function] = updateSliderFromMouse
+        7 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = MinDamage
+        4 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = FOVSetting
+        2 [string] = math
+        3 [string] = clamp
+        5 [number] = 139
+        6 [number] = 0
+        7 [number] = 0.803
+        8 [string] = UDim2
+        9 [string] = new
+        11 [number] = -0.192
+        12 [string] = Position
+        13 [string] = tostring
+        15 [string] = Text
+        16 [string] = Value
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+        1 [Instance] = slidebar1
+        2 [Instance] = UserInputService
+        3 [number] = 0
+        4 [Instance] = Frame2
+        5 [Instance] = MinDamage
+        6 [Instance] = TextBox
+        7 [boolean] = false
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 139
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = FOVSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = TextBox
+        2 [function] = updateSliderPositionFromFov
+        3 [Instance] = MinDamage
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = MinDamage
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 139
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = FOVSetting
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_FOV_1769301552.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.slidebar.Frame2.TextButton.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:39:03
+-- Luau version 6, Types version 3
+-- Time taken: 0.012483 seconds
+
+local UserInputService_upvr = game:GetService("UserInputService")
+local Parent = script.Parent
+local Parent_upvr = script.Parent.Parent
+local Parent_2_upvr = Parent_upvr.Parent
+local TextBox_upvr = Parent.Parent.Parent.TextBox
+local Fov_upvr = Parent_2_upvr.Parent.Parent.Frame.Fov
+local var7_upvw = false
+local var8_upvw = 0
+local function updateSliderPositionFromFov_upvr(arg1, arg2) -- Line 23, Named "updateSliderPositionFromFov"
+    --[[ Upvalues[3]:
+        [1]: Parent_upvr (readonly)
+        [2]: TextBox_upvr (readonly)
+        [3]: Fov_upvr (readonly)
+    ]]
+    local clamped_2 = math.clamp(arg1, 0, 361)
+    Parent_upvr.Position = UDim2.new((clamped_2 - 0) / 361 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(clamped_2)
+    Fov_upvr.Value = clamped_2
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("FOV", clamped_2)
+    end
+end
+local function updateSliderFromMouse_upvr() -- Line 38, Named "updateSliderFromMouse"
+    --[[ Upvalues[6]:
+        [1]: Parent_2_upvr (readonly)
+        [2]: UserInputService_upvr (readonly)
+        [3]: var8_upvw (read and write)
+        [4]: Parent_upvr (readonly)
+        [5]: Fov_upvr (readonly)
+        [6]: TextBox_upvr (readonly)
+    ]]
+    local X_2 = Parent_2_upvr.AbsoluteSize.X
+    local var11
+    if X_2 <= 0 then
+    else
+        var11 = Parent_2_upvr.AbsolutePosition
+        local X = var11.X
+        var11 = UserInputService_upvr:GetMouseLocation().X - var8_upvw
+        local var13 = X + 0 * X_2
+        local var14 = X + 0.803 * X_2
+        if var11 < var13 then
+            var11 = var13
+        end
+        if var14 < var11 then
+        end
+        local clamped_4 = math.clamp((var14 - X) / X_2, 0, 0.803)
+        Parent_upvr.Position = UDim2.new(clamped_4, 0, -0.192, 0)
+        local floored = math.floor(clamped_4 / 0.803 * 361 + 0)
+        Fov_upvr.Value = floored
+        TextBox_upvr.Text = tostring(floored)
+        if _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("FOV", floored)
+        end
+    end
+end
+local clamped_3 = math.clamp(0, 0, 361)
+Parent_upvr.Position = UDim2.new((clamped_3 - 0) / 361 * 0.803, 0, -0.192, 0)
+TextBox_upvr.Text = tostring(clamped_3)
+Fov_upvr.Value = clamped_3
+local var19_upvw
+local RunService_upvr = game:GetService("RunService")
+Parent.InputBegan:Connect(function(arg1) -- Line 73
+    --[[ Upvalues[7]:
+        [1]: UserInputService_upvr (readonly)
+        [2]: var8_upvw (read and write)
+        [3]: Parent_upvr (readonly)
+        [4]: var7_upvw (read and write)
+        [5]: updateSliderFromMouse_upvr (readonly)
+        [6]: var19_upvw (read and write)
+        [7]: RunService_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var8_upvw = UserInputService_upvr:GetMouseLocation().X - Parent_upvr.AbsolutePosition.X
+        var7_upvw = true
+        updateSliderFromMouse_upvr()
+        if not var19_upvw then
+            var19_upvw = RunService_upvr.RenderStepped:Connect(function() -- Line 81
+                --[[ Upvalues[3]:
+                    [1]: var7_upvw (copied, read and write)
+                    [2]: updateSliderFromMouse_upvr (copied, readonly)
+                    [3]: var19_upvw (copied, read and write)
+                ]]
+                if var7_upvw then
+                    updateSliderFromMouse_upvr()
+                elseif var19_upvw then
+                    var19_upvw:Disconnect()
+                    var19_upvw = nil
+                end
+            end)
+        end
+    end
+end)
+UserInputService_upvr.InputEnded:Connect(function(arg1) -- Line 96
+    --[[ Upvalues[1]:
+        [1]: var7_upvw (read and write)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var7_upvw = false
+    end
+end)
+TextBox_upvr.FocusLost:Connect(function() -- Line 103
+    --[[ Upvalues[3]:
+        [1]: TextBox_upvr (readonly)
+        [2]: updateSliderPositionFromFov_upvr (readonly)
+        [3]: Fov_upvr (readonly)
+    ]]
+    local tonumber_result1_3 = tonumber(TextBox_upvr.Text)
+    if tonumber_result1_3 then
+        updateSliderPositionFromFov_upvr(tonumber_result1_3, true)
+    else
+        TextBox_upvr.Text = tostring(Fov_upvr.Value)
+    end
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.FOV = Fov_upvr.Value
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 123
+        --[[ Upvalues[4]:
+            [1]: Parent_upvr (readonly)
+            [2]: TextBox_upvr (readonly)
+            [3]: Fov_upvr (readonly)
+            [4]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "FOV" then
+            local tonumber_result1 = tonumber(arg2)
+            if tonumber_result1 then
+                local clamped_5 = math.clamp(tonumber_result1, 0, 361)
+                Parent_upvr.Position = UDim2.new((clamped_5 - 0) / 361 * 0.803, 0, -0.192, 0)
+                TextBox_upvr.Text = tostring(clamped_5)
+                Fov_upvr.Value = clamped_5
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+else
+    onConfigLoad_upvr = warn
+    onConfigLoad_upvr("ConfigSystem не найдена! Настройка FOV не будет сохраняться.")
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.slidebar.Frame2.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = FOV
+        2 [string] = tonumber
+        4 [string] = math
+        5 [string] = clamp
+        7 [number] = 361
+        8 [number] = 0
+        9 [number] = 0.803
+        10 [string] = UDim2
+        11 [string] = new
+        13 [number] = -0.192
+        14 [string] = Position
+        15 [string] = tostring
+        17 [string] = Text
+        18 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 361
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = FOV
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 361
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = FOV
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+        1 [Instance] = slidebar
+        2 [Instance] = UserInputService
+        3 [number] = 0
+        4 [Instance] = Frame2
+        5 [Instance] = Fov
+        6 [Instance] = TextBox
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 361
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = FOV
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = UserInputService
+        2 [number] = 0
+        3 [Instance] = Frame2
+        4 [boolean] = false
+        5 [function] = updateSliderFromMouse
+        7 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = TextBox
+        2 [function] = updateSliderPositionFromFov
+        3 [Instance] = Fov
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = Fov
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 361
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = FOV
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = Fov
+        4 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = FOV
+        2 [string] = tonumber
+        4 [string] = math
+        5 [string] = clamp
+        7 [number] = 361
+        8 [number] = 0
+        9 [number] = 0.803
+        10 [string] = UDim2
+        11 [string] = new
+        13 [number] = -0.192
+        14 [string] = Position
+        15 [string] = tostring
+        17 [string] = Text
+        18 [string] = Value
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_GenericToggle_1769301735.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle4.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:41:50
+-- Luau version 6, Types version 3
+-- Time taken: 0.003574 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var6_upvw = false
+local function setToggleEnabled_upvr(arg1, arg2) -- Line 13, Named "setToggleEnabled"
+    --[[ Upvalues[6]:
+        [1]: var6_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    var6_upvw = arg1
+    local var7
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var7 = udim2_upvr
+        return var7
+    end
+    if not var6_upvw or not INLINED() then
+        var7 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var7;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("GenericToggle", var6_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 24
+    --[[ Upvalues[2]:
+        [1]: setToggleEnabled_upvr (readonly)
+        [2]: var6_upvw (read and write)
+    ]]
+    setToggleEnabled_upvr(not var6_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.GenericToggle = var6_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 34
+        --[[ Upvalues[7]:
+            [1]: var6_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "GenericToggle" then
+            var6_upvw = arg2
+            if not var6_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle4.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = GenericToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = GenericToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = GenericToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = GenericToggle
+
+====================================================================================================
+]]
+
+----// XEClient/rage_HeadEnabled_1769301580.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.spisok.Frame.ScrollingFrame.TextButton.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:39:34
+-- Luau version 6, Types version 3
+-- Time taken: 0.003092 seconds
+
+local var1_upvw = false
+local TweenService_upvr = game:GetService("TweenService")
+local Parent_upvr = script.Parent
+local Head_upvr = script.Parent.Parent.Parent.Parent.Parent.Head
+local function setHeadEnabled_upvr(arg1, arg2) -- Line 9, Named "setHeadEnabled"
+    --[[ Upvalues[4]:
+        [1]: var1_upvw (read and write)
+        [2]: TweenService_upvr (readonly)
+        [3]: Parent_upvr (readonly)
+        [4]: Head_upvr (readonly)
+    ]]
+    var1_upvw = arg1
+    local var5
+    if var1_upvw then
+        var5 = 0.8
+    else
+        var5 = 1
+    end
+    TweenService_upvr:Create(Parent_upvr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = var5;
+    }):Play()
+    if Head_upvr then
+        Head_upvr.Value = var1_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("HeadEnabled", var1_upvw)
+    end
+end
+script.Parent.MouseButton1Click:Connect(function() -- Line 30
+    --[[ Upvalues[2]:
+        [1]: setHeadEnabled_upvr (readonly)
+        [2]: var1_upvw (read and write)
+    ]]
+    setHeadEnabled_upvr(not var1_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.HeadEnabled = var1_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 44
+        --[[ Upvalues[2]:
+            [1]: setHeadEnabled_upvr (readonly)
+            [2]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "HeadEnabled" then
+            setHeadEnabled_upvr(arg2, false)
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.spisok.Frame.ScrollingFrame.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = HeadEnabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setHeadEnabled
+
+Function Upvalues: setHeadEnabled
+
+Function Constants: setHeadEnabled
+        1 [number] = 0.8
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.2
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        13 [string] = BackgroundTransparency
+        15 [string] = Create
+        16 [string] = Play
+        17 [string] = Value
+        18 [string] = _G
+        20 [string] = ConfigSystem
+        21 [string] = onSettingChanged
+        22 [string] = HeadEnabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setHeadEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setHeadEnabled
+
+Function Upvalues: setHeadEnabled
+        1 [boolean] = false
+        2 [Instance] = TweenService
+        3 [Instance] = TextButton
+        4 [Instance] = Head
+
+Function Constants: setHeadEnabled
+        1 [number] = 0.8
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.2
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        9 [EnumItem] = Enum.EasingStyle.Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        12 [EnumItem] = Enum.EasingDirection.Out
+        13 [string] = BackgroundTransparency
+        15 [string] = Create
+        16 [string] = Play
+        17 [string] = Value
+        18 [string] = _G
+        20 [string] = ConfigSystem
+        21 [string] = onSettingChanged
+        22 [string] = HeadEnabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setHeadEnabled
+        2 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = HeadEnabled
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_HitChanceSetting_1769301766.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.slidebar.Frame2.TextButton.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:42:42
+-- Luau version 6, Types version 3
+-- Time taken: 0.010139 seconds
+
+local UserInputService_upvr = game:GetService("UserInputService")
+local Parent = script.Parent
+local Parent_upvr_2 = script.Parent.Parent
+local Parent_upvr = Parent_upvr_2.Parent
+local TextBox_upvr = Parent.Parent.Parent.TextBox
+local HitChance_upvr = Parent_upvr.Parent.Parent.Frame.Parent.Frame.HitChance
+local var7_upvw = false
+local var8_upvw = 0
+local function updateSliderPositionFromFov_upvr(arg1, arg2) -- Line 26, Named "updateSliderPositionFromFov"
+    --[[ Upvalues[3]:
+        [1]: Parent_upvr_2 (readonly)
+        [2]: TextBox_upvr (readonly)
+        [3]: HitChance_upvr (readonly)
+    ]]
+    local clamped = math.clamp(arg1, 0, 100)
+    Parent_upvr_2.Position = UDim2.new((clamped - 0) / 100 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(clamped)
+    HitChance_upvr.Value = clamped
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("HitChanceSetting", clamped)
+    end
+end
+local function updateSliderFromMouse_upvr() -- Line 44, Named "updateSliderFromMouse"
+    --[[ Upvalues[7]:
+        [1]: Parent_upvr (readonly)
+        [2]: UserInputService_upvr (readonly)
+        [3]: var8_upvw (read and write)
+        [4]: Parent_upvr_2 (readonly)
+        [5]: HitChance_upvr (readonly)
+        [6]: TextBox_upvr (readonly)
+        [7]: var7_upvw (read and write)
+    ]]
+    local X = Parent_upvr.AbsoluteSize.X
+    local var11
+    if X <= 0 then
+    else
+        var11 = Parent_upvr.AbsolutePosition
+        local X_2 = var11.X
+        var11 = UserInputService_upvr:GetMouseLocation().X - var8_upvw
+        local var13 = X_2 + 0 * X
+        local var14 = X_2 + 0.803 * X
+        if var11 < var13 then
+            var11 = var13
+        end
+        if var14 < var11 then
+        end
+        local clamped_2 = math.clamp((var14 - X_2) / X, 0, 0.803)
+        Parent_upvr_2.Position = UDim2.new(clamped_2, 0, -0.192, 0)
+        local floored = math.floor(clamped_2 / 0.803 * 100 + 0)
+        HitChance_upvr.Value = floored
+        TextBox_upvr.Text = tostring(floored)
+        if var7_upvw and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("HitChanceSetting", floored)
+        end
+    end
+end
+;(function() -- Line 76, Named "initializeWithConfig"
+    --[[ Upvalues[3]:
+        [1]: HitChance_upvr (readonly)
+        [2]: Parent_upvr_2 (readonly)
+        [3]: TextBox_upvr (readonly)
+    ]]
+    task.wait(1)
+    if _G.ConfigSystem then
+        _G.ConfigSystem.settings.HitChanceSetting = HitChance_upvr.Value or 0
+        local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+        _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 85
+            --[[ Upvalues[4]:
+                [1]: Parent_upvr_2 (copied, readonly)
+                [2]: TextBox_upvr (copied, readonly)
+                [3]: HitChance_upvr (copied, readonly)
+                [4]: onConfigLoad_upvr (readonly)
+            ]]
+            if arg1 == "HitChanceSetting" then
+                local clamped_3 = math.clamp(arg2, 0, 100)
+                Parent_upvr_2.Position = UDim2.new((clamped_3 - 0) / 100 * 0.803, 0, -0.192, 0)
+                TextBox_upvr.Text = tostring(clamped_3)
+                HitChance_upvr.Value = clamped_3
+            end
+            if onConfigLoad_upvr then
+                onConfigLoad_upvr(arg1, arg2)
+            end
+        end
+        if _G.ConfigSystem.settings.HitChanceSetting then
+            local clamped_5 = math.clamp(_G.ConfigSystem.settings.HitChanceSetting, 0, 100)
+            Parent_upvr_2.Position = UDim2.new((clamped_5 - 0) / 100 * 0.803, 0, -0.192, 0)
+            TextBox_upvr.Text = tostring(clamped_5)
+            HitChance_upvr.Value = clamped_5
+        else
+            local clamped_4 = math.clamp(0, 0, 100)
+            Parent_upvr_2.Position = UDim2.new((clamped_4 - 0) / 100 * 0.803, 0, -0.192, 0)
+            TextBox_upvr.Text = tostring(clamped_4)
+            HitChance_upvr.Value = clamped_4
+        end
+    end
+    onConfigLoad_upvr = 0
+    onConfigLoad_upvr = math.clamp(onConfigLoad_upvr, 0, 100)
+    local var22 = onConfigLoad_upvr
+    Parent_upvr_2.Position = UDim2.new((var22 - 0) / 100 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(var22)
+    HitChance_upvr.Value = var22
+end)()
+local var24_upvw
+local RunService_upvr = game:GetService("RunService")
+Parent.InputBegan:Connect(function(arg1) -- Line 113
+    --[[ Upvalues[7]:
+        [1]: UserInputService_upvr (readonly)
+        [2]: var8_upvw (read and write)
+        [3]: Parent_upvr_2 (readonly)
+        [4]: var7_upvw (read and write)
+        [5]: updateSliderFromMouse_upvr (readonly)
+        [6]: var24_upvw (read and write)
+        [7]: RunService_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var8_upvw = UserInputService_upvr:GetMouseLocation().X - Parent_upvr_2.AbsolutePosition.X
+        var7_upvw = true
+        updateSliderFromMouse_upvr()
+        if not var24_upvw then
+            var24_upvw = RunService_upvr.RenderStepped:Connect(function() -- Line 122
+                --[[ Upvalues[3]:
+                    [1]: var7_upvw (copied, read and write)
+                    [2]: updateSliderFromMouse_upvr (copied, readonly)
+                    [3]: var24_upvw (copied, read and write)
+                ]]
+                if var7_upvw then
+                    updateSliderFromMouse_upvr()
+                elseif var24_upvw then
+                    var24_upvw:Disconnect()
+                    var24_upvw = nil
+                end
+            end)
+        end
+    end
+end)
+local function _() -- Line 137, Named "saveOnMouseRelease"
+    --[[ Upvalues[2]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+    ]]
+    if var7_upvw then
+        local tonumber_result1 = tonumber(TextBox_upvr.Text)
+        if tonumber_result1 then
+            _G.ConfigSystem.onSettingChanged("HitChanceSetting", tonumber_result1)
+        end
+    end
+end
+UserInputService_upvr.InputEnded:Connect(function(arg1) -- Line 148
+    --[[ Upvalues[2]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        if var7_upvw then
+            local tonumber_result1_5 = tonumber(TextBox_upvr.Text)
+            if tonumber_result1_5 then
+                _G.ConfigSystem.onSettingChanged("HitChanceSetting", tonumber_result1_5)
+            end
+        end
+        var7_upvw = false
+    end
+end)
+TextBox_upvr.FocusLost:Connect(function() -- Line 156
+    --[[ Upvalues[3]:
+        [1]: TextBox_upvr (readonly)
+        [2]: updateSliderPositionFromFov_upvr (readonly)
+        [3]: HitChance_upvr (readonly)
+    ]]
+    local tonumber_result1_2 = tonumber(TextBox_upvr.Text)
+    if tonumber_result1_2 then
+        updateSliderPositionFromFov_upvr(tonumber_result1_2, true)
+    else
+        TextBox_upvr.Text = tostring(HitChance_upvr.Value)
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.slidebar.Frame2.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = HitChanceSetting
+
+====================================================================================================
+
+Function Dump: saveOnMouseRelease
+
+Function Upvalues: saveOnMouseRelease
+
+Function Constants: saveOnMouseRelease
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = onSettingChanged
+        8 [string] = HitChanceSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [number] = 0
+        9 [string] = Value
+        10 [string] = HitChanceSetting
+        11 [string] = onConfigLoad
+        12 [string] = math
+        13 [string] = clamp
+        15 [number] = 100
+        16 [number] = 0.803
+        17 [string] = UDim2
+        18 [string] = new
+        20 [number] = -0.192
+        21 [string] = Position
+        22 [string] = tostring
+        24 [string] = Text
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 100
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = HitChanceSetting
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 100
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = HitChanceSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = TextBox
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = HitChanceSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = UserInputService
+        2 [number] = 0
+        3 [Instance] = Frame2
+        4 [boolean] = false
+        5 [function] = updateSliderFromMouse
+        7 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = HitChance
+        4 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = HitChanceSetting
+        2 [string] = math
+        3 [string] = clamp
+        5 [number] = 100
+        6 [number] = 0
+        7 [number] = 0.803
+        8 [string] = UDim2
+        9 [string] = new
+        11 [number] = -0.192
+        12 [string] = Position
+        13 [string] = tostring
+        15 [string] = Text
+        16 [string] = Value
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+        1 [Instance] = slidebar
+        2 [Instance] = UserInputService
+        3 [number] = 0
+        4 [Instance] = Frame2
+        5 [Instance] = HitChance
+        6 [Instance] = TextBox
+        7 [boolean] = false
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0
+        15 [number] = 100
+        16 [string] = floor
+        18 [string] = Value
+        19 [string] = tostring
+        21 [string] = Text
+        22 [string] = _G
+        24 [string] = ConfigSystem
+        25 [string] = onSettingChanged
+        26 [string] = HitChanceSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = TextBox
+        2 [function] = updateSliderPositionFromFov
+        3 [Instance] = HitChance
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = HitChance
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 100
+        5 [number] = 0
+        6 [number] = 0.803
+        7 [string] = UDim2
+        8 [string] = new
+        10 [number] = -0.192
+        11 [string] = Position
+        12 [string] = tostring
+        14 [string] = Text
+        15 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = HitChanceSetting
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_LegsSetting_1769301597.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.spisok.Frame.ScrollingFrame.TextButton2.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:39:55
+-- Luau version 6, Types version 3
+-- Time taken: 0.004023 seconds
+
+local var1_upvw = false
+local TweenService_upvr = game:GetService("TweenService")
+local Parent_upvr = script.Parent
+local Legs_upvr = script.Parent.Parent.Parent.Parent.Parent.Legs
+local function setToggleEnabled_upvr(arg1, arg2) -- Line 13, Named "setToggleEnabled"
+    --[[ Upvalues[4]:
+        [1]: var1_upvw (read and write)
+        [2]: TweenService_upvr (readonly)
+        [3]: Parent_upvr (readonly)
+        [4]: Legs_upvr (readonly)
+    ]]
+    var1_upvw = arg1
+    local var5
+    if var1_upvw then
+        var5 = 0.8
+    else
+        var5 = 1
+    end
+    TweenService_upvr:Create(Parent_upvr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = var5;
+    }):Play()
+    if Legs_upvr then
+        Legs_upvr.Value = var1_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("LegsSetting", var1_upvw)
+    end
+end
+script.Parent.MouseButton1Click:Connect(function() -- Line 34
+    --[[ Upvalues[2]:
+        [1]: setToggleEnabled_upvr (readonly)
+        [2]: var1_upvw (read and write)
+    ]]
+    setToggleEnabled_upvr(not var1_upvw, true)
+end)
+;(function() -- Line 39, Named "initializeWithConfig"
+    --[[ Upvalues[2]:
+        [1]: var1_upvw (read and write)
+        [2]: setToggleEnabled_upvr (readonly)
+    ]]
+    task.wait(1)
+    if _G.ConfigSystem then
+        _G.ConfigSystem.settings.LegsSetting = var1_upvw
+        local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+        _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 48
+            --[[ Upvalues[2]:
+                [1]: setToggleEnabled_upvr (copied, readonly)
+                [2]: onConfigLoad_upvr (readonly)
+            ]]
+            if arg1 == "LegsSetting" then
+                setToggleEnabled_upvr(arg2, false)
+            end
+            if onConfigLoad_upvr then
+                onConfigLoad_upvr(arg1, arg2)
+            end
+        end
+        if _G.ConfigSystem.settings.LegsSetting ~= nil then
+            setToggleEnabled_upvr(_G.ConfigSystem.settings.LegsSetting, false)
+        end
+    end
+end)()
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.spisok.Frame.ScrollingFrame.TextButton2.LocalScript
+
+--[[
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [string] = LegsSetting
+        9 [string] = onConfigLoad
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+
+Function Constants: setToggleEnabled
+        1 [number] = 0.8
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.2
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        13 [string] = BackgroundTransparency
+        15 [string] = Create
+        16 [string] = Play
+        17 [string] = Value
+        18 [string] = _G
+        20 [string] = ConfigSystem
+        21 [string] = onSettingChanged
+        22 [string] = LegsSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = LegsSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+        1 [boolean] = false
+        2 [Instance] = TweenService
+        3 [Instance] = TextButton2
+        4 [Instance] = Legs
+
+Function Constants: setToggleEnabled
+        1 [number] = 0.8
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.2
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        9 [EnumItem] = Enum.EasingStyle.Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        12 [EnumItem] = Enum.EasingDirection.Out
+        13 [string] = BackgroundTransparency
+        15 [string] = Create
+        16 [string] = Play
+        17 [string] = Value
+        18 [string] = _G
+        20 [string] = ConfigSystem
+        21 [string] = onSettingChanged
+        22 [string] = LegsSetting
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_PredictionToggle_1769301694.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle3.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:40:55
+-- Luau version 6, Types version 3
+-- Time taken: 0.004626 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local Prediction_upvr = script.Parent.Parent:FindFirstChild("Prediction")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local function setToggleEnabled_upvr(arg1, arg2) -- Line 14, Named "setToggleEnabled"
+    --[[ Upvalues[7]:
+        [1]: var7_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: Prediction_upvr (readonly)
+    ]]
+    var7_upvw = arg1
+    local var8
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var8 = udim2_upvr
+        return var8
+    end
+    if not var7_upvw or not INLINED() then
+        var8 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var8;
+    }):Play()
+    if Prediction_upvr then
+        Prediction_upvr.Value = var7_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("PredictionToggle", var7_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 31
+    --[[ Upvalues[2]:
+        [1]: setToggleEnabled_upvr (readonly)
+        [2]: var7_upvw (read and write)
+    ]]
+    setToggleEnabled_upvr(not var7_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.PredictionToggle = var7_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 41
+        --[[ Upvalues[8]:
+            [1]: var7_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: Prediction_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "PredictionToggle" then
+            var7_upvw = arg2
+            if not var7_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+            if Prediction_upvr then
+                Prediction_upvr.Value = var7_upvw
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle3.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = PredictionToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = PredictionToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = Prediction
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = PredictionToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = Prediction
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = PredictionToggle
+
+====================================================================================================
+]]
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.toggle3.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = PredictionToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = PredictionToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = Prediction
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = PredictionToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = Prediction
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = PredictionToggle
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_TorsoSetting_1769301588.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.spisok.Frame.ScrollingFrame.TextButton1.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:39:45
+-- Luau version 6, Types version 3
+-- Time taken: 0.004292 seconds
+
+local var1_upvw = false
+local TweenService_upvr = game:GetService("TweenService")
+local Parent_upvr = script.Parent
+local Torso_upvr = script.Parent.Parent.Parent.Parent.Parent.Torso
+local function setToggleEnabled_upvr(arg1, arg2) -- Line 13, Named "setToggleEnabled"
+    --[[ Upvalues[4]:
+        [1]: var1_upvw (read and write)
+        [2]: TweenService_upvr (readonly)
+        [3]: Parent_upvr (readonly)
+        [4]: Torso_upvr (readonly)
+    ]]
+    var1_upvw = arg1
+    local var5
+    if var1_upvw then
+        var5 = 0.8
+    else
+        var5 = 1
+    end
+    TweenService_upvr:Create(Parent_upvr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = var5;
+    }):Play()
+    if Torso_upvr then
+        Torso_upvr.Value = var1_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("TorsoSetting", var1_upvw)
+    end
+end
+script.Parent.MouseButton1Click:Connect(function() -- Line 34
+    --[[ Upvalues[2]:
+        [1]: setToggleEnabled_upvr (readonly)
+        [2]: var1_upvw (read and write)
+    ]]
+    setToggleEnabled_upvr(not var1_upvw, true)
+end)
+;(function() -- Line 39, Named "initializeWithConfig"
+    --[[ Upvalues[2]:
+        [1]: var1_upvw (read and write)
+        [2]: setToggleEnabled_upvr (readonly)
+    ]]
+    task.wait(1)
+    if _G.ConfigSystem then
+        _G.ConfigSystem.settings.TorsoSetting = var1_upvw
+        local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+        _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 48
+            --[[ Upvalues[2]:
+                [1]: setToggleEnabled_upvr (copied, readonly)
+                [2]: onConfigLoad_upvr (readonly)
+            ]]
+            if arg1 == "TorsoSetting" then
+                setToggleEnabled_upvr(arg2, false)
+            end
+            if onConfigLoad_upvr then
+                onConfigLoad_upvr(arg1, arg2)
+            end
+        end
+        if _G.ConfigSystem.settings.TorsoSetting ~= nil then
+            setToggleEnabled_upvr(_G.ConfigSystem.settings.TorsoSetting, false)
+        end
+    end
+end)()
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame.spisok.Frame.ScrollingFrame.TextButton1.LocalScript
+
+--[[
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [string] = TorsoSetting
+        9 [string] = onConfigLoad
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+
+Function Constants: setToggleEnabled
+        1 [number] = 0.8
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.2
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        13 [string] = BackgroundTransparency
+        15 [string] = Create
+        16 [string] = Play
+        17 [string] = Value
+        18 [string] = _G
+        20 [string] = ConfigSystem
+        21 [string] = onSettingChanged
+        22 [string] = TorsoSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = TorsoSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+        1 [boolean] = false
+        2 [Instance] = TweenService
+        3 [Instance] = TextButton1
+        4 [Instance] = Torso
+
+Function Constants: setToggleEnabled
+        1 [number] = 0.8
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.2
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        9 [EnumItem] = Enum.EasingStyle.Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        12 [EnumItem] = Enum.EasingDirection.Out
+        13 [string] = BackgroundTransparency
+        15 [string] = Create
+        16 [string] = Play
+        17 [string] = Value
+        18 [string] = _G
+        20 [string] = ConfigSystem
+        21 [string] = onSettingChanged
+        22 [string] = TorsoSetting
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_doubletap_1769301882.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle3.LocalScript
+-- Took 0.29s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:44:18
+-- Luau version 6, Types version 3
+-- Time taken: 0.004398 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local DT_upvr = script.Parent.Parent.Parent.Frame:WaitForChild("DT")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local function updateVisuals_upvr(arg1, arg2) -- Line 15, Named "updateVisuals"
+    --[[ Upvalues[7]:
+        [1]: var7_upvw (read and write)
+        [2]: DT_upvr (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: udim2_upvr_2 (readonly)
+        [5]: TweenService_upvr (readonly)
+        [6]: Frame2_upvr (readonly)
+        [7]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    local var8
+    if var8 then
+    else
+        var8 = true
+        var7_upvw = var8
+        var8 = DT_upvr.Value
+        if var8 ~= arg1 then
+            var8 = DT_upvr
+            var8.Value = arg1
+        end
+        local function INLINED() -- Internal function, doesn't exist in bytecode
+            var8 = udim2_upvr
+            return var8
+        end
+        if not arg1 or not INLINED() then
+            var8 = udim2_upvr_2
+        end
+        TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+            Position = var8;
+        }):Play()
+        if arg2 and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("doubletap", arg1)
+        end
+        var7_upvw = false
+    end
+end
+DT_upvr:GetPropertyChangedSignal("Value"):Connect(function() -- Line 35
+    --[[ Upvalues[2]:
+        [1]: updateVisuals_upvr (readonly)
+        [2]: DT_upvr (readonly)
+    ]]
+    updateVisuals_upvr(DT_upvr.Value, true)
+end)
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 40
+    --[[ Upvalues[1]:
+        [1]: DT_upvr (readonly)
+    ]]
+    DT_upvr.Value = not DT_upvr.Value
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.doubletap = DT_upvr.Value
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 50
+        --[[ Upvalues[8]:
+            [1]: var7_upvw (read and write)
+            [2]: DT_upvr (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: udim2_upvr_2 (readonly)
+            [5]: TweenService_upvr (readonly)
+            [6]: Frame2_upvr (readonly)
+            [7]: TweenInfo_new_result1_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "doubletap" then
+            var7_upvw = true
+            DT_upvr.Value = arg2
+            if not arg2 or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+            var7_upvw = false
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+else
+    onConfigLoad_upvr = warn
+    onConfigLoad_upvr("ConfigSystem не найдена! Настройка BAim не будет сохраняться.")
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle3.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = doubletap
+        2 [string] = Value
+        3 [string] = Position
+        5 [string] = Create
+        6 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: updateVisuals
+
+Function Upvalues: updateVisuals
+
+Function Constants: updateVisuals
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = doubletap
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = DT
+        3 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        4 [UDim2] = {0, 0}, {-0.191819623, 0}
+        5 [Instance] = TweenService
+        6 [Instance] = Frame2
+        7 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = doubletap
+        2 [string] = Value
+        3 [string] = Position
+        5 [string] = Create
+        6 [string] = Play
+
+====================================================================================================
+
+Function Dump: updateVisuals
+
+Function Upvalues: updateVisuals
+        1 [boolean] = false
+        2 [Instance] = DT
+        3 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        4 [UDim2] = {0, 0}, {-0.191819623, 0}
+        5 [Instance] = TweenService
+        6 [Instance] = Frame2
+        7 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: updateVisuals
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = doubletap
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = DT
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = updateVisuals
+        2 [Instance] = DT
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+]]
+
+
+----// XEClient/rage_unknown_1769301844.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle2.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:43:34
+-- Luau version 6, Types version 3
+-- Time taken: 0.001975 seconds
+
+local Frame2_upvr = script.Parent.Frame2
+local ShotTP_upvr = script.Parent.Parent.Parent.Frame:WaitForChild("ShotTP")
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local TweenService_upvr = game:GetService("TweenService")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 10
+    --[[ Upvalues[6]:
+        [1]: ShotTP_upvr (readonly)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    local var8 = not ShotTP_upvr.Value
+    ShotTP_upvr.Value = var8
+    local var9
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var9 = udim2_upvr
+        return var9
+    end
+    if not var8 or not INLINED() then
+        var9 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var9;
+    }):Play()
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.rage.ScrollingFrame.Frame1.toggle2.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = ShotTP
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: Unknown Name
+        1 [string] = Value
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_AspectRatioSliderSetting_1769302595.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.slidebar.Frame2.TextButton.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:56:34
+-- Luau version 6, Types version 3
+-- Time taken: 0.012239 seconds
+
+local UserInputService_upvr = game:GetService("UserInputService")
+local Parent = script.Parent
+local Parent_upvr_2 = script.Parent.Parent
+local Parent_upvr = Parent_upvr_2.Parent
+local TextBox_upvr = Parent.Parent.Parent.TextBox
+local AspectRatio_upvr = Parent_upvr.Parent.AspectRatio
+local var7_upvw = false
+local var8_upvw = 0
+local function updateSliderPositionFromFov_upvr(arg1, arg2) -- Line 26, Named "updateSliderPositionFromFov"
+    --[[ Upvalues[3]:
+        [1]: Parent_upvr_2 (readonly)
+        [2]: TextBox_upvr (readonly)
+        [3]: AspectRatio_upvr (readonly)
+    ]]
+    local clamped_4 = math.clamp(arg1, 0.1, 1.2)
+    Parent_upvr_2.Position = UDim2.new((clamped_4 - 0.1) / 1.0999999999999999 * 0.803, 0, -0.192, 0)
+    local var10 = math.floor(clamped_4 * 10 + 0.5) / 10
+    TextBox_upvr.Text = tostring(var10)
+    AspectRatio_upvr.Value = var10
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("AspectRatioSliderSetting", var10)
+    end
+end
+local function updateSliderFromMouse_upvr() -- Line 46, Named "updateSliderFromMouse"
+    --[[ Upvalues[7]:
+        [1]: Parent_upvr (readonly)
+        [2]: UserInputService_upvr (readonly)
+        [3]: var8_upvw (read and write)
+        [4]: Parent_upvr_2 (readonly)
+        [5]: AspectRatio_upvr (readonly)
+        [6]: TextBox_upvr (readonly)
+        [7]: var7_upvw (read and write)
+    ]]
+    local X = Parent_upvr.AbsoluteSize.X
+    local var12
+    if X <= 0 then
+    else
+        var12 = Parent_upvr.AbsolutePosition
+        local X_2 = var12.X
+        var12 = UserInputService_upvr:GetMouseLocation().X - var8_upvw
+        local var14 = X_2 + 0 * X
+        local var15 = X_2 + 0.803 * X
+        if var12 < var14 then
+            var12 = var14
+        end
+        if var15 < var12 then
+        end
+        local clamped = math.clamp((var15 - X_2) / X, 0, 0.803)
+        Parent_upvr_2.Position = UDim2.new(clamped, 0, -0.192, 0)
+        local var17 = math.floor((clamped / 0.803 * 1.0999999999999999 + 0.1) * 10 + 0.5) / 10
+        AspectRatio_upvr.Value = var17
+        TextBox_upvr.Text = tostring(var17)
+        if var7_upvw and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("AspectRatioSliderSetting", var17)
+        end
+    end
+end
+;(function() -- Line 81, Named "initializeWithConfig"
+    --[[ Upvalues[3]:
+        [1]: AspectRatio_upvr (readonly)
+        [2]: Parent_upvr_2 (readonly)
+        [3]: TextBox_upvr (readonly)
+    ]]
+    task.wait(1)
+    if _G.ConfigSystem then
+        _G.ConfigSystem.settings.AspectRatioSliderSetting = AspectRatio_upvr.Value or 0.1
+        local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+        _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 90
+            --[[ Upvalues[4]:
+                [1]: Parent_upvr_2 (copied, readonly)
+                [2]: TextBox_upvr (copied, readonly)
+                [3]: AspectRatio_upvr (copied, readonly)
+                [4]: onConfigLoad_upvr (readonly)
+            ]]
+            if arg1 == "AspectRatioSliderSetting" then
+                local clamped_5 = math.clamp(arg2, 0.1, 1.2)
+                Parent_upvr_2.Position = UDim2.new((clamped_5 - 0.1) / 1.0999999999999999 * 0.803, 0, -0.192, 0)
+                local var21 = math.floor(clamped_5 * 10 + 0.5) / 10
+                TextBox_upvr.Text = tostring(var21)
+                AspectRatio_upvr.Value = var21
+            end
+            if onConfigLoad_upvr then
+                onConfigLoad_upvr(arg1, arg2)
+            end
+        end
+        if _G.ConfigSystem.settings.AspectRatioSliderSetting then
+            local clamped_2 = math.clamp(_G.ConfigSystem.settings.AspectRatioSliderSetting, 0.1, 1.2)
+            Parent_upvr_2.Position = UDim2.new((clamped_2 - 0.1) / 1.0999999999999999 * 0.803, 0, -0.192, 0)
+            local var23 = math.floor(clamped_2 * 10 + 0.5) / 10
+            TextBox_upvr.Text = tostring(var23)
+            AspectRatio_upvr.Value = var23
+        else
+            local clamped_3 = math.clamp(0.1, 0.1, 1.2)
+            Parent_upvr_2.Position = UDim2.new((clamped_3 - 0.1) / 1.0999999999999999 * 0.803, 0, -0.192, 0)
+            local var25 = math.floor(clamped_3 * 10 + 0.5) / 10
+            TextBox_upvr.Text = tostring(var25)
+            AspectRatio_upvr.Value = var25
+        end
+    end
+    onConfigLoad_upvr = 0.1
+    onConfigLoad_upvr = math.clamp(onConfigLoad_upvr, 0.1, 1.2)
+    local var26 = onConfigLoad_upvr
+    Parent_upvr_2.Position = UDim2.new((var26 - 0.1) / 1.0999999999999999 * 0.803, 0, -0.192, 0)
+    var26 = math.floor(var26 * 10 + 0.5) / 10
+    local var27 = var26
+    TextBox_upvr.Text = tostring(var27)
+    AspectRatio_upvr.Value = var27
+end)()
+local function _() -- Line 119, Named "saveOnMouseRelease"
+    --[[ Upvalues[2]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+    ]]
+    if var7_upvw then
+        local tonumber_result1 = tonumber(TextBox_upvr.Text)
+        if tonumber_result1 and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("AspectRatioSliderSetting", tonumber_result1)
+        end
+    end
+end
+local var31_upvw
+local RunService_upvr = game:GetService("RunService")
+Parent.InputBegan:Connect(function(arg1) -- Line 130
+    --[[ Upvalues[7]:
+        [1]: UserInputService_upvr (readonly)
+        [2]: var8_upvw (read and write)
+        [3]: Parent_upvr_2 (readonly)
+        [4]: var7_upvw (read and write)
+        [5]: updateSliderFromMouse_upvr (readonly)
+        [6]: var31_upvw (read and write)
+        [7]: RunService_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var8_upvw = UserInputService_upvr:GetMouseLocation().X - Parent_upvr_2.AbsolutePosition.X
+        var7_upvw = true
+        updateSliderFromMouse_upvr()
+        if not var31_upvw then
+            var31_upvw = RunService_upvr.RenderStepped:Connect(function() -- Line 139
+                --[[ Upvalues[3]:
+                    [1]: var7_upvw (copied, read and write)
+                    [2]: updateSliderFromMouse_upvr (copied, readonly)
+                    [3]: var31_upvw (copied, read and write)
+                ]]
+                if var7_upvw then
+                    updateSliderFromMouse_upvr()
+                elseif var31_upvw then
+                    var31_upvw:Disconnect()
+                    var31_upvw = nil
+                end
+            end)
+        end
+    end
+end)
+UserInputService_upvr.InputEnded:Connect(function(arg1) -- Line 154
+    --[[ Upvalues[2]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        if var7_upvw then
+            local tonumber_result1_2 = tonumber(TextBox_upvr.Text)
+            if tonumber_result1_2 and _G.ConfigSystem then
+                _G.ConfigSystem.onSettingChanged("AspectRatioSliderSetting", tonumber_result1_2)
+            end
+        end
+        var7_upvw = false
+    end
+end)
+TextBox_upvr.FocusLost:Connect(function() -- Line 162
+    --[[ Upvalues[3]:
+        [1]: TextBox_upvr (readonly)
+        [2]: updateSliderPositionFromFov_upvr (readonly)
+        [3]: AspectRatio_upvr (readonly)
+    ]]
+    local tonumber_result1_3 = tonumber(TextBox_upvr.Text)
+    if tonumber_result1_3 then
+        updateSliderPositionFromFov_upvr(tonumber_result1_3, true)
+    else
+        TextBox_upvr.Text = tostring(AspectRatio_upvr.Value)
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.slidebar.Frame2.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: saveOnMouseRelease
+
+Function Upvalues: saveOnMouseRelease
+
+Function Constants: saveOnMouseRelease
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = onSettingChanged
+        8 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [number] = 0.1
+        9 [string] = Value
+        10 [string] = AspectRatioSliderSetting
+        11 [string] = onConfigLoad
+        12 [number] = 1.2
+        13 [string] = math
+        14 [string] = clamp
+        16 [number] = 1.0999999999999999
+        17 [number] = 0.803
+        18 [string] = UDim2
+        19 [string] = new
+        21 [number] = -0.192
+        22 [string] = Position
+        23 [number] = 10
+        24 [number] = 0.5
+        25 [string] = floor
+        27 [string] = tostring
+        29 [string] = Text
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0.1
+        15 [number] = 1.0999999999999999
+        16 [number] = 10
+        17 [number] = 0.5
+        18 [string] = floor
+        20 [string] = Value
+        21 [string] = tostring
+        23 [string] = Text
+        24 [string] = _G
+        26 [string] = ConfigSystem
+        27 [string] = onSettingChanged
+        28 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+
+Function Constants: updateSliderPositionFromFov
+        1 [number] = 0.1
+        2 [number] = 1.2
+        3 [string] = math
+        4 [string] = clamp
+        6 [number] = 1.0999999999999999
+        7 [number] = 0.803
+        8 [string] = UDim2
+        9 [string] = new
+        11 [number] = -0.192
+        12 [string] = Position
+        13 [number] = 10
+        14 [number] = 0.5
+        15 [string] = floor
+        17 [string] = tostring
+        19 [string] = Text
+        20 [string] = Value
+        21 [string] = _G
+        23 [string] = ConfigSystem
+        24 [string] = onSettingChanged
+        25 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = TextBox
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = UserInputService
+        2 [number] = 0
+        3 [Instance] = Frame2
+        4 [boolean] = false
+        5 [function] = updateSliderFromMouse
+        7 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = RenderStepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = AspectRatio
+        4 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AspectRatioSliderSetting
+        2 [number] = 0.1
+        3 [number] = 1.2
+        4 [string] = math
+        5 [string] = clamp
+        7 [number] = 1.0999999999999999
+        8 [number] = 0.803
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 10
+        15 [number] = 0.5
+        16 [string] = floor
+        18 [string] = tostring
+        20 [string] = Text
+        21 [string] = Value
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+        1 [Instance] = slidebar
+        2 [Instance] = UserInputService
+        3 [number] = 0
+        4 [Instance] = Frame2
+        5 [Instance] = AspectRatio
+        6 [Instance] = TextBox
+        7 [boolean] = false
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 0.1
+        15 [number] = 1.0999999999999999
+        16 [number] = 10
+        17 [number] = 0.5
+        18 [string] = floor
+        20 [string] = Value
+        21 [string] = tostring
+        23 [string] = Text
+        24 [string] = _G
+        26 [string] = ConfigSystem
+        27 [string] = onSettingChanged
+        28 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = TextBox
+        2 [function] = updateSliderPositionFromFov
+        3 [Instance] = AspectRatio
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = Value
+        5 [string] = tostring
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+        1 [Instance] = Frame2
+        2 [Instance] = TextBox
+        3 [Instance] = AspectRatio
+
+Function Constants: updateSliderPositionFromFov
+        1 [number] = 0.1
+        2 [number] = 1.2
+        3 [string] = math
+        4 [string] = clamp
+        6 [number] = 1.0999999999999999
+        7 [number] = 0.803
+        8 [string] = UDim2
+        9 [string] = new
+        11 [number] = -0.192
+        12 [string] = Position
+        13 [number] = 10
+        14 [number] = 0.5
+        15 [string] = floor
+        17 [string] = tostring
+        19 [string] = Text
+        20 [string] = Value
+        21 [string] = _G
+        23 [string] = ConfigSystem
+        24 [string] = onSettingChanged
+        25 [string] = AspectRatioSliderSetting
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_AspectRatioToggleSetting_1769302582.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.toggle1.LocalScript
+-- Took 0.31s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:56:20
+-- Luau version 6, Types version 3
+-- Time taken: 0.011097 seconds
+
+local Frame2_upvr = script.Parent.Frame2
+local AspectRatio_upvr = script.Parent.Parent.AspectRatio
+local var3_upvw = false
+local var4_upvw = 1
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local TweenService_upvr = game:GetService("TweenService")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local function setToggleEnabled_upvr(arg1, arg2) -- Line 25, Named "setToggleEnabled"
+    --[[ Upvalues[7]:
+        [1]: var3_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: AspectRatio_upvr (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    var3_upvw = arg1
+    local var9
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var9 = udim2_upvr
+        return var9
+    end
+    if not var3_upvw or not INLINED() then
+        var9 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var9;
+    }):Play()
+    if var3_upvw then
+    else
+    end
+    TweenService_upvr:Create(AspectRatio_upvr, TweenInfo.new(0.35, Enum.EasingStyle.Quad), {
+        Value = 1;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("AspectRatioToggleSetting", var3_upvw)
+    end
+end
+AspectRatio_upvr:GetPropertyChangedSignal("Value"):Connect(function() -- Line 43
+    --[[ Upvalues[2]:
+        [1]: var4_upvw (read and write)
+        [2]: AspectRatio_upvr (readonly)
+    ]]
+    var4_upvw = AspectRatio_upvr.Value
+end)
+local var14_upvw = 1
+local CurrentCamera_upvr = workspace.CurrentCamera
+game:GetService("RunService").RenderStepped:Connect(function() -- Line 48
+    --[[ Upvalues[4]:
+        [1]: var3_upvw (read and write)
+        [2]: var14_upvw (read and write)
+        [3]: var4_upvw (read and write)
+        [4]: CurrentCamera_upvr (readonly)
+    ]]
+    if var3_upvw then
+        var14_upvw += (var4_upvw - var14_upvw) * 0.12
+        CurrentCamera_upvr.CFrame *= CFrame.new(0, 0, 0, 1, 0, 0, 0, var14_upvw, 0, 0, 0, 1)
+    end
+end)
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 56
+    --[[ Upvalues[2]:
+        [1]: Frame2_upvr (readonly)
+        [2]: setToggleEnabled_upvr (readonly)
+    ]]
+    local var17
+    if 0.1 >= Frame2_upvr.Position.X.Scale then
+        var17 = false
+    else
+        var17 = true
+    end
+    setToggleEnabled_upvr(not var17, true)
+end)
+;(function() -- Line 62, Named "initializeWithConfig"
+    --[[ Upvalues[3]:
+        [1]: var3_upvw (read and write)
+        [2]: setToggleEnabled_upvr (readonly)
+        [3]: AspectRatio_upvr (readonly)
+    ]]
+    task.wait(1)
+    if _G.ConfigSystem then
+        _G.ConfigSystem.settings.AspectRatioToggleSetting = var3_upvw
+        local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+        _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 71
+            --[[ Upvalues[2]:
+                [1]: setToggleEnabled_upvr (copied, readonly)
+                [2]: onConfigLoad_upvr (readonly)
+            ]]
+            if arg1 == "AspectRatioToggleSetting" then
+                setToggleEnabled_upvr(arg2, false)
+            end
+            if onConfigLoad_upvr then
+                onConfigLoad_upvr(arg1, arg2)
+            end
+        end
+        if _G.ConfigSystem.settings.AspectRatioToggleSetting ~= nil then
+            local AspectRatioToggleSetting = _G.ConfigSystem.settings.AspectRatioToggleSetting
+            setToggleEnabled_upvr(AspectRatioToggleSetting, false)
+            if AspectRatioToggleSetting then
+                AspectRatio_upvr.Value = 0.8
+                return
+            end
+            AspectRatio_upvr.Value = 1
+        end
+    end
+end)()
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.toggle1.LocalScript
+
+--[[
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [string] = AspectRatioToggleSetting
+        9 [string] = onConfigLoad
+        10 [number] = 0.8
+        11 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Position
+        2 [string] = X
+        3 [string] = Scale
+        4 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [number] = 0.12
+        2 [string] = CFrame
+        3 [string] = new
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [number] = 0.8
+        6 [string] = TweenInfo
+        7 [string] = new
+        9 [number] = 0.35
+        10 [string] = Enum
+        11 [string] = EasingStyle
+        12 [string] = Quad
+        14 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = AspectRatioToggleSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setToggleEnabled
+        2 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = AspectRatioToggleSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [number] = 1
+        3 [number] = 1
+        4 [Instance] = Camera
+
+Function Constants: Unknown Name
+        1 [number] = 0.12
+        2 [string] = CFrame
+        3 [string] = new
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [number] = 1
+        2 [Instance] = AspectRatio
+
+Function Constants: Unknown Name
+        1 [string] = Value
+
+====================================================================================================
+
+Function Dump: setToggleEnabled
+
+Function Upvalues: setToggleEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = AspectRatio
+
+Function Constants: setToggleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [number] = 0.8
+        6 [string] = TweenInfo
+        7 [string] = new
+        9 [number] = 0.35
+        10 [string] = Enum
+        11 [string] = EasingStyle
+        12 [string] = Quad
+        13 [EnumItem] = Enum.EasingStyle.Quad
+        14 [string] = Value
+        16 [string] = _G
+        18 [string] = ConfigSystem
+        19 [string] = onSettingChanged
+        20 [string] = AspectRatioToggleSetting
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [function] = setToggleEnabled
+
+Function Constants: Unknown Name
+        1 [string] = Position
+        2 [string] = X
+        3 [string] = Scale
+        4 [number] = 0.1
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_BackTrackLocal_1769302626.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.toggle5.LocalScript
+-- Took 0.36s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:57:03
+-- Luau version 6, Types version 3
+-- Time taken: 0.060589 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local BacktrackGhosts_upvr = workspace:FindFirstChild("BacktrackGhosts")
+if not BacktrackGhosts_upvr then
+    BacktrackGhosts_upvr = Instance.new("Folder", workspace)
+end
+BacktrackGhosts_upvr.Name = "BacktrackGhosts"
+local var9_upvw
+local var10_upvw
+local var11_upvw
+local btl_upvr = game:GetService("ReplicatedStorage"):WaitForChild("btl")
+local function _() -- Line 34, Named "isFakeLagEnabled"
+    if _G.ConfigSystem then
+        local settings_2 = _G.ConfigSystem.settings
+        if settings_2 then
+            if _G.ConfigSystem.settings.FakeLag ~= true then
+                settings_2 = false
+            else
+                settings_2 = true
+            end
+            return settings_2
+        end
+    end
+    return false
+end
+local function _() -- Line 44, Named "clearGhost"
+    --[[ Upvalues[3]:
+        [1]: var9_upvw (read and write)
+        [2]: var10_upvw (read and write)
+        [3]: BacktrackGhosts_upvr (readonly)
+    ]]
+    if var9_upvw then
+        var9_upvw:Destroy()
+        var9_upvw = nil
+    end
+    var10_upvw = nil
+    BacktrackGhosts_upvr:ClearAllChildren()
+end
+local function createGhost_upvr(arg1) -- Line 53, Named "createGhost"
+    --[[ Upvalues[2]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: BacktrackGhosts_upvr (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    local Character_3 = LocalPlayer_upvr.Character
+    local var96
+    if not Character_3 then
+        return nil
+    end
+    var96 = "HumanoidRootPart"
+    if not Character_3:FindFirstChild(var96) then
+        return nil
+    end
+    Character_3.Archivable = true
+    local clone_2 = Character_3:Clone()
+    var96 = false
+    Character_3.Archivable = var96
+    if not clone_2 then
+        var96 = nil
+        return var96
+    end
+    var96 = LocalPlayer_upvr.Name.."_Ghost"
+    clone_2.Name = var96
+    var96 = pairs(clone_2:GetDescendants())
+    local pairs_result1, pairs_result2_4, pairs_result3 = pairs(clone_2:GetDescendants())
+    for _, v in pairs_result1, pairs_result2_4, pairs_result3 do
+        if v:IsA("Script") or v:IsA("LocalScript") or v:IsA("Sound") or v:IsA("BillboardGui") or v:IsA("Humanoid") or v:IsA("AlignPosition") or v:IsA("AlignOrientation") or v:IsA("BodyMover") or v:IsA("BodyGyro") or v:IsA("BodyVelocity") or v:IsA("BodyPosition") or v:IsA("BodyForce") or v:IsA("VectorForce") or v:IsA("LineForce") or v:IsA("Animator") then
+            v:Destroy()
+        end
+    end
+    pairs_result1 = pairs(clone_2:GetDescendants())
+    local pairs_result1_2, pairs_result2_5, pairs_result3_3 = pairs(clone_2:GetDescendants())
+    for _, v_2 in pairs_result1_2, pairs_result2_5, pairs_result3_3 do
+        if v_2:IsA("Motor6D") or v_2:IsA("Weld") or v_2:IsA("WeldConstraint") or v_2:IsA("HingeConstraint") or v_2:IsA("BallSocketConstraint") or v_2:IsA("Constraint") or v_2:IsA("JointInstance") then
+            v_2:Destroy()
+        end
+    end
+    pairs_result1_2 = Color3.fromRGB(0, 255, 0)
+    if script.Parent.Parent:FindFirstChild("btcolor") then
+        pairs_result1_2 = script.Parent.Parent.btcolor.Value
+    end
+    for _, v_3 in pairs(clone_2:GetDescendants()) do
+        if v_3:IsA("BasePart") then
+            v_3.Anchored = true
+            v_3.CanCollide = false
+            v_3.CanTouch = false
+            v_3.CanQuery = false
+            v_3.Massless = true
+            v_3.Material = Enum.Material.ForceField
+            v_3.Transparency = 0.7
+            v_3.Color = pairs_result1_2
+            v_3.CastShadow = false
+            if v_3.Name == "Head" then
+                local face = v_3:FindFirstChild("face")
+                if face then
+                    face:Destroy()
+                end
+            end
+        end
+    end
+    if not true then
+        clone_2:Destroy()
+        return nil
+    end
+    for _, v_4 in pairs(clone_2:GetChildren()) do
+        if v_4:IsA("Accessory") then
+            v_4:Destroy()
+        end
+    end
+    clone_2.Parent = BacktrackGhosts_upvr
+    return clone_2
+end
+local function updateGhostPose_upvr(arg1, arg2) -- Line 135, Named "updateGhostPose"
+    --[[ Upvalues[7]:
+        [1]: var7_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: var9_upvw (read and write)
+        [4]: var10_upvw (read and write)
+        [5]: BacktrackGhosts_upvr (readonly)
+        [6]: var11_upvw (read and write)
+        [7]: createGhost_upvr (readonly)
+    ]]
+    if not var7_upvw then
+    else
+        local Character_2 = LocalPlayer_upvr.Character
+        if not Character_2 then return end
+        local Humanoid_2 = Character_2:FindFirstChild("Humanoid")
+        if Humanoid_2 and Humanoid_2.Health <= 0 then
+            if var9_upvw then
+                var9_upvw:Destroy()
+                var9_upvw = nil
+            end
+            var10_upvw = nil
+            BacktrackGhosts_upvr:ClearAllChildren()
+            return
+        end
+        if not var9_upvw or var10_upvw ~= Character_2 or var11_upvw ~= arg2 or not var9_upvw.Parent then
+            if var9_upvw then
+                var9_upvw:Destroy()
+                var9_upvw = nil
+            end
+            var10_upvw = nil
+            BacktrackGhosts_upvr:ClearAllChildren()
+            var9_upvw = createGhost_upvr(arg2)
+            if var9_upvw then
+                var10_upvw = Character_2
+                var11_upvw = arg2
+            else
+                return
+            end
+        end
+        local HumanoidRootPart_2 = Character_2:FindFirstChild("HumanoidRootPart")
+        if not HumanoidRootPart_2 then return end
+        for _, v_5 in pairs(var9_upvw:GetDescendants()) do
+            if v_5:IsA("BasePart") then
+                local SOME = Character_2:FindFirstChild(v_5.Name, true)
+                if SOME and SOME:IsA("BasePart") then
+                    v_5.CFrame = arg1 * HumanoidRootPart_2.CFrame:Inverse() * SOME.CFrame
+                end
+            end
+        end
+    end
+end
+LocalPlayer_upvr.CharacterAdded:Connect(function(arg1) -- Line 182
+    --[[ Upvalues[3]:
+        [1]: var9_upvw (read and write)
+        [2]: var10_upvw (read and write)
+        [3]: BacktrackGhosts_upvr (readonly)
+    ]]
+    if var9_upvw then
+        var9_upvw:Destroy()
+        var9_upvw = nil
+    end
+    var10_upvw = nil
+    BacktrackGhosts_upvr:ClearAllChildren()
+    task.spawn(function() -- Line 185
+        --[[ Upvalues[1]:
+            [1]: arg1 (readonly)
+        ]]
+        arg1:WaitForChild("HumanoidRootPart", 10)
+    end)
+end)
+LocalPlayer_upvr.CharacterRemoving:Connect(function() -- Line 190
+    --[[ Upvalues[3]:
+        [1]: var9_upvw (read and write)
+        [2]: var10_upvw (read and write)
+        [3]: BacktrackGhosts_upvr (readonly)
+    ]]
+    if var9_upvw then
+        var9_upvw:Destroy()
+        var9_upvw = nil
+    end
+    var10_upvw = nil
+    BacktrackGhosts_upvr:ClearAllChildren()
+end)
+local var135_upvw = 0
+game:GetService("RunService").Heartbeat:Connect(function() -- Line 198
+    --[[ Upvalues[4]:
+        [1]: var7_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: var135_upvw (read and write)
+        [4]: btl_upvr (readonly)
+    ]]
+    if var7_upvw and LocalPlayer_upvr.Character and LocalPlayer_upvr.Character:FindFirstChild("HumanoidRootPart") and 0.05 < tick() - var135_upvw then
+        -- KONSTANTERROR: Expression was reused, decompilation is incorrect
+        var135_upvw = tick()
+        local var136
+        if _G.ConfigSystem and _G.ConfigSystem.settings then
+            if _G.ConfigSystem.settings.FakeLag ~= true then
+                var136 = false
+            else
+                var136 = true
+            end
+        else
+            var136 = false
+        end
+        btl_upvr:FireServer(var136)
+    end
+end)
+btl_upvr.OnClientEvent:Connect(function(arg1, arg2, arg3) -- Line 214
+    --[[ Upvalues[3]:
+        [1]: var7_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: updateGhostPose_upvr (readonly)
+    ]]
+    local var141
+    if var7_upvw then
+        if not arg2 then
+            if arg3 then
+                local Character_5 = LocalPlayer_upvr.Character
+                if Character_5 then
+                    local HumanoidRootPart = Character_5:FindFirstChild("HumanoidRootPart")
+                    if HumanoidRootPart then
+                        var141 = HumanoidRootPart.CFrame - HumanoidRootPart.AssemblyLinearVelocity * arg3
+                    end
+                end
+            end
+        end
+        updateGhostPose_upvr(var141, arg2)
+    end
+end)
+local function setBacktrackEnabled_upvr(arg1, arg2) -- Line 234, Named "setBacktrackEnabled"
+    --[[ Upvalues[10]:
+        [1]: var7_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: var9_upvw (read and write)
+        [8]: var10_upvw (read and write)
+        [9]: BacktrackGhosts_upvr (readonly)
+        [10]: var11_upvw (read and write)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    var7_upvw = arg1
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [3] 4. Error Block 20 start (CF ANALYSIS FAILED)
+    local var144 = udim2_upvr_2
+    if not var144 then
+        -- KONSTANTERROR: [5] 6. Error Block 3 start (CF ANALYSIS FAILED)
+        var144 = udim2_upvr
+        -- KONSTANTERROR: [5] 6. Error Block 3 end (CF ANALYSIS FAILED)
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var144;
+    }):Play()
+    if not var7_upvw then
+        if var9_upvw then
+            var9_upvw:Destroy()
+            var9_upvw = nil
+        end
+        var10_upvw = nil
+        BacktrackGhosts_upvr:ClearAllChildren()
+        var11_upvw = nil
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("BackTrackLocal", var7_upvw)
+    end
+    -- KONSTANTERROR: [3] 4. Error Block 20 end (CF ANALYSIS FAILED)
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 249
+    --[[ Upvalues[2]:
+        [1]: setBacktrackEnabled_upvr (readonly)
+        [2]: var7_upvw (read and write)
+    ]]
+    setBacktrackEnabled_upvr(not var7_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.BackTrackLocal = var7_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 258
+        --[[ Upvalues[11]:
+            [1]: var7_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: var9_upvw (read and write)
+            [8]: var10_upvw (read and write)
+            [9]: BacktrackGhosts_upvr (readonly)
+            [10]: var11_upvw (read and write)
+            [11]: onConfigLoad_upvr (readonly)
+        ]]
+        -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+        -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+        -- KONSTANTERROR: [5] 5. Error Block 19 start (CF ANALYSIS FAILED)
+        local var149 = udim2_upvr_2
+        if not var149 then
+            -- KONSTANTERROR: [7] 7. Error Block 4 start (CF ANALYSIS FAILED)
+            var149 = udim2_upvr
+            -- KONSTANTERROR: [7] 7. Error Block 4 end (CF ANALYSIS FAILED)
+        end
+        TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+            Position = var149;
+        }):Play()
+        if not var7_upvw then
+            if var9_upvw then
+                var9_upvw:Destroy()
+                var9_upvw = nil
+            end
+            var10_upvw = nil
+            BacktrackGhosts_upvr:ClearAllChildren()
+            var11_upvw = nil
+        end
+        -- KONSTANTERROR: [5] 5. Error Block 19 end (CF ANALYSIS FAILED)
+        -- KONSTANTERROR: [38] 33. Error Block 18 start (CF ANALYSIS FAILED)
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+        -- KONSTANTERROR: [38] 33. Error Block 18 end (CF ANALYSIS FAILED)
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.toggle5.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = BackTrackLocal
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Destroy
+        7 [string] = ClearAllChildren
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setBacktrackEnabled
+
+Function Upvalues: setBacktrackEnabled
+
+Function Constants: setBacktrackEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Destroy
+        6 [string] = ClearAllChildren
+        7 [string] = _G
+        9 [string] = ConfigSystem
+        10 [string] = onSettingChanged
+        11 [string] = BackTrackLocal
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = AssemblyLinearVelocity
+        5 [string] = CFrame
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = tick
+        6 [number] = 0.05
+        7 [string] = _G
+        9 [string] = ConfigSystem
+        10 [string] = settings
+        11 [string] = FakeLag
+        12 [string] = FireServer
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Destroy
+        2 [string] = ClearAllChildren
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Destroy
+        2 [string] = ClearAllChildren
+        3 [string] = task
+        4 [string] = spawn
+
+====================================================================================================
+
+Function Dump: updateGhostPose
+
+Function Upvalues: updateGhostPose
+
+Function Constants: updateGhostPose
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = Destroy
+        6 [string] = ClearAllChildren
+        7 [string] = Parent
+        8 [string] = HumanoidRootPart
+        9 [string] = CFrame
+        10 [string] = Inverse
+        11 [string] = pairs
+        13 [string] = GetDescendants
+        14 [string] = BasePart
+        15 [string] = IsA
+        16 [string] = Name
+
+====================================================================================================
+
+Function Dump: createGhost
+
+Function Upvalues: createGhost
+
+Function Constants: createGhost
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = Archivable
+        5 [string] = Clone
+        6 [string] = Name
+        7 [string] = _Ghost
+        8 [string] = pairs
+        10 [string] = GetDescendants
+        11 [string] = Script
+        12 [string] = IsA
+        13 [string] = LocalScript
+        14 [string] = Sound
+        15 [string] = BillboardGui
+        16 [string] = Humanoid
+        17 [string] = AlignPosition
+        18 [string] = AlignOrientation
+        19 [string] = BodyMover
+        20 [string] = BodyGyro
+        21 [string] = BodyVelocity
+        22 [string] = BodyPosition
+        23 [string] = BodyForce
+        24 [string] = VectorForce
+        25 [string] = LineForce
+        26 [string] = Animator
+        27 [string] = Destroy
+        28 [string] = Motor6D
+        29 [string] = Weld
+        30 [string] = WeldConstraint
+        31 [string] = HingeConstraint
+        32 [string] = BallSocketConstraint
+        33 [string] = Constraint
+        34 [string] = JointInstance
+        35 [string] = Color3
+        36 [string] = fromRGB
+        38 [string] = script
+        40 [string] = Parent
+        41 [string] = btcolor
+        42 [string] = Value
+        43 [string] = BasePart
+        44 [string] = Anchored
+        45 [string] = CanCollide
+        46 [string] = CanTouch
+        47 [string] = CanQuery
+        48 [string] = Massless
+        49 [string] = Enum
+        50 [string] = Material
+        51 [string] = ForceField
+        53 [number] = 0.7
+        54 [string] = Transparency
+        55 [string] = Color
+        56 [string] = CastShadow
+        57 [string] = Head
+        58 [string] = face
+        59 [string] = GetChildren
+        60 [string] = Accessory
+
+====================================================================================================
+
+Function Dump: clearGhost
+
+Function Upvalues: clearGhost
+
+Function Constants: clearGhost
+        1 [string] = Destroy
+        2 [string] = ClearAllChildren
+
+====================================================================================================
+
+Function Dump: isFakeLagEnabled
+
+Function Upvalues: isFakeLagEnabled
+
+Function Constants: isFakeLagEnabled
+        1 [string] = _G
+        3 [string] = ConfigSystem
+        4 [string] = settings
+        5 [string] = FakeLag
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = quit_xyz
+        3 [number] = 0
+        4 [Instance] = btl
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = tick
+        6 [number] = 0.05
+        7 [string] = _G
+        9 [string] = ConfigSystem
+        10 [string] = settings
+        11 [string] = FakeLag
+        12 [string] = FireServer
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setBacktrackEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = quit_xyz
+        3 [function] = updateGhostPose
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = AssemblyLinearVelocity
+        5 [string] = CFrame
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        3 [Instance] = BacktrackGhosts
+
+Function Constants: Unknown Name
+        1 [string] = Destroy
+        2 [string] = ClearAllChildren
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        3 [Instance] = BacktrackGhosts
+
+Function Constants: Unknown Name
+        1 [string] = Destroy
+        2 [string] = ClearAllChildren
+        3 [string] = task
+        4 [string] = spawn
+
+====================================================================================================
+
+Function Dump: updateGhostPose
+
+Function Upvalues: updateGhostPose
+        1 [boolean] = false
+        2 [Instance] = quit_xyz
+        5 [Instance] = BacktrackGhosts
+        7 [function] = createGhost
+
+Function Constants: updateGhostPose
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = Health
+        5 [string] = Destroy
+        6 [string] = ClearAllChildren
+        7 [string] = Parent
+        8 [string] = HumanoidRootPart
+        9 [string] = CFrame
+        10 [string] = Inverse
+        11 [string] = pairs
+        13 [string] = GetDescendants
+        14 [string] = BasePart
+        15 [string] = IsA
+        16 [string] = Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        9 [Instance] = BacktrackGhosts
+        11 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = BackTrackLocal
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Destroy
+        7 [string] = ClearAllChildren
+
+====================================================================================================
+
+Function Dump: setBacktrackEnabled
+
+Function Upvalues: setBacktrackEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        9 [Instance] = BacktrackGhosts
+
+Function Constants: setBacktrackEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Destroy
+        6 [string] = ClearAllChildren
+        7 [string] = _G
+        9 [string] = ConfigSystem
+        10 [string] = onSettingChanged
+        11 [string] = BackTrackLocal
+
+====================================================================================================
+
+Function Dump: createGhost
+
+Function Upvalues: createGhost
+        1 [Instance] = quit_xyz
+        2 [Instance] = BacktrackGhosts
+
+Function Constants: createGhost
+        1 [string] = Character
+        2 [string] = HumanoidRootPart
+        3 [string] = FindFirstChild
+        4 [string] = Archivable
+        5 [string] = Clone
+        6 [string] = Name
+        7 [string] = _Ghost
+        8 [string] = pairs
+        10 [string] = GetDescendants
+        11 [string] = Script
+        12 [string] = IsA
+        13 [string] = LocalScript
+        14 [string] = Sound
+        15 [string] = BillboardGui
+        16 [string] = Humanoid
+        17 [string] = AlignPosition
+        18 [string] = AlignOrientation
+        19 [string] = BodyMover
+        20 [string] = BodyGyro
+        21 [string] = BodyVelocity
+        22 [string] = BodyPosition
+        23 [string] = BodyForce
+        24 [string] = VectorForce
+        25 [string] = LineForce
+        26 [string] = Animator
+        27 [string] = Destroy
+        28 [string] = Motor6D
+        29 [string] = Weld
+        30 [string] = WeldConstraint
+        31 [string] = HingeConstraint
+        32 [string] = BallSocketConstraint
+        33 [string] = Constraint
+        34 [string] = JointInstance
+        35 [string] = Color3
+        36 [string] = fromRGB
+        38 [string] = script
+        40 [string] = Parent
+        41 [string] = btcolor
+        42 [string] = Value
+        43 [string] = BasePart
+        44 [string] = Anchored
+        45 [string] = CanCollide
+        46 [string] = CanTouch
+        47 [string] = CanQuery
+        48 [string] = Massless
+        49 [string] = Enum
+        50 [string] = Material
+        51 [string] = ForceField
+        52 [EnumItem] = Enum.Material.ForceField
+        53 [number] = 0.7
+        54 [string] = Transparency
+        55 [string] = Color
+        56 [string] = CastShadow
+        57 [string] = Head
+        58 [string] = face
+        59 [string] = GetChildren
+        60 [string] = Accessory
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_Blur_1769302478.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame5.toggle.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:54:36
+-- Luau version 6, Types version 3
+-- Time taken: 0.007816 seconds
+
+local Frame2_upvr = script.Parent.Frame2
+local var2_upvw = false
+local function _() -- Line 15, Named "getOrCreateBlur"
+    if not game.Lighting:FindFirstChild("blurclient1111") then
+        local BlurEffect_2 = Instance.new("BlurEffect")
+        BlurEffect_2.Name = "blurclient1111"
+        BlurEffect_2.Size = 0
+        BlurEffect_2.Parent = game.Lighting
+    end
+    return BlurEffect_2
+end
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local TweenService_upvr = game:GetService("TweenService")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local function setAvailableEspEnabled_upvr(arg1, arg2) -- Line 27, Named "setAvailableEspEnabled"
+    --[[ Upvalues[6]:
+        [1]: var2_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    var2_upvw = arg1
+    local var15
+    local function INLINED_2() -- Internal function, doesn't exist in bytecode
+        var15 = udim2_upvr_2
+        return var15
+    end
+    if not var2_upvw or not INLINED_2() then
+        var15 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var15;
+    }):Play()
+    if not game.Lighting:FindFirstChild("blurclient1111") then
+        local BlurEffect_3 = Instance.new("BlurEffect")
+        BlurEffect_3.Name = "blurclient1111"
+        BlurEffect_3.Size = 0
+        BlurEffect_3.Parent = game.Lighting
+    end
+    local var18 = BlurEffect_3
+    local var19
+    if var18 then
+        if var2_upvw then
+            var19 = 12
+        else
+            var19 = 0
+        end
+        TweenService_upvr:Create(var18, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Size = var19;
+        }):Play()
+    end
+    if arg2 then
+        var19 = _G.ConfigSystem
+        if var19 then
+            var19 = pcall
+            var19(function() -- Line 46
+                --[[ Upvalues[1]:
+                    [1]: var2_upvw (copied, read and write)
+                ]]
+                _G.ConfigSystem.onSettingChanged("Blur", var2_upvw)
+            end)
+        end
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 53
+    --[[ Upvalues[2]:
+        [1]: setAvailableEspEnabled_upvr (readonly)
+        [2]: var2_upvw (read and write)
+    ]]
+    setAvailableEspEnabled_upvr(not var2_upvw, true)
+end)
+local function _() -- Line 59, Named "watchVisibility"
+    --[[ Upvalues[2]:
+        [1]: var2_upvw (read and write)
+        [2]: setAvailableEspEnabled_upvr (readonly)
+    ]]
+    local Parent_upvr = script.Parent.Parent.Parent.Parent.Parent.Parent
+    Parent_upvr:GetPropertyChangedSignal("Visible"):Connect(function() -- Line 63
+        --[[ Upvalues[3]:
+            [1]: Parent_upvr (readonly)
+            [2]: var2_upvw (copied, read and write)
+            [3]: setAvailableEspEnabled_upvr (copied, readonly)
+        ]]
+        if not Parent_upvr.Visible and var2_upvw then
+            setAvailableEspEnabled_upvr(false, false)
+        end
+    end)
+end
+local Parent_upvr_2 = script.Parent.Parent.Parent.Parent.Parent.Parent
+Parent_upvr_2:GetPropertyChangedSignal("Visible"):Connect(function() -- Line 63
+    --[[ Upvalues[3]:
+        [1]: Parent_upvr_2 (readonly)
+        [2]: var2_upvw (read and write)
+        [3]: setAvailableEspEnabled_upvr (readonly)
+    ]]
+    if not Parent_upvr_2.Visible and var2_upvw then
+        setAvailableEspEnabled_upvr(false, false)
+    end
+end)
+Parent_upvr_2 = task.wait
+Parent_upvr_2(1)
+Parent_upvr_2 = _G.ConfigSystem
+if Parent_upvr_2 then
+    Parent_upvr_2 = _G.ConfigSystem.settings
+    Parent_upvr_2.Blur = var2_upvw
+    Parent_upvr_2 = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 83
+        --[[ Upvalues[2]:
+            [1]: setAvailableEspEnabled_upvr (readonly)
+            [2]: Parent_upvr_2 (readonly)
+        ]]
+        if arg1 == "Blur" then
+            setAvailableEspEnabled_upvr(arg2, false)
+        end
+        if Parent_upvr_2 then
+            Parent_upvr_2(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame5.toggle.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Blur
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Visible
+
+====================================================================================================
+
+Function Dump: watchVisibility
+
+Function Upvalues: watchVisibility
+
+Function Constants: watchVisibility
+        1 [string] = script
+        3 [string] = Parent
+        4 [string] = Visible
+        5 [string] = GetPropertyChangedSignal
+        6 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = game
+        7 [string] = Lighting
+        8 [string] = blurclient1111
+        9 [string] = FindFirstChild
+        10 [string] = Instance
+        11 [string] = new
+        13 [string] = BlurEffect
+        14 [string] = Name
+        15 [string] = Size
+        16 [string] = Parent
+        17 [string] = TweenInfo
+        19 [number] = 0.5
+        20 [string] = Enum
+        21 [string] = EasingStyle
+        22 [string] = Quad
+        24 [string] = EasingDirection
+        25 [string] = Out
+        28 [string] = _G
+        30 [string] = ConfigSystem
+        31 [string] = pcall
+
+====================================================================================================
+
+Function Dump: getOrCreateBlur
+
+Function Upvalues: getOrCreateBlur
+
+Function Constants: getOrCreateBlur
+        1 [string] = game
+        3 [string] = Lighting
+        4 [string] = blurclient1111
+        5 [string] = FindFirstChild
+        6 [string] = Instance
+        7 [string] = new
+        9 [string] = BlurEffect
+        10 [string] = Name
+        11 [string] = Size
+        12 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAvailableEspEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame
+        2 [boolean] = false
+        3 [function] = setAvailableEspEnabled
+
+Function Constants: Unknown Name
+        1 [string] = Visible
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = game
+        6 [Instance] = Ugc
+        7 [string] = Lighting
+        8 [string] = blurclient1111
+        9 [string] = FindFirstChild
+        10 [string] = Instance
+        11 [string] = new
+        13 [string] = BlurEffect
+        14 [string] = Name
+        15 [string] = Size
+        16 [string] = Parent
+        17 [string] = TweenInfo
+        19 [number] = 0.5
+        20 [string] = Enum
+        21 [string] = EasingStyle
+        22 [string] = Quad
+        23 [EnumItem] = Enum.EasingStyle.Quad
+        24 [string] = EasingDirection
+        25 [string] = Out
+        26 [EnumItem] = Enum.EasingDirection.Out
+        28 [string] = _G
+        30 [string] = ConfigSystem
+        31 [string] = pcall
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAvailableEspEnabled
+        2 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Blur
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_Fovchanger_1769302418.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame4.slidebar.Frame2.TextButton.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:53:36
+-- Luau version 6, Types version 3
+-- Time taken: 0.016339 seconds
+
+local UserInputService_upvr = game:GetService("UserInputService")
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local CurrentCamera_upvw = workspace.CurrentCamera
+local Parent = script.Parent
+local Parent_2_upvr = script.Parent.Parent
+local TextBox_upvr = Parent.Parent.Parent.TextBox
+local var7_upvw = false
+local var8_upvw = 0
+local var9_upvw = 70
+local function updateSliderPositionFromFov_upvr(arg1, arg2) -- Line 31, Named "updateSliderPositionFromFov"
+    --[[ Upvalues[4]:
+        [1]: var9_upvw (read and write)
+        [2]: Parent_2_upvr (readonly)
+        [3]: TextBox_upvr (readonly)
+        [4]: CurrentCamera_upvw (read and write)
+    ]]
+    local var10 = math.floor(math.clamp(arg1, 1, 121) * 10 + 0.5) / 10
+    var9_upvw = var10
+    Parent_2_upvr.Position = UDim2.new((var10 - 1) / 120 * 0.803, 0, -0.192, 0)
+    TextBox_upvr.Text = tostring(var10)
+    if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+        CurrentCamera_upvw.FieldOfView = var10
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("Fovchanger", var10)
+    end
+end
+local function _() -- Line 54, Named "applyFovToCamera"
+    --[[ Upvalues[2]:
+        [1]: CurrentCamera_upvw (read and write)
+        [2]: var9_upvw (read and write)
+    ]]
+    if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+        CurrentCamera_upvw.FieldOfView = var9_upvw
+    end
+end
+local Parent_3_upvr = Parent_2_upvr.Parent
+local function updateSliderFromMouse_upvr() -- Line 61, Named "updateSliderFromMouse"
+    --[[ Upvalues[8]:
+        [1]: Parent_3_upvr (readonly)
+        [2]: UserInputService_upvr (readonly)
+        [3]: var8_upvw (read and write)
+        [4]: Parent_2_upvr (readonly)
+        [5]: var9_upvw (read and write)
+        [6]: CurrentCamera_upvw (read and write)
+        [7]: TextBox_upvr (readonly)
+        [8]: var7_upvw (read and write)
+    ]]
+    local X_2 = Parent_3_upvr.AbsoluteSize.X
+    local var13
+    if X_2 <= 0 then
+    else
+        var13 = Parent_3_upvr.AbsolutePosition
+        local X = var13.X
+        var13 = UserInputService_upvr:GetMouseLocation().X - var8_upvw
+        local var15 = X + 0 * X_2
+        local var16 = X + 0.803 * X_2
+        if var13 < var15 then
+            var13 = var15
+        end
+        if var16 < var13 then
+        end
+        local clamped = math.clamp((var16 - X) / X_2, 0, 0.803)
+        Parent_2_upvr.Position = UDim2.new(clamped, 0, -0.192, 0)
+        local var18 = math.floor((clamped / 0.803 * 120 + 1) * 10 + 0.5) / 10
+        var9_upvw = var18
+        if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+            CurrentCamera_upvw.FieldOfView = var18
+        end
+        TextBox_upvr.Text = tostring(var18)
+        if var7_upvw and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("Fovchanger", var18)
+        end
+    end
+end
+local function setupCameraWatcher_upvr() -- Line 97, Named "setupCameraWatcher"
+    --[[ Upvalues[3]:
+        [1]: CurrentCamera_upvw (read and write)
+        [2]: var7_upvw (read and write)
+        [3]: var9_upvw (read and write)
+    ]]
+    if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+        local any_Connect_result1_upvw = CurrentCamera_upvw:GetPropertyChangedSignal("FieldOfView"):Connect(function() -- Line 100
+            --[[ Upvalues[3]:
+                [1]: var7_upvw (copied, read and write)
+                [2]: CurrentCamera_upvw (copied, read and write)
+                [3]: var9_upvw (copied, read and write)
+            ]]
+            if not var7_upvw and 0.1 < math.abs(CurrentCamera_upvw.FieldOfView - var9_upvw) then
+                task.wait(0.1)
+                if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+                    CurrentCamera_upvw.FieldOfView = var9_upvw
+                end
+            end
+        end)
+        CurrentCamera_upvw.AncestryChanged:Connect(function() -- Line 111
+            --[[ Upvalues[2]:
+                [1]: CurrentCamera_upvw (copied, read and write)
+                [2]: any_Connect_result1_upvw (read and write)
+            ]]
+            if not CurrentCamera_upvw.Parent and any_Connect_result1_upvw then
+                any_Connect_result1_upvw:Disconnect()
+            end
+        end)
+    end
+end
+local function _() -- Line 120, Named "setupRespawnWatcher"
+    --[[ Upvalues[4]:
+        [1]: LocalPlayer_upvr (readonly)
+        [2]: CurrentCamera_upvw (read and write)
+        [3]: var9_upvw (read and write)
+        [4]: setupCameraWatcher_upvr (readonly)
+    ]]
+    LocalPlayer_upvr.CharacterAdded:Connect(function() -- Line 121
+        --[[ Upvalues[3]:
+            [1]: CurrentCamera_upvw (copied, read and write)
+            [2]: var9_upvw (copied, read and write)
+            [3]: setupCameraWatcher_upvr (copied, readonly)
+        ]]
+        task.wait(0.5)
+        CurrentCamera_upvw = workspace.CurrentCamera
+        if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+            CurrentCamera_upvw.FieldOfView = var9_upvw
+        end
+        setupCameraWatcher_upvr()
+    end)
+end
+;(function() -- Line 130, Named "initializeWithConfig"
+    --[[ Upvalues[6]:
+        [1]: var9_upvw (read and write)
+        [2]: Parent_2_upvr (readonly)
+        [3]: TextBox_upvr (readonly)
+        [4]: CurrentCamera_upvw (read and write)
+        [5]: setupCameraWatcher_upvr (readonly)
+        [6]: LocalPlayer_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 21 start (CF ANALYSIS FAILED)
+    task.wait(1)
+    if _G.ConfigSystem then
+        _G.ConfigSystem.settings.Fovchanger = 70
+        local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+        _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 137
+            --[[ Upvalues[5]:
+                [1]: var9_upvw (copied, read and write)
+                [2]: Parent_2_upvr (copied, readonly)
+                [3]: TextBox_upvr (copied, readonly)
+                [4]: CurrentCamera_upvw (copied, read and write)
+                [5]: onConfigLoad_upvr (readonly)
+            ]]
+            if arg1 == "Fovchanger" then
+                local var26 = math.floor(math.clamp(arg2, 1, 121) * 10 + 0.5) / 10
+                var9_upvw = var26
+                Parent_2_upvr.Position = UDim2.new((var26 - 1) / 120 * 0.803, 0, -0.192, 0)
+                TextBox_upvr.Text = tostring(var26)
+                if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+                    CurrentCamera_upvw.FieldOfView = var26
+                end
+            end
+            if onConfigLoad_upvr then
+                onConfigLoad_upvr(arg1, arg2)
+            end
+        end
+        if _G.ConfigSystem.settings.Fovchanger then
+            local var27 = math.floor(math.clamp(_G.ConfigSystem.settings.Fovchanger, 1, 121) * 10 + 0.5) / 10
+            var9_upvw = var27
+            Parent_2_upvr.Position = UDim2.new((var27 - 1) / 120 * 0.803, 0, -0.192, 0)
+            TextBox_upvr.Text = tostring(var27)
+            if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+                CurrentCamera_upvw.FieldOfView = var27
+                -- KONSTANTWARNING: GOTO [199] #152
+            end
+        else
+            local var28 = math.floor(math.clamp(70, 1, 121) * 10 + 0.5) / 10
+            var9_upvw = var28
+            Parent_2_upvr.Position = UDim2.new((var28 - 1) / 120 * 0.803, 0, -0.192, 0)
+            TextBox_upvr.Text = tostring(var28)
+            if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+                CurrentCamera_upvw.FieldOfView = var28
+                -- KONSTANTWARNING: GOTO [199] #152
+            end
+        end
+    else
+        onConfigLoad_upvr = 70
+        onConfigLoad_upvr = math.clamp(onConfigLoad_upvr, 1, 121)
+        onConfigLoad_upvr = math.floor(onConfigLoad_upvr * 10 + 0.5) / 10
+        local var29 = onConfigLoad_upvr
+        var9_upvw = var29
+        Parent_2_upvr.Position = UDim2.new((var29 - 1) / 120 * 0.803, 0, -0.192, 0)
+        TextBox_upvr.Text = tostring(var29)
+        if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+            CurrentCamera_upvw.FieldOfView = var29
+        end
+    end
+    -- KONSTANTERROR: [0] 1. Error Block 21 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [199] 152. Error Block 14 start (CF ANALYSIS FAILED)
+    var29 = setupCameraWatcher_upvr
+    var29()
+    var29 = LocalPlayer_upvr.CharacterAdded
+    var29 = var29:Connect
+    var29(function() -- Line 121
+        --[[ Upvalues[3]:
+            [1]: CurrentCamera_upvw (copied, read and write)
+            [2]: var9_upvw (copied, read and write)
+            [3]: setupCameraWatcher_upvr (copied, readonly)
+        ]]
+        task.wait(0.5)
+        CurrentCamera_upvw = workspace.CurrentCamera
+        if CurrentCamera_upvw and CurrentCamera_upvw.Parent then
+            CurrentCamera_upvw.FieldOfView = var9_upvw
+        end
+        setupCameraWatcher_upvr()
+    end)
+    -- KONSTANTERROR: [199] 152. Error Block 14 end (CF ANALYSIS FAILED)
+end)()
+local function _() -- Line 164, Named "saveOnMouseRelease"
+    --[[ Upvalues[2]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+    ]]
+    if var7_upvw then
+        local tonumber_result1_4 = tonumber(TextBox_upvr.Text)
+        if tonumber_result1_4 and _G.ConfigSystem then
+            _G.ConfigSystem.onSettingChanged("Fovchanger", tonumber_result1_4)
+        end
+    end
+end
+local var34_upvw
+local RunService_upvr = game:GetService("RunService")
+Parent.InputBegan:Connect(function(arg1) -- Line 173
+    --[[ Upvalues[7]:
+        [1]: UserInputService_upvr (readonly)
+        [2]: var8_upvw (read and write)
+        [3]: Parent_2_upvr (readonly)
+        [4]: var7_upvw (read and write)
+        [5]: updateSliderFromMouse_upvr (readonly)
+        [6]: var34_upvw (read and write)
+        [7]: RunService_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        var8_upvw = UserInputService_upvr:GetMouseLocation().X - Parent_2_upvr.AbsolutePosition.X
+        var7_upvw = true
+        updateSliderFromMouse_upvr()
+        if not var34_upvw then
+            var34_upvw = RunService_upvr.Stepped:Connect(function() -- Line 182
+                --[[ Upvalues[3]:
+                    [1]: var7_upvw (copied, read and write)
+                    [2]: updateSliderFromMouse_upvr (copied, readonly)
+                    [3]: var34_upvw (copied, read and write)
+                ]]
+                if var7_upvw then
+                    updateSliderFromMouse_upvr()
+                elseif var34_upvw then
+                    var34_upvw:Disconnect()
+                    var34_upvw = nil
+                end
+            end)
+        end
+    end
+end)
+UserInputService_upvr.InputEnded:Connect(function(arg1) -- Line 196
+    --[[ Upvalues[2]:
+        [1]: var7_upvw (read and write)
+        [2]: TextBox_upvr (readonly)
+    ]]
+    if arg1.UserInputType == Enum.UserInputType.MouseButton1 then
+        if var7_upvw then
+            local tonumber_result1_2 = tonumber(TextBox_upvr.Text)
+            if tonumber_result1_2 then
+                if _G.ConfigSystem then
+                    _G.ConfigSystem.onSettingChanged("Fovchanger", tonumber_result1_2)
+                end
+            end
+        end
+        var7_upvw = false
+    end
+end)
+TextBox_upvr.FocusLost:Connect(function() -- Line 203
+    --[[ Upvalues[3]:
+        [1]: TextBox_upvr (readonly)
+        [2]: updateSliderPositionFromFov_upvr (readonly)
+        [3]: var9_upvw (read and write)
+    ]]
+    local tonumber_result1 = tonumber(TextBox_upvr.Text)
+    if tonumber_result1 then
+        updateSliderPositionFromFov_upvr(tonumber_result1, true)
+    else
+        TextBox_upvr.Text = tostring(var9_upvw)
+    end
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame4.slidebar.Frame2.TextButton.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Camera
+        2 [RBXScriptConnection] = Connection
+
+Function Constants: Unknown Name
+        1 [string] = Parent
+        2 [string] = Disconnect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Camera
+        2 [RBXScriptConnection] = Connection
+
+Function Constants: Unknown Name
+        1 [string] = Parent
+        2 [string] = Disconnect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Camera
+        2 [RBXScriptConnection] = Connection
+
+Function Constants: Unknown Name
+        1 [string] = Parent
+        2 [string] = Disconnect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Camera
+        2 [RBXScriptConnection] = Connection
+
+Function Constants: Unknown Name
+        1 [string] = Parent
+        2 [string] = Disconnect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Camera
+        3 [number] = 70
+
+Function Constants: Unknown Name
+        1 [string] = FieldOfView
+        2 [string] = math
+        3 [string] = abs
+        5 [number] = 0.1
+        6 [string] = task
+        7 [string] = wait
+        9 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Camera
+        3 [number] = 70
+
+Function Constants: Unknown Name
+        1 [string] = FieldOfView
+        2 [string] = math
+        3 [string] = abs
+        5 [number] = 0.1
+        6 [string] = task
+        7 [string] = wait
+        9 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Camera
+        3 [number] = 70
+
+Function Constants: Unknown Name
+        1 [string] = FieldOfView
+        2 [string] = math
+        3 [string] = abs
+        5 [number] = 0.1
+        6 [string] = task
+        7 [string] = wait
+        9 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Camera
+        3 [number] = 70
+
+Function Constants: Unknown Name
+        1 [string] = FieldOfView
+        2 [string] = math
+        3 [string] = abs
+        5 [number] = 0.1
+        6 [string] = task
+        7 [string] = wait
+        9 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = Fovchanger
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = Stepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: saveOnMouseRelease
+
+Function Upvalues: saveOnMouseRelease
+
+Function Constants: saveOnMouseRelease
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = onSettingChanged
+        8 [string] = Fovchanger
+
+====================================================================================================
+
+Function Dump: initializeWithConfig
+
+Function Upvalues: initializeWithConfig
+
+Function Constants: initializeWithConfig
+        1 [string] = task
+        2 [string] = wait
+        4 [string] = _G
+        6 [string] = ConfigSystem
+        7 [string] = settings
+        8 [string] = Fovchanger
+        9 [string] = onConfigLoad
+        10 [string] = math
+        11 [string] = clamp
+        13 [number] = 10
+        14 [number] = 0.5
+        15 [string] = floor
+        17 [number] = 120
+        18 [number] = 1
+        19 [number] = 0.803
+        20 [string] = UDim2
+        21 [string] = new
+        23 [number] = -0.192
+        24 [string] = Position
+        25 [string] = tostring
+        27 [string] = Text
+        28 [string] = Parent
+        29 [string] = FieldOfView
+        30 [string] = CharacterAdded
+        31 [string] = Connect
+
+====================================================================================================
+
+Function Dump: setupRespawnWatcher
+
+Function Upvalues: setupRespawnWatcher
+
+Function Constants: setupRespawnWatcher
+        1 [string] = CharacterAdded
+        2 [string] = Connect
+
+====================================================================================================
+
+Function Dump: setupCameraWatcher
+
+Function Upvalues: setupCameraWatcher
+
+Function Constants: setupCameraWatcher
+        1 [string] = Parent
+        2 [string] = FieldOfView
+        3 [string] = GetPropertyChangedSignal
+        4 [string] = Connect
+        5 [string] = AncestryChanged
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 1
+        15 [number] = 120
+        16 [number] = 10
+        17 [number] = 0.5
+        18 [string] = floor
+        20 [string] = Parent
+        21 [string] = FieldOfView
+        22 [string] = tostring
+        24 [string] = Text
+        25 [string] = _G
+        27 [string] = ConfigSystem
+        28 [string] = onSettingChanged
+        29 [string] = Fovchanger
+
+====================================================================================================
+
+Function Dump: applyFovToCamera
+
+Function Upvalues: applyFovToCamera
+
+Function Constants: applyFovToCamera
+        1 [string] = Parent
+        2 [string] = FieldOfView
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 10
+        5 [number] = 0.5
+        6 [string] = floor
+        8 [number] = 120
+        9 [number] = 1
+        10 [number] = 0.803
+        11 [string] = UDim2
+        12 [string] = new
+        14 [number] = -0.192
+        15 [string] = Position
+        16 [string] = tostring
+        18 [string] = Text
+        19 [string] = Parent
+        20 [string] = FieldOfView
+        21 [string] = _G
+        23 [string] = ConfigSystem
+        24 [string] = onSettingChanged
+        25 [string] = Fovchanger
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = TextBox
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = Text
+        6 [string] = tonumber
+        8 [string] = _G
+        10 [string] = ConfigSystem
+        11 [string] = onSettingChanged
+        12 [string] = Fovchanger
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Camera
+        2 [RBXScriptConnection] = Connection
+
+Function Constants: Unknown Name
+        1 [string] = Parent
+        2 [string] = Disconnect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = TextBox
+        2 [function] = updateSliderPositionFromFov
+        3 [number] = 70
+
+Function Constants: Unknown Name
+        1 [string] = Text
+        2 [string] = tonumber
+        4 [string] = tostring
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Camera
+        2 [number] = 70
+        3 [function] = setupCameraWatcher
+
+Function Constants: Unknown Name
+        1 [string] = task
+        2 [string] = wait
+        4 [number] = 0.5
+        5 [string] = workspace
+        6 [Instance] = Workspace
+        7 [string] = CurrentCamera
+        8 [string] = Parent
+        9 [string] = FieldOfView
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Camera
+        3 [number] = 70
+
+Function Constants: Unknown Name
+        1 [string] = FieldOfView
+        2 [string] = math
+        3 [string] = abs
+        5 [number] = 0.1
+        6 [string] = task
+        7 [string] = wait
+        9 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = UserInputService
+        2 [number] = 0
+        3 [Instance] = Frame2
+        4 [boolean] = false
+        5 [function] = updateSliderFromMouse
+        7 [Instance] = Run Service
+
+Function Constants: Unknown Name
+        1 [string] = UserInputType
+        2 [string] = Enum
+        3 [string] = MouseButton1
+        4 [EnumItem] = Enum.UserInputType.MouseButton1
+        5 [string] = GetMouseLocation
+        6 [string] = X
+        7 [string] = AbsolutePosition
+        8 [string] = Stepped
+        9 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [number] = 70
+        2 [Instance] = Frame2
+        3 [Instance] = TextBox
+        4 [Instance] = Camera
+        5 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Fovchanger
+        2 [string] = math
+        3 [string] = clamp
+        5 [number] = 10
+        6 [number] = 0.5
+        7 [string] = floor
+        9 [number] = 120
+        10 [number] = 1
+        11 [number] = 0.803
+        12 [string] = UDim2
+        13 [string] = new
+        15 [number] = -0.192
+        16 [string] = Position
+        17 [string] = tostring
+        19 [string] = Text
+        20 [string] = Parent
+        21 [string] = FieldOfView
+
+====================================================================================================
+
+Function Dump: updateSliderPositionFromFov
+
+Function Upvalues: updateSliderPositionFromFov
+        1 [number] = 70
+        2 [Instance] = Frame2
+        3 [Instance] = TextBox
+        4 [Instance] = Camera
+
+Function Constants: updateSliderPositionFromFov
+        1 [string] = math
+        2 [string] = clamp
+        4 [number] = 10
+        5 [number] = 0.5
+        6 [string] = floor
+        8 [number] = 120
+        9 [number] = 1
+        10 [number] = 0.803
+        11 [string] = UDim2
+        12 [string] = new
+        14 [number] = -0.192
+        15 [string] = Position
+        16 [string] = tostring
+        18 [string] = Text
+        19 [string] = Parent
+        20 [string] = FieldOfView
+        21 [string] = _G
+        23 [string] = ConfigSystem
+        24 [string] = onSettingChanged
+        25 [string] = Fovchanger
+
+====================================================================================================
+
+Function Dump: setupCameraWatcher
+
+Function Upvalues: setupCameraWatcher
+        1 [Instance] = Camera
+        2 [boolean] = false
+        3 [number] = 70
+
+Function Constants: setupCameraWatcher
+        1 [string] = Parent
+        2 [string] = FieldOfView
+        3 [string] = GetPropertyChangedSignal
+        4 [string] = Connect
+        5 [string] = AncestryChanged
+
+====================================================================================================
+
+Function Dump: updateSliderFromMouse
+
+Function Upvalues: updateSliderFromMouse
+        1 [Instance] = slidebar
+        2 [Instance] = UserInputService
+        3 [number] = 0
+        4 [Instance] = Frame2
+        5 [number] = 70
+        6 [Instance] = Camera
+        7 [Instance] = TextBox
+        8 [boolean] = false
+
+Function Constants: updateSliderFromMouse
+        1 [string] = AbsoluteSize
+        2 [string] = X
+        3 [string] = GetMouseLocation
+        4 [string] = AbsolutePosition
+        5 [number] = 0.803
+        6 [string] = math
+        7 [string] = clamp
+        9 [string] = UDim2
+        10 [string] = new
+        12 [number] = -0.192
+        13 [string] = Position
+        14 [number] = 1
+        15 [number] = 120
+        16 [number] = 10
+        17 [number] = 0.5
+        18 [string] = floor
+        20 [string] = Parent
+        21 [string] = FieldOfView
+        22 [string] = tostring
+        24 [string] = Text
+        25 [string] = _G
+        27 [string] = ConfigSystem
+        28 [string] = onSettingChanged
+        29 [string] = Fovchanger
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_HitlogEnabled_1769302618.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.toggle4.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:56:56
+-- Luau version 6, Types version 3
+-- Time taken: 0.014499 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var6_upvw = false
+local function setHitlogEnabled_upvr(arg1, arg2) -- Line 20, Named "setHitlogEnabled"
+    --[[ Upvalues[6]:
+        [1]: var6_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    var6_upvw = arg1
+    local var7
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var7 = udim2_upvr
+        return var7
+    end
+    if not var6_upvw or not INLINED() then
+        var7 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var7;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("HitlogEnabled", var6_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 31
+    --[[ Upvalues[2]:
+        [1]: setHitlogEnabled_upvr (readonly)
+        [2]: var6_upvw (read and write)
+    ]]
+    setHitlogEnabled_upvr(not var6_upvw, true)
+end)
+local var10_upvw
+local var11_upvw
+local var12_upvw
+task.spawn(function() -- Line 44
+    --[[ Upvalues[3]:
+        [1]: var10_upvw (read and write)
+        [2]: var11_upvw (read and write)
+        [3]: var12_upvw (read and write)
+    ]]
+    local _, _ = pcall(function() -- Line 45
+        --[[ Upvalues[3]:
+            [1]: var10_upvw (copied, read and write)
+            [2]: var11_upvw (copied, read and write)
+            [3]: var12_upvw (copied, read and write)
+        ]]
+        var10_upvw = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent:WaitForChild("storage", 10):WaitForChild("ScrollingFrame", 10)
+        if var10_upvw then
+            var11_upvw = var10_upvw:WaitForChild("Miss", 5)
+            var12_upvw = var10_upvw:WaitForChild("Hit", 5)
+        end
+    end)
+end)
+local TweenInfo_new_result1_upvr_3 = TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local TweenInfo_new_result1_upvr_2 = TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.In)
+local function showHitlog_upvr(arg1, arg2) -- Line 61, Named "showHitlog"
+    --[[ Upvalues[5]:
+        [1]: var6_upvw (read and write)
+        [2]: var10_upvw (read and write)
+        [3]: TweenService_upvr (readonly)
+        [4]: TweenInfo_new_result1_upvr_3 (readonly)
+        [5]: TweenInfo_new_result1_upvr_2 (readonly)
+    ]]
+    if not var6_upvw then
+    else
+        if not arg1 or not var10_upvw then return end
+        local clone_upvr = arg1:Clone()
+        clone_upvr.Parent = var10_upvw
+        clone_upvr.Visible = true
+        clone_upvr.BackgroundTransparency = 1
+        local shadow_upvr = clone_upvr:FindFirstChild("shadow")
+        if shadow_upvr then
+            shadow_upvr.ImageTransparency = 1
+        end
+        local TextLabel_upvr = clone_upvr:FindFirstChild("TextLabel")
+        if TextLabel_upvr then
+            TextLabel_upvr.TextTransparency = 1
+            if arg2.type == "Hit" and arg2.info then
+                TextLabel_upvr.Text = string.format("%s | %d DMG | %d studs", tostring(arg2.info.bodyPart or "Body"), math.floor(arg2.info.damage or 0), math.floor(arg2.info.distance or 0))
+            elseif arg2.type == "Miss" and arg2.info then
+                local var26 = arg2.info.reason or "unknown"
+                local var27 = "MISS"
+                if var26 == "hitchance_failed" then
+                    var27 = string.format("MISS | %d%% (%d) | %d studs", arg2.info.hitchance or 0, arg2.info.roll or 0, arg2.info.distance or 0)
+                elseif var26 == "wall_blocking_target" then
+                    var27 = string.format("MISS | WALL | %d studs", arg2.info.distance or 0)
+                elseif var26 == "too_far" then
+                    var27 = string.format("MISS | TOO FAR | %d studs", arg2.info.distance or 0)
+                elseif var26 == "bad_angle" then
+                    var27 = string.format("MISS | ANGLE | %d\xB0", arg2.info.angle or 0)
+                elseif var26 == "no_target" then
+                    var27 = "MISS | NO TARGET"
+                elseif var26 == "target_dead" then
+                    var27 = "MISS | DEAD"
+                elseif var26 == "friendly_fire" then
+                    var27 = "MISS | TEAM"
+                end
+                TextLabel_upvr.Text = var27
+            else
+                TextLabel_upvr.Text = "MISS"
+            end
+        end
+        local tbl_3 = {}
+        table.insert(tbl_3, TweenService_upvr:Create(clone_upvr, TweenInfo_new_result1_upvr_3, {
+            BackgroundTransparency = 0.4;
+        }))
+        if shadow_upvr then
+            table.insert(tbl_3, TweenService_upvr:Create(shadow_upvr, TweenInfo_new_result1_upvr_3, {
+                ImageTransparency = 0.69;
+            }))
+        end
+        if TextLabel_upvr then
+            table.insert(tbl_3, TweenService_upvr:Create(TextLabel_upvr, TweenInfo_new_result1_upvr_3, {
+                TextTransparency = 0;
+            }))
+        end
+        for _, v in ipairs(tbl_3) do
+            v:Play()
+        end
+        task.spawn(function() -- Line 125
+            --[[ Upvalues[5]:
+                [1]: clone_upvr (readonly)
+                [2]: TweenService_upvr (copied, readonly)
+                [3]: TweenInfo_new_result1_upvr_2 (copied, readonly)
+                [4]: shadow_upvr (readonly)
+                [5]: TextLabel_upvr (readonly)
+            ]]
+            task.wait(2.5)
+            if not clone_upvr or not clone_upvr.Parent then
+            else
+                local tbl_2 = {}
+                table.insert(tbl_2, TweenService_upvr:Create(clone_upvr, TweenInfo_new_result1_upvr_2, {
+                    BackgroundTransparency = 1;
+                }))
+                if shadow_upvr then
+                    table.insert(tbl_2, TweenService_upvr:Create(shadow_upvr, TweenInfo_new_result1_upvr_2, {
+                        ImageTransparency = 1;
+                    }))
+                end
+                if TextLabel_upvr then
+                    table.insert(tbl_2, TweenService_upvr:Create(TextLabel_upvr, TweenInfo_new_result1_upvr_2, {
+                        TextTransparency = 1;
+                    }))
+                end
+                for _, v_2 in ipairs(tbl_2) do
+                    v_2:Play()
+                end
+                if 0 < #tbl_2 then
+                    tbl_2[1].Completed:Connect(function() -- Line 141
+                        --[[ Upvalues[1]:
+                            [1]: clone_upvr (copied, readonly)
+                        ]]
+                        clone_upvr:Destroy()
+                    end)
+                    return
+                end
+                clone_upvr:Destroy()
+            end
+        end)
+    end
+end
+game:GetService("ReplicatedStorage"):WaitForChild("htl").OnClientEvent:Connect(function(arg1, arg2) -- Line 153
+    --[[ Upvalues[4]:
+        [1]: var6_upvw (read and write)
+        [2]: var11_upvw (read and write)
+        [3]: var12_upvw (read and write)
+        [4]: showHitlog_upvr (readonly)
+    ]]
+    if var6_upvw and var11_upvw then
+        local var49
+        if var49 then
+            local function INLINED_3() -- Internal function, doesn't exist in bytecode
+                var49 = var12_upvw
+                return var49
+            end
+            if arg1 ~= "Hit" or not INLINED_3() then
+                var49 = var11_upvw
+            end
+            local tbl = {}
+            tbl.type = arg1
+            tbl.info = arg2
+            showHitlog_upvr(var49, tbl)
+        end
+    end
+end)
+task.wait(0.5)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.HitlogEnabled = var6_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 168
+        --[[ Upvalues[7]:
+            [1]: var6_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+        -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+        -- KONSTANTERROR: [5] 5. Error Block 12 start (CF ANALYSIS FAILED)
+        local var53 = udim2_upvr
+        if not var53 then
+            -- KONSTANTERROR: [7] 7. Error Block 4 start (CF ANALYSIS FAILED)
+            var53 = udim2_upvr_2
+            -- KONSTANTERROR: [7] 7. Error Block 4 end (CF ANALYSIS FAILED)
+        end
+        TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+            Position = var53;
+        }):Play()
+        -- KONSTANTERROR: [5] 5. Error Block 12 end (CF ANALYSIS FAILED)
+        -- KONSTANTERROR: [20] 17. Error Block 13 start (CF ANALYSIS FAILED)
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+        -- KONSTANTERROR: [20] 17. Error Block 13 end (CF ANALYSIS FAILED)
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame1.toggle4.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = HitlogEnabled
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Hit
+        2 [string] = type
+        3 [string] = info
+
+====================================================================================================
+
+Function Dump: showHitlog
+
+Function Upvalues: showHitlog
+
+Function Constants: showHitlog
+        1 [string] = Clone
+        2 [string] = Parent
+        3 [string] = Visible
+        4 [string] = BackgroundTransparency
+        5 [string] = shadow
+        6 [string] = FindFirstChild
+        7 [string] = ImageTransparency
+        8 [string] = TextLabel
+        9 [string] = TextTransparency
+        10 [string] = type
+        11 [string] = Hit
+        12 [string] = info
+        13 [string] = string
+        14 [string] = format
+        16 [string] = %s | %d DMG | %d studs
+        17 [string] = Body
+        18 [string] = bodyPart
+        19 [string] = tostring
+        21 [number] = 0
+        22 [string] = damage
+        23 [string] = math
+        24 [string] = floor
+        26 [string] = distance
+        27 [string] = Text
+        28 [string] = Miss
+        29 [string] = unknown
+        30 [string] = reason
+        31 [string] = MISS
+        32 [string] = hitchance_failed
+        33 [string] = MISS | %d%% (%d) | %d studs
+        34 [string] = hitchance
+        35 [string] = roll
+        36 [string] = wall_blocking_target
+        37 [string] = MISS | WALL | %d studs
+        38 [string] = too_far
+        39 [string] = MISS | TOO FAR | %d studs
+        40 [string] = bad_angle
+        41 [string] = MISS | ANGLE | %d°
+        42 [string] = angle
+        43 [string] = no_target
+        44 [string] = MISS | NO TARGET
+        45 [string] = target_dead
+        46 [string] = MISS | DEAD
+        47 [string] = friendly_fire
+        48 [string] = MISS | TEAM
+        50 [number] = 0.4
+        51 [string] = Create
+        52 [string] = table
+        53 [string] = insert
+        56 [number] = 0.69
+        58 [string] = ipairs
+        60 [string] = Play
+        61 [string] = task
+        62 [string] = spawn
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = pcall
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setHitlogEnabled
+
+Function Upvalues: setHitlogEnabled
+
+Function Constants: setHitlogEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = HitlogEnabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Miss
+        3 [Instance] = Hit
+        4 [function] = showHitlog
+
+Function Constants: Unknown Name
+        1 [string] = Hit
+        2 [string] = type
+        3 [string] = info
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setHitlogEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setHitlogEnabled
+
+Function Upvalues: setHitlogEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setHitlogEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = HitlogEnabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = HitlogEnabled
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: showHitlog
+
+Function Upvalues: showHitlog
+        1 [boolean] = false
+        2 [Instance] = ScrollingFrame
+        3 [Instance] = TweenService
+        4 [TweenInfo] = Time:0.3 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        5 [TweenInfo] = Time:0.4 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:In EasingStyle:Quint
+
+Function Constants: showHitlog
+        1 [string] = Clone
+        2 [string] = Parent
+        3 [string] = Visible
+        4 [string] = BackgroundTransparency
+        5 [string] = shadow
+        6 [string] = FindFirstChild
+        7 [string] = ImageTransparency
+        8 [string] = TextLabel
+        9 [string] = TextTransparency
+        10 [string] = type
+        11 [string] = Hit
+        12 [string] = info
+        13 [string] = string
+        14 [string] = format
+        16 [string] = %s | %d DMG | %d studs
+        17 [string] = Body
+        18 [string] = bodyPart
+        19 [string] = tostring
+        21 [number] = 0
+        22 [string] = damage
+        23 [string] = math
+        24 [string] = floor
+        26 [string] = distance
+        27 [string] = Text
+        28 [string] = Miss
+        29 [string] = unknown
+        30 [string] = reason
+        31 [string] = MISS
+        32 [string] = hitchance_failed
+        33 [string] = MISS | %d%% (%d) | %d studs
+        34 [string] = hitchance
+        35 [string] = roll
+        36 [string] = wall_blocking_target
+        37 [string] = MISS | WALL | %d studs
+        38 [string] = too_far
+        39 [string] = MISS | TOO FAR | %d studs
+        40 [string] = bad_angle
+        41 [string] = MISS | ANGLE | %d°
+        42 [string] = angle
+        43 [string] = no_target
+        44 [string] = MISS | NO TARGET
+        45 [string] = target_dead
+        46 [string] = MISS | DEAD
+        47 [string] = friendly_fire
+        48 [string] = MISS | TEAM
+        50 [number] = 0.4
+        51 [string] = Create
+        52 [string] = table
+        53 [string] = insert
+        56 [number] = 0.69
+        58 [string] = ipairs
+        60 [string] = Play
+        61 [string] = task
+        62 [string] = spawn
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_ImageToggle_1769302284.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame.toggle.LocalScript
+-- Took 0.7s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:51:21
+-- Luau version 6, Types version 3
+-- Time taken: 0.008799 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local RunService_upvr = game:GetService("RunService")
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr_2 = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local Parent = script.Parent.Parent
+local spin = Parent:WaitForChild("spin")
+local visibleb_upvr = Parent:WaitForChild("visibleb")
+local ImageLabel_upvr = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.storage.ImageLabel
+ImageLabel_upvr.Visible = false
+ImageLabel_upvr.ImageTransparency = 1
+ImageLabel_upvr.Rotation = 0
+local var12_upvw = false
+local var13_upvw
+local function _() -- Line 39, Named "startSpin"
+    --[[ Upvalues[4]:
+        [1]: var12_upvw (read and write)
+        [2]: var13_upvw (read and write)
+        [3]: RunService_upvr (readonly)
+        [4]: ImageLabel_upvr (readonly)
+    ]]
+    if var12_upvw then
+    else
+        var12_upvw = true
+        var13_upvw = RunService_upvr.RenderStepped:Connect(function(arg1) -- Line 43
+            --[[ Upvalues[1]:
+                [1]: ImageLabel_upvr (copied, readonly)
+            ]]
+            ImageLabel_upvr.Rotation = (ImageLabel_upvr.Rotation + 180 * arg1) % 360
+        end)
+    end
+end
+local function stopSpin_upvr() -- Line 48, Named "stopSpin"
+    --[[ Upvalues[4]:
+        [1]: var12_upvw (read and write)
+        [2]: var13_upvw (read and write)
+        [3]: TweenService_upvr (readonly)
+        [4]: ImageLabel_upvr (readonly)
+    ]]
+    var12_upvw = false
+    if var13_upvw then
+        var13_upvw:Disconnect()
+        var13_upvw = nil
+    end
+    TweenService_upvr:Create(ImageLabel_upvr, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Rotation = 0;
+    }):Play()
+end
+spin.Changed:Connect(function(arg1) -- Line 64
+    --[[ Upvalues[5]:
+        [1]: var12_upvw (read and write)
+        [2]: var13_upvw (read and write)
+        [3]: RunService_upvr (readonly)
+        [4]: ImageLabel_upvr (readonly)
+        [5]: stopSpin_upvr (readonly)
+    ]]
+    if arg1 then
+        if var12_upvw then
+        else
+            var12_upvw = true
+            var13_upvw = RunService_upvr.RenderStepped:Connect(function(arg1_2) -- Line 43
+                --[[ Upvalues[1]:
+                    [1]: ImageLabel_upvr (copied, readonly)
+                ]]
+                ImageLabel_upvr.Rotation = (ImageLabel_upvr.Rotation + 180 * arg1_2) % 360
+            end)
+        end
+    end
+    stopSpin_upvr()
+end)
+visibleb_upvr.Changed:Connect(function() -- Line 75, Named "applyVisibilityOverride"
+    --[[ Upvalues[2]:
+        [1]: visibleb_upvr (readonly)
+        [2]: ImageLabel_upvr (readonly)
+    ]]
+    if visibleb_upvr.Value then
+        ImageLabel_upvr.Visible = true
+        ImageLabel_upvr.ImageTransparency = 0
+    end
+end)
+local function setEnabled_upvr(arg1, arg2) -- Line 87, Named "setEnabled"
+    --[[ Upvalues[6]:
+        [1]: var7_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr_2 (readonly)
+    ]]
+    var7_upvw = arg1
+    local var18
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var18 = udim2_upvr_2
+        return var18
+    end
+    if not var7_upvw or not INLINED() then
+        var18 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr_2, {
+        Position = var18;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("ImageToggle", var7_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 97
+    --[[ Upvalues[2]:
+        [1]: setEnabled_upvr (readonly)
+        [2]: var7_upvw (read and write)
+    ]]
+    setEnabled_upvr(not var7_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.ImageToggle = var7_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 109
+        --[[ Upvalues[7]:
+            [1]: var7_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr_2 (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "ImageToggle" then
+            var7_upvw = arg2
+            if not var7_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr_2, {
+                Position = udim2_upvr;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+onConfigLoad_upvr = game:GetService("ReplicatedStorage").sf.OnClientEvent
+local TweenInfo_new_result1_upvr_3 = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+onConfigLoad_upvr = onConfigLoad_upvr:Connect
+onConfigLoad_upvr(function() -- Line 122
+    --[[ Upvalues[6]:
+        [1]: var7_upvw (read and write)
+        [2]: visibleb_upvr (readonly)
+        [3]: ImageLabel_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: TweenInfo_new_result1_upvr_3 (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    if not var7_upvw then
+    else
+        if visibleb_upvr.Value then
+            ImageLabel_upvr.Visible = true
+            ImageLabel_upvr.ImageTransparency = 0
+            return
+        end
+        ImageLabel_upvr.Visible = true
+        ImageLabel_upvr.ImageTransparency = 1
+        TweenService_upvr:Create(ImageLabel_upvr, TweenInfo_new_result1_upvr_3, {
+            ImageTransparency = 0;
+        }):Play()
+        task.wait(0.44)
+        local any_Create_result1 = TweenService_upvr:Create(ImageLabel_upvr, TweenInfo_new_result1_upvr, {
+            ImageTransparency = 1;
+        })
+        any_Create_result1:Play()
+        any_Create_result1.Completed:Wait()
+        ImageLabel_upvr.Visible = false
+    end
+end)
+onConfigLoad_upvr = visibleb_upvr.Value
+if onConfigLoad_upvr then
+    onConfigLoad_upvr = true
+    ImageLabel_upvr.Visible = onConfigLoad_upvr
+    onConfigLoad_upvr = 0
+    ImageLabel_upvr.ImageTransparency = onConfigLoad_upvr
+end
+onConfigLoad_upvr = spin.Value
+if onConfigLoad_upvr then
+    if var12_upvw then
+    else
+        var12_upvw = true
+        onConfigLoad_upvr = RunService_upvr.RenderStepped
+        onConfigLoad_upvr = onConfigLoad_upvr:Connect(function(arg1) -- Line 43
+            --[[ Upvalues[1]:
+                [1]: ImageLabel_upvr (readonly)
+            ]]
+            ImageLabel_upvr.Rotation = (ImageLabel_upvr.Rotation + 180 * arg1) % 360
+        end)
+        var13_upvw = onConfigLoad_upvr
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame.toggle.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [number] = 360
+        2 [string] = Rotation
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [number] = 360
+        2 [string] = Rotation
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [number] = 360
+        2 [string] = Rotation
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Value
+        2 [string] = Visible
+        3 [string] = ImageTransparency
+        5 [string] = Create
+        6 [string] = Play
+        7 [string] = task
+        8 [string] = wait
+        10 [number] = 0.44
+        11 [string] = Completed
+        12 [string] = Wait
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = ImageToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setEnabled
+
+Function Upvalues: setEnabled
+
+Function Constants: setEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = ImageToggle
+
+====================================================================================================
+
+Function Dump: applyVisibilityOverride
+
+Function Upvalues: applyVisibilityOverride
+
+Function Constants: applyVisibilityOverride
+        1 [string] = Value
+        2 [string] = Visible
+        3 [string] = ImageTransparency
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = RenderStepped
+        3 [string] = Connect
+
+====================================================================================================
+
+Function Dump: stopSpin
+
+Function Upvalues: stopSpin
+
+Function Constants: stopSpin
+        1 [string] = Disconnect
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.25
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        13 [string] = Rotation
+        15 [string] = Create
+        16 [string] = Play
+
+====================================================================================================
+
+Function Dump: startSpin
+
+Function Upvalues: startSpin
+
+Function Constants: startSpin
+        1 [string] = RenderStepped
+        3 [string] = Connect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = visibleb
+        3 [Instance] = ImageLabel
+        4 [Instance] = TweenService
+        5 [TweenInfo] = Time:0.3 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quad
+        6 [TweenInfo] = Time:0.3 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:In EasingStyle:Quad
+
+Function Constants: Unknown Name
+        1 [string] = Value
+        2 [string] = Visible
+        3 [string] = ImageTransparency
+        5 [string] = Create
+        6 [string] = Play
+        7 [string] = task
+        8 [string] = wait
+        10 [number] = 0.44
+        11 [string] = Completed
+        12 [string] = Wait
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = ImageToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setEnabled
+
+Function Upvalues: setEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = ImageToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [number] = 360
+        2 [string] = Rotation
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        3 [Instance] = Run Service
+        4 [Instance] = ImageLabel
+        5 [function] = stopSpin
+
+Function Constants: Unknown Name
+        1 [string] = RenderStepped
+        3 [string] = Connect
+
+====================================================================================================
+
+Function Dump: stopSpin
+
+Function Upvalues: stopSpin
+        1 [boolean] = false
+        3 [Instance] = TweenService
+        4 [Instance] = ImageLabel
+
+Function Constants: stopSpin
+        1 [string] = Disconnect
+        2 [string] = TweenInfo
+        3 [string] = new
+        5 [number] = 0.25
+        6 [string] = Enum
+        7 [string] = EasingStyle
+        8 [string] = Quad
+        9 [EnumItem] = Enum.EasingStyle.Quad
+        10 [string] = EasingDirection
+        11 [string] = Out
+        12 [EnumItem] = Enum.EasingDirection.Out
+        13 [string] = Rotation
+        15 [string] = Create
+        16 [string] = Play
+
+====================================================================================================
+
+Function Dump: applyVisibilityOverride
+
+Function Upvalues: applyVisibilityOverride
+        1 [Instance] = visibleb
+        2 [Instance] = ImageLabel
+
+Function Constants: applyVisibilityOverride
+        1 [string] = Value
+        2 [string] = Visible
+        3 [string] = ImageTransparency
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_JumpCircleToggle_1769302295.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame.toggle2.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:51:32
+-- Luau version 6, Types version 3
+-- Time taken: 0.014446 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var6_upvw = false
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Character_upvw = LocalPlayer_upvr.Character
+if not Character_upvw then
+    Character_upvw = LocalPlayer_upvr.CharacterAdded:Wait()
+end
+local Humanoid_upvw = Character_upvw:WaitForChild("Humanoid")
+local HumanoidRootPart_upvw = Character_upvw:WaitForChild("HumanoidRootPart")
+local var11_upvw = false
+local function setJumpCircleEnabled_upvr(arg1, arg2) -- Line 27, Named "setJumpCircleEnabled"
+    --[[ Upvalues[6]:
+        [1]: var6_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    var6_upvw = arg1
+    local var12
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var12 = udim2_upvr
+        return var12
+    end
+    if not var6_upvw or not INLINED() then
+        var12 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var12;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("JumpCircleToggle", var6_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 38
+    --[[ Upvalues[2]:
+        [1]: setJumpCircleEnabled_upvr (readonly)
+        [2]: var6_upvw (read and write)
+    ]]
+    setJumpCircleEnabled_upvr(not var6_upvw, true)
+end)
+local function cfOnSurface_upvr(arg1, arg2) -- Line 42, Named "cfOnSurface"
+    local Unit_2 = arg2.Unit
+    local var16
+    if 0.95 < math.abs(Unit_2:Dot(Vector3.new(0, 0, 1))) then
+        var16 = Vector3.new(1, 0, 0)
+    else
+        var16 = Vector3.new(0, 0, 1)
+    end
+    local Unit = var16:Cross(Unit_2).Unit
+    return CFrame.fromMatrix(arg1, Unit, Unit_2, Unit_2:Cross(Unit).Unit)
+end
+local function _(arg1) -- Line 50, Named "getEmitter"
+    local class_ParticleEmitter = arg1:FindFirstChildOfClass("ParticleEmitter")
+    if not class_ParticleEmitter then
+        class_ParticleEmitter = arg1:FindFirstChildWhichIsA("ParticleEmitter", true)
+    end
+    return class_ParticleEmitter
+end
+local function _(arg1, arg2) -- Line 54, Named "pivotTo"
+    if arg1:IsA("Model") then
+        arg1:PivotTo(arg2)
+    else
+        arg1.CFrame = arg2
+    end
+end
+local JumpFX_upvr = game:GetService("ReplicatedStorage").FXTemplates:WaitForChild("JumpFX")
+local JumpColor_upvr = script.Parent.Parent.JumpColor
+local function createJumpCircle_upvr(arg1, arg2) -- Line 62, Named "createJumpCircle"
+    --[[ Upvalues[4]:
+        [1]: var6_upvw (read and write)
+        [2]: JumpFX_upvr (readonly)
+        [3]: cfOnSurface_upvr (readonly)
+        [4]: JumpColor_upvr (readonly)
+    ]]
+    if not var6_upvw then
+    else
+        local clone_upvr = JumpFX_upvr:Clone()
+        clone_upvr.Parent = workspace
+        if clone_upvr:IsA("Model") then
+            clone_upvr:PivotTo(cfOnSurface_upvr(arg1 + arg2.Unit * 0.03, arg2))
+        else
+            -- KONSTANTERROR: Expression was reused, decompilation is incorrect
+            clone_upvr.CFrame = cfOnSurface_upvr(arg1 + arg2.Unit * 0.03, arg2)
+        end
+        local class_ParticleEmitter_2 = clone_upvr:FindFirstChildOfClass("ParticleEmitter")
+        if not class_ParticleEmitter_2 then
+            class_ParticleEmitter_2 = clone_upvr:FindFirstChildWhichIsA("ParticleEmitter", true)
+        end
+        if not class_ParticleEmitter_2 then
+            clone_upvr:Destroy()
+            return
+        end
+        class_ParticleEmitter_2.Color = ColorSequence.new(JumpColor_upvr.Value)
+        class_ParticleEmitter_2:Emit(1)
+        task.delay(class_ParticleEmitter_2.Lifetime.Max + 0.1, function() -- Line 81
+            --[[ Upvalues[1]:
+                [1]: clone_upvr (readonly)
+            ]]
+            if clone_upvr and clone_upvr.Parent then
+                clone_upvr:Destroy()
+            end
+        end)
+    end
+end
+game:GetService("RunService").Heartbeat:Connect(function() -- Line 88
+    --[[ Upvalues[6]:
+        [1]: Character_upvw (read and write)
+        [2]: Humanoid_upvw (read and write)
+        [3]: HumanoidRootPart_upvw (read and write)
+        [4]: LocalPlayer_upvr (readonly)
+        [5]: var11_upvw (read and write)
+        [6]: createJumpCircle_upvr (readonly)
+    ]]
+    if not Character_upvw or not Humanoid_upvw or not HumanoidRootPart_upvw then
+        Character_upvw = LocalPlayer_upvr.Character
+        if Character_upvw then
+            Humanoid_upvw = Character_upvw:FindFirstChild("Humanoid")
+            HumanoidRootPart_upvw = Character_upvw:FindFirstChild("HumanoidRootPart")
+        end
+    else
+        local any_GetState_result1 = Humanoid_upvw:GetState()
+        local var32 = true
+        if any_GetState_result1 ~= Enum.HumanoidStateType.Jumping then
+            var32 = false
+            if any_GetState_result1 == Enum.HumanoidStateType.Freefall then
+                if 5 >= HumanoidRootPart_upvw.AssemblyLinearVelocity.Y then
+                    var32 = false
+                else
+                    var32 = true
+                end
+            end
+        end
+        if var32 then
+            local var33
+            if not var11_upvw then
+                local Position = HumanoidRootPart_upvw.Position
+                local tbl_2 = {Character_upvw}
+                local RaycastParams_new_result1 = RaycastParams.new()
+                RaycastParams_new_result1.FilterDescendantsInstances = tbl_2
+                var33 = Enum.RaycastFilterType.Exclude
+                RaycastParams_new_result1.FilterType = var33
+                var33 = workspace:Raycast(Position, Vector3.new(0, -20, 0), RaycastParams_new_result1)
+                while var33 and var33.Instance:IsA("TrussPart") do
+                    table.insert(tbl_2, var33.Instance)
+                    RaycastParams_new_result1.FilterDescendantsInstances = tbl_2
+                    var33 = workspace:Raycast(Position, Vector3.new(0, -20, 0), RaycastParams_new_result1)
+                end
+                if var33 then
+                    createJumpCircle_upvr(var33.Position, var33.Normal)
+                end
+            end
+        end
+        var11_upvw = var32
+    end
+end)
+LocalPlayer_upvr.CharacterAdded:Connect(function(arg1) -- Line 131
+    --[[ Upvalues[4]:
+        [1]: Character_upvw (read and write)
+        [2]: Humanoid_upvw (read and write)
+        [3]: HumanoidRootPart_upvw (read and write)
+        [4]: var11_upvw (read and write)
+    ]]
+    Character_upvw = arg1
+    Humanoid_upvw = arg1:WaitForChild("Humanoid")
+    HumanoidRootPart_upvw = arg1:WaitForChild("HumanoidRootPart")
+    var11_upvw = false
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.JumpCircleToggle = var6_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 144
+        --[[ Upvalues[7]:
+            [1]: var6_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "JumpCircleToggle" then
+            var6_upvw = arg2
+            if not var6_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame.toggle2.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = JumpCircleToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Humanoid
+        2 [string] = WaitForChild
+        3 [string] = HumanoidRootPart
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = HumanoidRootPart
+        5 [string] = GetState
+        6 [string] = Enum
+        7 [string] = HumanoidStateType
+        8 [string] = Jumping
+        10 [string] = Freefall
+        12 [string] = AssemblyLinearVelocity
+        13 [string] = Y
+        14 [string] = Position
+        15 [string] = RaycastParams
+        16 [string] = new
+        18 [string] = FilterDescendantsInstances
+        19 [string] = RaycastFilterType
+        20 [string] = Exclude
+        22 [string] = FilterType
+        23 [string] = workspace
+        25 [Vector3] = 0, -20, 0
+        26 [string] = Raycast
+        27 [string] = Instance
+        28 [string] = TrussPart
+        29 [string] = IsA
+        30 [string] = table
+        31 [string] = insert
+        33 [string] = Normal
+
+====================================================================================================
+
+Function Dump: createJumpCircle
+
+Function Upvalues: createJumpCircle
+
+Function Constants: createJumpCircle
+        1 [string] = Clone
+        2 [string] = workspace
+        4 [string] = Parent
+        5 [number] = 0.03
+        6 [string] = Unit
+        7 [string] = Model
+        8 [string] = IsA
+        9 [string] = PivotTo
+        10 [string] = CFrame
+        11 [string] = ParticleEmitter
+        12 [string] = FindFirstChildOfClass
+        13 [string] = FindFirstChildWhichIsA
+        14 [string] = Destroy
+        15 [string] = ColorSequence
+        16 [string] = new
+        18 [string] = Value
+        19 [string] = Color
+        20 [string] = Emit
+        21 [string] = Lifetime
+        22 [string] = Max
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: pivotTo
+
+Function Upvalues: pivotTo
+
+Function Constants: pivotTo
+        1 [string] = Model
+        2 [string] = IsA
+        3 [string] = PivotTo
+        4 [string] = CFrame
+
+====================================================================================================
+
+Function Dump: getEmitter
+
+Function Upvalues: getEmitter
+
+Function Constants: getEmitter
+        1 [string] = ParticleEmitter
+        2 [string] = FindFirstChildOfClass
+        3 [string] = FindFirstChildWhichIsA
+
+====================================================================================================
+
+Function Dump: cfOnSurface
+
+Function Upvalues: cfOnSurface
+
+Function Constants: cfOnSurface
+        1 [string] = Unit
+        2 [Vector3] = 0, 0, 1
+        3 [string] = Dot
+        4 [string] = math
+        5 [string] = abs
+        7 [number] = 0.95
+        8 [Vector3] = 1, 0, 0
+        9 [string] = Cross
+        10 [string] = CFrame
+        11 [string] = fromMatrix
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setJumpCircleEnabled
+
+Function Upvalues: setJumpCircleEnabled
+
+Function Constants: setJumpCircleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = JumpCircleToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = JumpCircleToggle
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = quit_xyz
+        2 [Instance] = Humanoid
+        3 [Instance] = HumanoidRootPart
+        4 [Instance] = quit_xyz
+        5 [boolean] = false
+        6 [function] = createJumpCircle
+
+Function Constants: Unknown Name
+        1 [string] = Character
+        2 [string] = Humanoid
+        3 [string] = FindFirstChild
+        4 [string] = HumanoidRootPart
+        5 [string] = GetState
+        6 [string] = Enum
+        7 [string] = HumanoidStateType
+        8 [string] = Jumping
+        9 [EnumItem] = Enum.HumanoidStateType.Jumping
+        10 [string] = Freefall
+        11 [EnumItem] = Enum.HumanoidStateType.Freefall
+        12 [string] = AssemblyLinearVelocity
+        13 [string] = Y
+        14 [string] = Position
+        15 [string] = RaycastParams
+        16 [string] = new
+        18 [string] = FilterDescendantsInstances
+        19 [string] = RaycastFilterType
+        20 [string] = Exclude
+        21 [EnumItem] = Enum.RaycastFilterType.Exclude
+        22 [string] = FilterType
+        23 [string] = workspace
+        24 [Instance] = Workspace
+        25 [Vector3] = 0, -20, 0
+        26 [string] = Raycast
+        27 [string] = Instance
+        28 [string] = TrussPart
+        29 [string] = IsA
+        30 [string] = table
+        31 [string] = insert
+        33 [string] = Normal
+
+====================================================================================================
+
+Function Dump: setJumpCircleEnabled
+
+Function Upvalues: setJumpCircleEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setJumpCircleEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = JumpCircleToggle
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = quit_xyz
+        2 [Instance] = Humanoid
+        3 [Instance] = HumanoidRootPart
+        4 [boolean] = false
+
+Function Constants: Unknown Name
+        1 [string] = Humanoid
+        2 [string] = WaitForChild
+        3 [string] = HumanoidRootPart
+
+====================================================================================================
+
+Function Dump: createJumpCircle
+
+Function Upvalues: createJumpCircle
+        1 [boolean] = false
+        2 [Instance] = JumpFX
+        3 [function] = cfOnSurface
+        4 [Instance] = JumpColor
+
+Function Constants: createJumpCircle
+        1 [string] = Clone
+        2 [string] = workspace
+        3 [Instance] = Workspace
+        4 [string] = Parent
+        5 [number] = 0.03
+        6 [string] = Unit
+        7 [string] = Model
+        8 [string] = IsA
+        9 [string] = PivotTo
+        10 [string] = CFrame
+        11 [string] = ParticleEmitter
+        12 [string] = FindFirstChildOfClass
+        13 [string] = FindFirstChildWhichIsA
+        14 [string] = Destroy
+        15 [string] = ColorSequence
+        16 [string] = new
+        18 [string] = Value
+        19 [string] = Color
+        20 [string] = Emit
+        21 [string] = Lifetime
+        22 [string] = Max
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setJumpCircleEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: cfOnSurface
+
+Function Upvalues: cfOnSurface
+
+Function Constants: cfOnSurface
+        1 [string] = Unit
+        2 [Vector3] = 0, 0, 1
+        3 [string] = Dot
+        4 [string] = math
+        5 [string] = abs
+        7 [number] = 0.95
+        8 [Vector3] = 1, 0, 0
+        9 [string] = Cross
+        10 [string] = CFrame
+        11 [string] = fromMatrix
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_KeybindsVisual_1769302536.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame6.toggle4.LocalScript
+-- Took 0.32s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:55:33
+-- Luau version 6, Types version 3
+-- Time taken: 0.017854 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var6_upvw = false
+local var7_upvw
+local var8_upvw
+local Color3_fromRGB_result1_upvr = Color3.fromRGB(255, 255, 255)
+local UserInputService_upvr = game:GetService("UserInputService")
+local function makeDraggable_upvr(arg1) -- Line 37, Named "makeDraggable"
+    --[[ Upvalues[1]:
+        [1]: UserInputService_upvr (readonly)
+    ]]
+    local var11_upvw
+    local var12_upvw
+    local var13_upvw
+    local var14_upvw
+    arg1.InputBegan:Connect(function(arg1_2) -- Line 40
+        --[[ Upvalues[4]:
+            [1]: var11_upvw (read and write)
+            [2]: var13_upvw (read and write)
+            [3]: var14_upvw (read and write)
+            [4]: arg1 (readonly)
+        ]]
+        if arg1_2.UserInputType == Enum.UserInputType.MouseButton1 then
+            var11_upvw = true
+            var13_upvw = arg1_2.Position
+            var14_upvw = arg1.Position
+            arg1_2.Changed:Connect(function() -- Line 46
+                --[[ Upvalues[2]:
+                    [1]: arg1_2 (readonly)
+                    [2]: var11_upvw (copied, read and write)
+                ]]
+                if arg1_2.UserInputState == Enum.UserInputState.End then
+                    var11_upvw = false
+                end
+            end)
+        end
+    end)
+    arg1.InputChanged:Connect(function(arg1_3) -- Line 54
+        --[[ Upvalues[1]:
+            [1]: var12_upvw (read and write)
+        ]]
+        if arg1_3.UserInputType == Enum.UserInputType.MouseMovement then
+            var12_upvw = arg1_3
+        end
+    end)
+    UserInputService_upvr.InputChanged:Connect(function(arg1_4) -- Line 60
+        --[[ Upvalues[5]:
+            [1]: var12_upvw (read and write)
+            [2]: var11_upvw (read and write)
+            [3]: var13_upvw (read and write)
+            [4]: arg1 (readonly)
+            [5]: var14_upvw (read and write)
+        ]]
+        if arg1_4 == var12_upvw and var11_upvw then
+            local var19 = arg1_4.Position - var13_upvw
+            arg1.Position = UDim2.new(var14_upvw.X.Scale, var14_upvw.X.Offset + var19.X, var14_upvw.Y.Scale, var14_upvw.Y.Offset + var19.Y)
+        end
+    end)
+end
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Color3_fromRGB_result1_upvr_4 = Color3.fromRGB(25, 25, 25)
+local Color3_fromRGB_result1_upvr_2 = Color3.fromRGB(20, 20, 20)
+local var23_upvw
+local tbl_upvw = {}
+local function createGUI_upvr() -- Line 74, Named "createGUI"
+    --[[ Upvalues[10]:
+        [1]: var7_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: Color3_fromRGB_result1_upvr_4 (readonly)
+        [4]: Color3_fromRGB_result1_upvr_2 (readonly)
+        [5]: Color3_fromRGB_result1_upvr (readonly)
+        [6]: TweenService_upvr (readonly)
+        [7]: makeDraggable_upvr (readonly)
+        [8]: var8_upvw (read and write)
+        [9]: var23_upvw (read and write)
+        [10]: tbl_upvw (read and write)
+    ]]
+    if var7_upvw then
+        var7_upvw:Destroy()
+    end
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "KeybindsListHUD"
+    ScreenGui.Parent = LocalPlayer_upvr:WaitForChild("PlayerGui")
+    ScreenGui.ResetOnSpawn = false
+    local Frame_3_upvr = Instance.new("Frame")
+    Frame_3_upvr.Name = "Main"
+    Frame_3_upvr.Size = UDim2.new(0, 200, 0, 28)
+    Frame_3_upvr.Position = UDim2.new(0.02, 0, 0.5, 0)
+    Frame_3_upvr.BackgroundColor3 = Color3_fromRGB_result1_upvr_4
+    Frame_3_upvr.BackgroundTransparency = 0.3
+    Frame_3_upvr.BorderSizePixel = 0
+    Frame_3_upvr.ClipsDescendants = true
+    Frame_3_upvr.Parent = ScreenGui
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 4)
+    UICorner.Parent = Frame_3_upvr
+    local Frame = Instance.new("Frame")
+    Frame.Name = "Header"
+    Frame.Size = UDim2.new(1, 0, 0, 28)
+    Frame.BackgroundColor3 = Color3_fromRGB_result1_upvr_2
+    Frame.BackgroundTransparency = 0.4
+    Frame.BorderSizePixel = 0
+    Frame.Parent = Frame_3_upvr
+    local ImageLabel = Instance.new("ImageLabel")
+    ImageLabel.Size = UDim2.new(0, 14, 0, 14)
+    ImageLabel.Position = UDim2.new(0, 8, 0.5, 0)
+    ImageLabel.AnchorPoint = Vector2.new(0, 0.5)
+    ImageLabel.BackgroundTransparency = 1
+    ImageLabel.Image = "rbxassetid://97160939850076"
+    ImageLabel.ImageColor3 = Color3_fromRGB_result1_upvr
+    ImageLabel.Parent = Frame
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Text = "Keybinds"
+    TextLabel.Size = UDim2.new(1, -30, 1, 0)
+    TextLabel.Position = UDim2.new(0, 26, 0, 0)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.TextColor3 = Color3_fromRGB_result1_upvr
+    TextLabel.Font = Enum.Font.GothamBold
+    TextLabel.TextSize = 12
+    TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+    TextLabel.TextYAlignment = Enum.TextYAlignment.Center
+    TextLabel.Parent = Frame
+    local Frame_2 = Instance.new("Frame")
+    Frame_2.Name = "List"
+    Frame_2.Size = UDim2.new(1, 0, 0, 0)
+    Frame_2.Position = UDim2.new(0, 0, 0, 32)
+    Frame_2.BackgroundTransparency = 1
+    Frame_2.Parent = Frame_3_upvr
+    local UIListLayout_upvr = Instance.new("UIListLayout")
+    UIListLayout_upvr.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout_upvr.Padding = UDim.new(0, 3)
+    UIListLayout_upvr.Parent = Frame_2
+    local UIPadding = Instance.new("UIPadding")
+    UIPadding.PaddingTop = UDim.new(0, 0)
+    UIPadding.PaddingBottom = UDim.new(0, 0)
+    UIPadding.PaddingLeft = UDim.new(0, 6)
+    UIPadding.PaddingRight = UDim.new(0, 6)
+    UIPadding.Parent = Frame_2
+    UIListLayout_upvr:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() -- Line 148
+        --[[ Upvalues[3]:
+            [1]: UIListLayout_upvr (readonly)
+            [2]: TweenService_upvr (copied, readonly)
+            [3]: Frame_3_upvr (readonly)
+        ]]
+        TweenService_upvr:Create(Frame_3_upvr, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 200, 0, 28 + UIListLayout_upvr.AbsoluteContentSize.Y + 8);
+        }):Play()
+    end)
+    makeDraggable_upvr(Frame_3_upvr)
+    var8_upvw = Frame_2
+    var23_upvw = UIListLayout_upvr
+    var7_upvw = ScreenGui
+    tbl_upvw = {}
+    return ScreenGui
+end
+local Color3_fromRGB_result1_upvr_3 = Color3.fromRGB(180, 180, 180)
+local function updateBindItem_upvr(arg1, arg2, arg3) -- Line 173, Named "updateBindItem"
+    --[[ Upvalues[4]:
+        [1]: var8_upvw (read and write)
+        [2]: Color3_fromRGB_result1_upvr (readonly)
+        [3]: Color3_fromRGB_result1_upvr_3 (readonly)
+        [4]: TweenService_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [2] 3. Error Block 2 start (CF ANALYSIS FAILED)
+    do
+        return
+    end
+    -- KONSTANTERROR: [2] 3. Error Block 2 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [3] 4. Error Block 3 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [3] 4. Error Block 3 end (CF ANALYSIS FAILED)
+end
+local function scanForActiveBinds_upvr() -- Line 294, Named "scanForActiveBinds"
+    --[[ Upvalues[2]:
+        [1]: var8_upvw (read and write)
+        [2]: updateBindItem_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 50 start (CF ANALYSIS FAILED)
+    local function _(arg1) -- Line 297, Named "checkValue"
+        if _G.ConfigSystem and _G.ConfigSystem.settings and _G.ConfigSystem.settings[arg1] == true then
+            return true
+        end
+        if _G[arg1] == true then
+            return true
+        end
+        return false
+    end
+    if _G.ConfigSystem and _G.ConfigSystem.settings and _G.ConfigSystem.settings.doubletap == true then
+        -- KONSTANTWARNING: GOTO [36] #23
+    end
+    -- KONSTANTERROR: [0] 1. Error Block 50 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [27] 17. Error Block 46 start (CF ANALYSIS FAILED)
+    if _G.doubletap == true then
+        -- KONSTANTWARNING: GOTO [36] #23
+    end
+    -- KONSTANTERROR: [27] 17. Error Block 46 end (CF ANALYSIS FAILED)
+end
+local var37_upvw
+local RunService_upvr = game:GetService("RunService")
+local function toggle_upvr(arg1) -- Line 339, Named "toggle"
+    --[[ Upvalues[5]:
+        [1]: createGUI_upvr (readonly)
+        [2]: var37_upvw (read and write)
+        [3]: RunService_upvr (readonly)
+        [4]: scanForActiveBinds_upvr (readonly)
+        [5]: var7_upvw (read and write)
+    ]]
+    if arg1 then
+        createGUI_upvr()
+        var37_upvw = RunService_upvr.Heartbeat:Connect(function() -- Line 342
+            --[[ Upvalues[1]:
+                [1]: scanForActiveBinds_upvr (copied, readonly)
+            ]]
+            if tick() % 0.2 < 0.02 then
+                scanForActiveBinds_upvr()
+            end
+        end)
+    else
+        if var37_upvw then
+            var37_upvw:Disconnect()
+            var37_upvw = nil
+        end
+        if var7_upvw then
+            var7_upvw:Destroy()
+            var7_upvw = nil
+        end
+    end
+end
+local function setEnabled_upvr(arg1, arg2) -- Line 361, Named "setEnabled"
+    --[[ Upvalues[7]:
+        [1]: var6_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: toggle_upvr (readonly)
+    ]]
+    var6_upvw = arg1
+    local var40
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var40 = udim2_upvr
+        return var40
+    end
+    if not arg1 or not INLINED() then
+        var40 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var40;
+    }):Play()
+    toggle_upvr(arg1)
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("KeybindsVisual", arg1)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 372
+    --[[ Upvalues[2]:
+        [1]: setEnabled_upvr (readonly)
+        [2]: var6_upvw (read and write)
+    ]]
+    setEnabled_upvr(not var6_upvw, true)
+end)
+task.wait(0.5)
+if _G.ConfigSystem then
+    if _G.ConfigSystem.settings then
+        _G.ConfigSystem.settings.KeybindsVisual = var6_upvw
+    end
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 384
+        --[[ Upvalues[8]:
+            [1]: var6_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: toggle_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "KeybindsVisual" then
+            var6_upvw = arg2
+            if not arg2 or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+            toggle_upvr(arg2)
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+
+----// XEClient/visual_indicator_1769302437.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame4.toggle3.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:53:54
+-- Luau version 6, Types version 3
+-- Time taken: 0.013914 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local LocalPlayer_upvr = game:GetService("Players").LocalPlayer
+local Frame2_upvr = script.Parent.Frame2
+local TweenInfo_new_result1_upvr_2 = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local tbl_upvr_2 = {-- : First try: K:0: attempt to index nil with 't'
+
+local var8_upvw = false
+local ScreenGui_upvr = Instance.new("ScreenGui")
+ScreenGui_upvr.Name = "XEIndicator"
+ScreenGui_upvr.ResetOnSpawn = false
+ScreenGui_upvr.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui_upvr.Enabled = false
+local Frame = Instance.new("Frame")
+Frame.Name = "IndicatorFrame"
+Frame.Active = false
+Frame.Selectable = false
+Frame.Size = UDim2.new(0, 80, 0, 32)
+Frame.Position = UDim2.new(0.5, -40, 0.55, 0)
+Frame.AnchorPoint = Vector2.new(0, 0)
+Frame.BackgroundTransparency = 1
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui_upvr
+local TextLabel = Instance.new("TextLabel")
+TextLabel.Name = "Title"
+TextLabel.Active = false
+TextLabel.Selectable = false
+TextLabel.Size = UDim2.new(1, 0, 0, 10)
+TextLabel.Position = UDim2.new(0, 0, 0, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Text = "xescripts"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 12
+TextLabel.Font = Enum.Font.Code
+TextLabel.TextStrokeTransparency = 0.4
+TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextXAlignment = Enum.TextXAlignment.Center
+TextLabel.Parent = Frame
+local TextLabel_2_upvr = Instance.new("TextLabel")
+TextLabel_2_upvr.Name = "State"
+TextLabel_2_upvr.Active = false
+TextLabel_2_upvr.Selectable = false
+TextLabel_2_upvr.Size = UDim2.new(1, 0, 0, 14)
+TextLabel_2_upvr.Position = UDim2.new(0, 0, 0, 13)
+TextLabel_2_upvr.BackgroundTransparency = 1
+TextLabel_2_upvr.Text = "standing"
+TextLabel_2_upvr.TextColor3 = Color3.fromRGB(150, 255, 150)
+TextLabel_2_upvr.TextSize = 11
+TextLabel_2_upvr.Font = Enum.Font.Code
+TextLabel_2_upvr.TextStrokeTransparency = 0.4
+TextLabel_2_upvr.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2_upvr.TextXAlignment = Enum.TextXAlignment.Center
+TextLabel_2_upvr.Parent = Frame
+local tbl_upvr = {
+    AIR = {
+        name = "in air";
+        color = Color3.fromRGB(255, 180, 80);
+    };
+    STAND = {
+        name = "standing";
+        color = Color3.fromRGB(150, 255, 150);
+    };
+    WALK = {
+        name = "moving";
+        color = Color3.fromRGB(130, 200, 255);
+    };
+    CROUCH = {
+        name = "ducking";
+        color = Color3.fromRGB(255, 100, 100);
+    };
+}
+local function isCrouching_upvr(arg1) -- Line 90, Named "isCrouching"
+    --[[ Upvalues[1]:
+        [1]: tbl_upvr_2 (readonly)
+    ]]
+    local var33 = arg1
+    if var33 then
+        var33 = arg1:FindFirstChildOfClass("Humanoid")
+    end
+    if not var33 then
+        return false
+    end
+    local class_Animator_2 = var33:FindFirstChildOfClass("Animator")
+    if not class_Animator_2 then
+        return false
+    end
+    for _, v in pairs(class_Animator_2:GetPlayingAnimationTracks()) do
+        local Animation = v.Animation
+        if Animation then
+            Animation = v.Animation.AnimationId
+        end
+        if Animation then
+            local tonumber_result1_2 = tonumber(Animation:match("%d+"))
+            if tonumber_result1_2 and tbl_upvr_2[tonumber_result1_2] then
+                return true
+            end
+        end
+    end
+    return false
+end
+local function getPlayerState_upvr(arg1) -- Line 110, Named "getPlayerState"
+    --[[ Upvalues[1]:
+        [1]: isCrouching_upvr (readonly)
+    ]]
+    local var40 = arg1
+    if var40 then
+        var40 = arg1:FindFirstChildOfClass("Humanoid")
+    end
+    local var41 = arg1
+    if var41 then
+        var41 = arg1:FindFirstChild("HumanoidRootPart")
+    end
+    if not var40 or not var41 then
+        return "STAND"
+    end
+    if isCrouching_upvr(arg1) then
+        return "CROUCH"
+    end
+    if var40.FloorMaterial == Enum.Material.Air then
+        return "AIR"
+    end
+    local AssemblyLinearVelocity = var41.AssemblyLinearVelocity
+    if 0.5 < math.sqrt(AssemblyLinearVelocity.X ^ 2 + AssemblyLinearVelocity.Z ^ 2) then
+        return "WALK"
+    end
+    return "STAND"
+end
+local var43_upvw = "STAND"
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.08, Enum.EasingStyle.Linear)
+local function updateIndicator_upvr(arg1) -- Line 137, Named "updateIndicator"
+    --[[ Upvalues[5]:
+        [1]: var43_upvw (read and write)
+        [2]: tbl_upvr (readonly)
+        [3]: TextLabel_2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    if arg1 == var43_upvw then
+    else
+        var43_upvw = arg1
+        local var45 = tbl_upvr[arg1]
+        if not var45 then
+            var45 = tbl_upvr.STAND
+        end
+        TextLabel_2_upvr.Text = var45.name
+        TweenService_upvr:Create(TextLabel_2_upvr, TweenInfo_new_result1_upvr, {
+            TextColor3 = var45.color;
+        }):Play()
+    end
+end
+local function setIndicatorEnabled_upvr(arg1, arg2) -- Line 148, Named "setIndicatorEnabled"
+    --[[ Upvalues[7]:
+        [1]: var8_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr_2 (readonly)
+        [7]: ScreenGui_upvr (readonly)
+    ]]
+    var8_upvw = arg1
+    local var47
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var47 = udim2_upvr
+        return var47
+    end
+    if not var8_upvw or not INLINED() then
+        var47 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr_2, {
+        Position = var47;
+    }):Play()
+    ScreenGui_upvr.Enabled = var8_upvw
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("indicator", var8_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 165
+    --[[ Upvalues[2]:
+        [1]: setIndicatorEnabled_upvr (readonly)
+        [2]: var8_upvw (read and write)
+    ]]
+    setIndicatorEnabled_upvr(not var8_upvw, true)
+end)
+if LocalPlayer_upvr.Character then
+    ScreenGui_upvr.Parent = LocalPlayer_upvr:WaitForChild("PlayerGui")
+end
+LocalPlayer_upvr.CharacterAdded:Connect(function(arg1) -- Line 170, Named "onCharacterAdded"
+    --[[ Upvalues[2]:
+        [1]: ScreenGui_upvr (readonly)
+        [2]: LocalPlayer_upvr (readonly)
+    ]]
+    ScreenGui_upvr.Parent = LocalPlayer_upvr:WaitForChild("PlayerGui")
+end)
+game:GetService("RunService").RenderStepped:Connect(function() -- Line 180
+    --[[ Upvalues[4]:
+        [1]: var8_upvw (read and write)
+        [2]: LocalPlayer_upvr (readonly)
+        [3]: getPlayerState_upvr (readonly)
+        [4]: updateIndicator_upvr (readonly)
+    ]]
+    if not var8_upvw then
+    else
+        local Character = LocalPlayer_upvr.Character
+        if Character then
+            updateIndicator_upvr(getPlayerState_upvr(Character))
+        end
+    end
+end)
+ScreenGui_upvr.Parent = LocalPlayer_upvr:WaitForChild("PlayerGui")
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.indicator = var8_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 199
+        --[[ Upvalues[8]:
+            [1]: var8_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr_2 (readonly)
+            [7]: ScreenGui_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "indicator" then
+            var8_upvw = arg2
+            if not var8_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr_2, {
+                Position = udim2_upvr_2;
+            }):Play()
+            ScreenGui_upvr.Enabled = var8_upvw
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame4.toggle3.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = indicator
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Enabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Character
+
+====================================================================================================
+
+Function Dump: onCharacterAdded
+
+Function Upvalues: onCharacterAdded
+
+Function Constants: onCharacterAdded
+        1 [string] = PlayerGui
+        2 [string] = WaitForChild
+        3 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setIndicatorEnabled
+
+Function Upvalues: setIndicatorEnabled
+
+Function Constants: setIndicatorEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Enabled
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = indicator
+
+====================================================================================================
+
+Function Dump: updateIndicator
+
+Function Upvalues: updateIndicator
+
+Function Constants: updateIndicator
+        1 [string] = STAND
+        2 [string] = name
+        3 [string] = Text
+        4 [string] = TextColor3
+        6 [string] = color
+        7 [string] = Create
+        8 [string] = Play
+
+====================================================================================================
+
+Function Dump: getPlayerState
+
+Function Upvalues: getPlayerState
+
+Function Constants: getPlayerState
+        1 [string] = Humanoid
+        2 [string] = FindFirstChildOfClass
+        3 [string] = HumanoidRootPart
+        4 [string] = FindFirstChild
+        5 [string] = STAND
+        6 [string] = CROUCH
+        7 [string] = FloorMaterial
+        8 [string] = Enum
+        9 [string] = Material
+        10 [string] = Air
+        12 [string] = AIR
+        13 [string] = AssemblyLinearVelocity
+        14 [number] = 2
+        15 [string] = X
+        16 [string] = Z
+        17 [string] = math
+        18 [string] = sqrt
+        20 [number] = 0.5
+        21 [string] = WALK
+
+====================================================================================================
+
+Function Dump: isCrouching
+
+Function Upvalues: isCrouching
+
+Function Constants: isCrouching
+        1 [string] = Humanoid
+        2 [string] = FindFirstChildOfClass
+        3 [string] = Animator
+        4 [string] = pairs
+        6 [string] = GetPlayingAnimationTracks
+        7 [string] = Animation
+        8 [string] = AnimationId
+        9 [string] = %d+
+        10 [string] = match
+        11 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = XEIndicator
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = indicator
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Enabled
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = quit_xyz
+        3 [function] = getPlayerState
+        4 [function] = updateIndicator
+
+Function Constants: Unknown Name
+        1 [string] = Character
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setIndicatorEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: getPlayerState
+
+Function Upvalues: getPlayerState
+        1 [function] = isCrouching
+
+Function Constants: getPlayerState
+        1 [string] = Humanoid
+        2 [string] = FindFirstChildOfClass
+        3 [string] = HumanoidRootPart
+        4 [string] = FindFirstChild
+        5 [string] = STAND
+        6 [string] = CROUCH
+        7 [string] = FloorMaterial
+        8 [string] = Enum
+        9 [string] = Material
+        10 [string] = Air
+        11 [EnumItem] = Enum.Material.Air
+        12 [string] = AIR
+        13 [string] = AssemblyLinearVelocity
+        14 [number] = 2
+        15 [string] = X
+        16 [string] = Z
+        17 [string] = math
+        18 [string] = sqrt
+        20 [number] = 0.5
+        21 [string] = WALK
+
+====================================================================================================
+
+Function Dump: isCrouching
+
+Function Upvalues: isCrouching
+        1 [table]:
+        1 [table] table: 0x3f19d763c07d4bc5
+                1 [boolean] = true
+                2 [boolean] = true
+
+Function Constants: isCrouching
+        1 [string] = Humanoid
+        2 [string] = FindFirstChildOfClass
+        3 [string] = Animator
+        4 [string] = pairs
+        6 [string] = GetPlayingAnimationTracks
+        7 [string] = Animation
+        8 [string] = AnimationId
+        9 [string] = %d+
+        10 [string] = match
+        11 [string] = tonumber
+
+====================================================================================================
+
+Function Dump: setIndicatorEnabled
+
+Function Upvalues: setIndicatorEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = XEIndicator
+
+Function Constants: setIndicatorEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Enabled
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = indicator
+
+====================================================================================================
+
+Function Dump: updateIndicator
+
+Function Upvalues: updateIndicator
+        1 [string] = STAND
+        2 [table]:
+        2 [table] table: 0x88cbe11154c8c415
+                1 [table]:
+                CROUCH [table] table: 0x3db3e0db2407d0d5
+                        1 [string] = ducking
+                        2 [Color3] = 1, 0.392157, 0.392157
+                2 [table]:
+                STAND [table] table: 0x556fc0bc04264a75
+                        1 [string] = standing
+                        2 [Color3] = 0.588235, 1, 0.588235
+                3 [table]:
+                AIR [table] table: 0x26bdf34e68ccc325
+                        1 [string] = in air
+                        2 [Color3] = 1, 0.705882, 0.313726
+                4 [table]:
+                WALK [table] table: 0xcdddf0aa901f5485
+                        1 [string] = moving
+                        2 [Color3] = 0.509804, 0.784314, 1
+        3 [Instance] = State
+        4 [Instance] = TweenService
+        5 [TweenInfo] = Time:0.08 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Linear
+
+Function Constants: updateIndicator
+        1 [string] = STAND
+        2 [string] = name
+        3 [string] = Text
+        4 [string] = TextColor3
+        6 [string] = color
+        7 [string] = Create
+        8 [string] = Play
+
+====================================================================================================
+
+Function Dump: onCharacterAdded
+
+Function Upvalues: onCharacterAdded
+        1 [Instance] = XEIndicator
+        2 [Instance] = quit_xyz
+
+Function Constants: onCharacterAdded
+        1 [string] = PlayerGui
+        2 [string] = WaitForChild
+        3 [string] = Parent
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_killeffect_1769302446.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame4.toggle4.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:54:05
+-- Luau version 6, Types version 3
+-- Time taken: 0.012010 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Players_upvr = game:GetService("Players")
+local ReplicatedStorage_upvr = game:GetService("ReplicatedStorage")
+local Frame2_upvr = script.Parent.Frame2
+local scope_upvr = game.ReplicatedStorage.cfgg.scope
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var9_upvw = false
+local tbl_upvr_2 = {
+    dur = 0.75;
+    impactLife = 2.15;
+    impactFade = 2;
+}
+local tbl_upvr = {"FXTemplates", "ImpactFX"}
+local function _() -- Line 26, Named "getTemplate"
+    --[[ Upvalues[2]:
+        [1]: ReplicatedStorage_upvr (readonly)
+        [2]: tbl_upvr (readonly)
+    ]]
+    local var14
+    for i = 1, #tbl_upvr do
+        var14 = var14:FindFirstChild(tbl_upvr[i])
+        if not var14 then
+            return nil
+        end
+    end
+    return var14
+end
+local function setEmittersEnabled_upvr(arg1, arg2) -- Line 35, Named "setEmittersEnabled"
+    for _, v in ipairs(arg1:GetDescendants()) do
+        if v:IsA("ParticleEmitter") then
+            v.Enabled = arg2
+        end
+    end
+end
+local Debris_upvr = game:GetService("Debris")
+local function createImpactEffect_upvr(arg1) -- Line 43, Named "createImpactEffect"
+    --[[ Upvalues[5]:
+        [1]: ReplicatedStorage_upvr (readonly)
+        [2]: tbl_upvr (readonly)
+        [3]: setEmittersEnabled_upvr (readonly)
+        [4]: tbl_upvr_2 (readonly)
+        [5]: Debris_upvr (readonly)
+    ]]
+    -- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+    local _ = 1
+    -- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [15] 15. Error Block 4 start (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [15] 15. Error Block 4 end (CF ANALYSIS FAILED)
+    -- KONSTANTERROR: [6] 7. Error Block 14 start (CF ANALYSIS FAILED)
+    if not ReplicatedStorage_upvr then
+        -- KONSTANTWARNING: GOTO [17] #17
+    end
+    -- KONSTANTERROR: [6] 7. Error Block 14 end (CF ANALYSIS FAILED)
+end
+local function _(arg1) -- Line 69, Named "createKillEffect"
+    --[[ Upvalues[3]:
+        [1]: var9_upvw (read and write)
+        [2]: Players_upvr (readonly)
+        [3]: createImpactEffect_upvr (readonly)
+    ]]
+    if not var9_upvw then
+    else
+        local SOME_2 = Players_upvr:FindFirstChild(arg1)
+        if not SOME_2 then return end
+        local Character_2 = SOME_2.Character
+        if not Character_2 then return end
+        local Head = Character_2:FindFirstChild("Head")
+        if not Head then return end
+        createImpactEffect_upvr(Head.Position)
+    end
+end
+ReplicatedStorage_upvr:WaitForChild("inf").OnClientEvent:Connect(function(arg1) -- Line 84
+    --[[ Upvalues[3]:
+        [1]: var9_upvw (read and write)
+        [2]: Players_upvr (readonly)
+        [3]: createImpactEffect_upvr (readonly)
+    ]]
+    if not var9_upvw then
+    else
+        local SOME = Players_upvr:FindFirstChild(arg1)
+        if not SOME then return end
+        local Character = SOME.Character
+        if not Character then return end
+        local Head_2 = Character:FindFirstChild("Head")
+        if not Head_2 then return end
+        createImpactEffect_upvr(Head_2.Position)
+    end
+end)
+local function setAvailableEspEnabled_upvr(arg1, arg2) -- Line 88, Named "setAvailableEspEnabled"
+    --[[ Upvalues[7]:
+        [1]: var9_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: scope_upvr (readonly)
+    ]]
+    var9_upvw = arg1
+    local var29
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var29 = udim2_upvr_2
+        return var29
+    end
+    if not var9_upvw or not INLINED() then
+        var29 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var29;
+    }):Play()
+    if scope_upvr then
+        scope_upvr.Value = var9_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("killeffect", var9_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 103
+    --[[ Upvalues[2]:
+        [1]: setAvailableEspEnabled_upvr (readonly)
+        [2]: var9_upvw (read and write)
+    ]]
+    setAvailableEspEnabled_upvr(not var9_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.killeffect = var9_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 113
+        --[[ Upvalues[8]:
+            [1]: var9_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: scope_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "killeffect" then
+            var9_upvw = arg2
+            if not var9_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+            if scope_upvr then
+                scope_upvr.Value = var9_upvw
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame4.toggle4.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = killeffect
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = killeffect
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = FindFirstChild
+        2 [string] = Character
+        3 [string] = Head
+        4 [string] = Position
+
+====================================================================================================
+
+Function Dump: createKillEffect
+
+Function Upvalues: createKillEffect
+
+Function Constants: createKillEffect
+        1 [string] = FindFirstChild
+        2 [string] = Character
+        3 [string] = Head
+        4 [string] = Position
+
+====================================================================================================
+
+Function Dump: createImpactEffect
+
+Function Upvalues: createImpactEffect
+
+Function Constants: createImpactEffect
+        1 [string] = FindFirstChild
+        2 [string] = Clone
+        3 [string] = Anchored
+        4 [string] = CanCollide
+        5 [string] = CanQuery
+        6 [string] = CanTouch
+        7 [string] = Transparency
+        8 [string] = CFrame
+        9 [string] = new
+        11 [string] = workspace
+        13 [string] = Parent
+        14 [string] = impactLife
+        15 [string] = impactFade
+        16 [string] = task
+        17 [string] = spawn
+        19 [string] = dur
+        20 [string] = AddItem
+
+====================================================================================================
+
+Function Dump: setEmittersEnabled
+
+Function Upvalues: setEmittersEnabled
+
+Function Constants: setEmittersEnabled
+        1 [string] = ipairs
+        3 [string] = GetDescendants
+        4 [string] = ParticleEmitter
+        5 [string] = IsA
+        6 [string] = Enabled
+
+====================================================================================================
+
+Function Dump: getTemplate
+
+Function Upvalues: getTemplate
+
+Function Constants: getTemplate
+        1 [string] = FindFirstChild
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = scope
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = killeffect
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAvailableEspEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [Instance] = Players
+        3 [function] = createImpactEffect
+
+Function Constants: Unknown Name
+        1 [string] = FindFirstChild
+        2 [string] = Character
+        3 [string] = Head
+        4 [string] = Position
+
+====================================================================================================
+
+Function Dump: setEmittersEnabled
+
+Function Upvalues: setEmittersEnabled
+
+Function Constants: setEmittersEnabled
+        1 [string] = ipairs
+        3 [string] = GetDescendants
+        4 [string] = ParticleEmitter
+        5 [string] = IsA
+        6 [string] = Enabled
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = scope
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = killeffect
+
+====================================================================================================
+
+Function Dump: createImpactEffect
+
+Function Upvalues: createImpactEffect
+        1 [Instance] = ReplicatedStorage
+        2 [table]:
+        2 [table] table: 0x855406912d4584b5
+                1 [string] = FXTemplates
+                2 [string] = ImpactFX
+        3 [function] = setEmittersEnabled
+        4 [table]:
+        4 [table] table: 0xeae552a369518165
+                1 [number] = 2
+                2 [number] = 0.75
+                3 [number] = 2.15
+        5 [Instance] = Debris
+
+Function Constants: createImpactEffect
+        1 [string] = FindFirstChild
+        2 [string] = Clone
+        3 [string] = Anchored
+        4 [string] = CanCollide
+        5 [string] = CanQuery
+        6 [string] = CanTouch
+        7 [string] = Transparency
+        8 [string] = CFrame
+        9 [string] = new
+        11 [string] = workspace
+        12 [Instance] = Workspace
+        13 [string] = Parent
+        14 [string] = impactLife
+        15 [string] = impactFade
+        16 [string] = task
+        17 [string] = spawn
+        19 [string] = dur
+        20 [string] = AddItem
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_sivusuauwall_1769302510.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame6.toggle7.LocalScript
+-- Took 0.3s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:55:08
+-- Luau version 6, Types version 3
+-- Time taken: 0.012359 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Workspace_upvr = game:GetService("Workspace")
+local TextButton = script.Parent:WaitForChild("TextButton", 5)
+if not TextButton then
+    TextButton = script.Parent.TextButton
+end
+local Frame2_upvr = script.Parent:WaitForChild("Frame2", 5)
+if not Frame2_upvr then
+    Frame2_upvr = script.Parent.Frame2
+end
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var8_upvw = false
+local tbl_2_upvr = {
+    TracerColor = ColorSequence.new(Color3.fromRGB(255, 255, 255));
+    TracerWidth = 0.1;
+    MarkerSize = Vector3.new(0.5, 0.5, 0.5);
+    EntryColor = Color3.fromRGB(255, 50, 50);
+    ExitColor = Color3.fromRGB(50, 255, 50);
+    Lifetime = 3;
+}
+local Debris_upvr = game:GetService("Debris")
+local function createMarker_upvr(arg1, arg2) -- Line 32, Named "createMarker"
+    --[[ Upvalues[4]:
+        [1]: tbl_2_upvr (readonly)
+        [2]: Workspace_upvr (readonly)
+        [3]: TweenService_upvr (readonly)
+        [4]: Debris_upvr (readonly)
+    ]]
+    local Part_upvr = Instance.new("Part")
+    Part_upvr.Name = "wbmhgfhf"
+    Part_upvr.Anchored = true
+    Part_upvr.CanCollide = false
+    Part_upvr.CanQuery = false
+    Part_upvr.CastShadow = false
+    Part_upvr.Material = Enum.Material.Neon
+    Part_upvr.Color = arg2
+    Part_upvr.Size = tbl_2_upvr.MarkerSize
+    Part_upvr.CFrame = CFrame.new(arg1)
+    Part_upvr.Parent = Workspace_upvr
+    Part_upvr.Transparency = 0.5
+    TweenService_upvr:Create(Part_upvr, TweenInfo.new(0.3), {
+        Transparency = 0;
+    }):Play()
+    Debris_upvr:AddItem(Part_upvr, tbl_2_upvr.Lifetime)
+    task.delay(tbl_2_upvr.Lifetime - 0.5, function() -- Line 54
+        --[[ Upvalues[2]:
+            [1]: Part_upvr (readonly)
+            [2]: TweenService_upvr (copied, readonly)
+        ]]
+        if Part_upvr.Parent then
+            TweenService_upvr:Create(Part_upvr, TweenInfo.new(0.5), {
+                Transparency = 1;
+                Size = Vector3.new(0, 0, 0);
+            }):Play()
+        end
+    end)
+end
+local function createTracer_upvr(arg1, arg2) -- Line 62, Named "createTracer"
+    --[[ Upvalues[2]:
+        [1]: Workspace_upvr (readonly)
+        [2]: tbl_2_upvr (readonly)
+    ]]
+    local Attachment_upvr_2 = Instance.new("Attachment", Workspace_upvr.Terrain)
+    local Attachment_upvr = Instance.new("Attachment", Workspace_upvr.Terrain)
+    Attachment_upvr_2.Position = arg1
+    Attachment_upvr.Position = arg2
+    local Beam_upvr = Instance.new("Beam")
+    Beam_upvr.Attachment0 = Attachment_upvr_2
+    Beam_upvr.Attachment1 = Attachment_upvr
+    Beam_upvr.Color = tbl_2_upvr.TracerColor
+    Beam_upvr.Width0 = tbl_2_upvr.TracerWidth
+    Beam_upvr.Width1 = tbl_2_upvr.TracerWidth
+    Beam_upvr.FaceCamera = true
+    Beam_upvr.LightEmission = 1
+    Beam_upvr.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(1, 1)})
+    Beam_upvr.Parent = Workspace_upvr.Terrain
+    task.delay(0.1, function() -- Line 83
+        --[[ Upvalues[3]:
+            [1]: Beam_upvr (readonly)
+            [2]: Attachment_upvr_2 (readonly)
+            [3]: Attachment_upvr (readonly)
+        ]]
+        for i = 0, 1, 0.1 do
+            Beam_upvr.Transparency = NumberSequence.new(i)
+            task.wait(0.03)
+        end
+        Attachment_upvr_2:Destroy()
+        Attachment_upvr:Destroy()
+    end)
+end
+local function processWallbang_upvr(arg1, arg2, arg3) -- Line 93, Named "processWallbang"
+    --[[ Upvalues[3]:
+        [1]: Workspace_upvr (readonly)
+        [2]: createMarker_upvr (readonly)
+        [3]: tbl_2_upvr (readonly)
+    ]]
+    local var30 = arg2 - arg1
+    local Magnitude_2 = var30.Magnitude
+    local Unit_2 = var30.Unit
+    local RaycastParams_new_result1 = RaycastParams.new()
+    RaycastParams_new_result1.FilterType = Enum.RaycastFilterType.Exclude
+    local tbl = {}
+    tbl[1] = arg3
+    local Character = game:GetService("Players").LocalPlayer.Character
+    if Character then
+        table.insert(tbl, Character)
+    end
+    RaycastParams_new_result1.FilterDescendantsInstances = tbl
+    local any_Raycast_result1_3 = Workspace_upvr:Raycast(arg1, Unit_2 * Magnitude_2, RaycastParams_new_result1)
+    if any_Raycast_result1_3 then
+        local any_Raycast_result1_2 = Workspace_upvr:Raycast(arg2, -Unit_2 * Magnitude_2, RaycastParams_new_result1)
+        if any_Raycast_result1_2 then
+            local Magnitude_4 = (any_Raycast_result1_3.Position - any_Raycast_result1_2.Position).Magnitude
+            if 0.5 < Magnitude_4 and Magnitude_4 < Magnitude_2 then
+                createMarker_upvr(any_Raycast_result1_3.Position, tbl_2_upvr.EntryColor)
+                createMarker_upvr(any_Raycast_result1_2.Position, tbl_2_upvr.ExitColor)
+            end
+        end
+    end
+end
+Workspace_upvr.ChildAdded:Connect(function(arg1) -- Line 134
+    --[[ Upvalues[3]:
+        [1]: var8_upvw (read and write)
+        [2]: createTracer_upvr (readonly)
+        [3]: processWallbang_upvr (readonly)
+    ]]
+    if not var8_upvw then
+    elseif arg1.Name == "bulletxdd" then
+        task.spawn(function() -- Line 138
+            --[[ Upvalues[3]:
+                [1]: arg1 (readonly)
+                [2]: createTracer_upvr (copied, readonly)
+                [3]: processWallbang_upvr (copied, readonly)
+            ]]
+            task.wait()
+            if not arg1 or not arg1.Parent then
+            else
+                arg1.Transparency = 1
+                local CFrame = arg1.CFrame
+                local Z = arg1.Size.Z
+                local LookVector = CFrame.LookVector
+                local var44 = CFrame.Position - (LookVector) * (Z / 2)
+                local var45 = CFrame.Position + (LookVector) * (Z / 2)
+                createTracer_upvr(var44, var45)
+                processWallbang_upvr(var44, var45, arg1)
+            end
+        end)
+    end
+end)
+local function setEnabled_upvr(arg1, arg2) -- Line 163, Named "setEnabled"
+    --[[ Upvalues[6]:
+        [1]: var8_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    var8_upvw = arg1
+    local var46
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var46 = udim2_upvr
+        return var46
+    end
+    if not var8_upvw or not INLINED() then
+        var46 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var46;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("sivusuauwall", var8_upvw)
+    end
+end
+TextButton.MouseButton1Click:Connect(function() -- Line 170
+    --[[ Upvalues[2]:
+        [1]: setEnabled_upvr (readonly)
+        [2]: var8_upvw (read and write)
+    ]]
+    setEnabled_upvr(not var8_upvw, true)
+end)
+if _G.ConfigSystem then
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 174
+        --[[ Upvalues[7]:
+            [1]: var8_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "sivusuauwall" then
+            var8_upvw = arg2
+            if not var8_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame6.toggle7.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = sivusuauwall
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setEnabled
+
+Function Upvalues: setEnabled
+
+Function Constants: setEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = sivusuauwall
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Name
+        2 [string] = bulletxdd
+        3 [string] = task
+        4 [string] = spawn
+
+====================================================================================================
+
+Function Dump: processWallbang
+
+Function Upvalues: processWallbang
+
+Function Constants: processWallbang
+        1 [string] = Magnitude
+        2 [string] = Unit
+        3 [string] = RaycastParams
+        4 [string] = new
+        6 [string] = Enum
+        7 [string] = RaycastFilterType
+        8 [string] = Exclude
+        10 [string] = FilterType
+        11 [string] = game
+        13 [string] = Players
+        14 [string] = GetService
+        15 [string] = LocalPlayer
+        16 [string] = Character
+        17 [string] = table
+        18 [string] = insert
+        20 [string] = FilterDescendantsInstances
+        21 [string] = Raycast
+        22 [string] = Position
+        23 [number] = 0.5
+        24 [string] = EntryColor
+        25 [string] = ExitColor
+
+====================================================================================================
+
+Function Dump: createTracer
+
+Function Upvalues: createTracer
+
+Function Constants: createTracer
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Attachment
+        5 [string] = Terrain
+        6 [string] = Position
+        7 [string] = Beam
+        8 [string] = Attachment0
+        9 [string] = Attachment1
+        10 [string] = TracerColor
+        11 [string] = Color
+        12 [string] = TracerWidth
+        13 [string] = Width0
+        14 [string] = Width1
+        15 [string] = FaceCamera
+        16 [string] = LightEmission
+        17 [string] = NumberSequence
+        19 [string] = NumberSequenceKeypoint
+        21 [string] = Transparency
+        22 [string] = Parent
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.1
+
+====================================================================================================
+
+Function Dump: createMarker
+
+Function Upvalues: createMarker
+
+Function Constants: createMarker
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Part
+        5 [string] = wbmhgfhf
+        6 [string] = Name
+        7 [string] = Anchored
+        8 [string] = CanCollide
+        9 [string] = CanQuery
+        10 [string] = CastShadow
+        11 [string] = Enum
+        12 [string] = Material
+        13 [string] = Neon
+        15 [string] = Color
+        16 [string] = MarkerSize
+        17 [string] = Size
+        18 [string] = CFrame
+        20 [string] = Parent
+        21 [number] = 0.5
+        22 [string] = Transparency
+        23 [string] = TweenInfo
+        25 [number] = 0.3
+        27 [string] = Create
+        28 [string] = Play
+        29 [string] = Lifetime
+        30 [string] = AddItem
+        31 [string] = task
+        32 [string] = delay
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [function] = createTracer
+        3 [function] = processWallbang
+
+Function Constants: Unknown Name
+        1 [string] = Name
+        2 [string] = bulletxdd
+        3 [string] = task
+        4 [string] = spawn
+
+====================================================================================================
+
+Function Dump: setEnabled
+
+Function Upvalues: setEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = sivusuauwall
+
+====================================================================================================
+
+Function Dump: processWallbang
+
+Function Upvalues: processWallbang
+        1 [Instance] = Workspace
+        2 [function] = createMarker
+        3 [table]:
+        3 [table] table: 0xbcbea866f4825d85
+                1 [Color3] = 0.196078, 1, 0.196078
+                2 [number] = 3
+                3 [number] = 0.1
+                4 [Color3] = 1, 0.196078, 0.196078
+                5 [Vector3] = 0.5, 0.5, 0.5
+                6 [ColorSequence] = 0 1 1 1 0 1 1 1 1 0 
+
+Function Constants: processWallbang
+        1 [string] = Magnitude
+        2 [string] = Unit
+        3 [string] = RaycastParams
+        4 [string] = new
+        6 [string] = Enum
+        7 [string] = RaycastFilterType
+        8 [string] = Exclude
+        9 [EnumItem] = Enum.RaycastFilterType.Exclude
+        10 [string] = FilterType
+        11 [string] = game
+        12 [Instance] = Ugc
+        13 [string] = Players
+        14 [string] = GetService
+        15 [string] = LocalPlayer
+        16 [string] = Character
+        17 [string] = table
+        18 [string] = insert
+        20 [string] = FilterDescendantsInstances
+        21 [string] = Raycast
+        22 [string] = Position
+        23 [number] = 0.5
+        24 [string] = EntryColor
+        25 [string] = ExitColor
+
+====================================================================================================
+
+Function Dump: createMarker
+
+Function Upvalues: createMarker
+        1 [table] (Recursive table detected)
+        2 [Instance] = Workspace
+        3 [Instance] = TweenService
+        4 [Instance] = Debris
+
+Function Constants: createMarker
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Part
+        5 [string] = wbmhgfhf
+        6 [string] = Name
+        7 [string] = Anchored
+        8 [string] = CanCollide
+        9 [string] = CanQuery
+        10 [string] = CastShadow
+        11 [string] = Enum
+        12 [string] = Material
+        13 [string] = Neon
+        14 [EnumItem] = Enum.Material.Neon
+        15 [string] = Color
+        16 [string] = MarkerSize
+        17 [string] = Size
+        18 [string] = CFrame
+        20 [string] = Parent
+        21 [number] = 0.5
+        22 [string] = Transparency
+        23 [string] = TweenInfo
+        25 [number] = 0.3
+        27 [string] = Create
+        28 [string] = Play
+        29 [string] = Lifetime
+        30 [string] = AddItem
+        31 [string] = task
+        32 [string] = delay
+
+====================================================================================================
+
+Function Dump: createTracer
+
+Function Upvalues: createTracer
+        1 [Instance] = Workspace
+        2 [table] (Recursive table detected)
+
+Function Constants: createTracer
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Attachment
+        5 [string] = Terrain
+        6 [string] = Position
+        7 [string] = Beam
+        8 [string] = Attachment0
+        9 [string] = Attachment1
+        10 [string] = TracerColor
+        11 [string] = Color
+        12 [string] = TracerWidth
+        13 [string] = Width0
+        14 [string] = Width1
+        15 [string] = FaceCamera
+        16 [string] = LightEmission
+        17 [string] = NumberSequence
+        19 [string] = NumberSequenceKeypoint
+        21 [string] = Transparency
+        22 [string] = Parent
+        23 [string] = task
+        24 [string] = delay
+        26 [number] = 0.1
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_skeletonesppp_1769302374.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame2.toggle15.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:52:51
+-- Luau version 6, Types version 3
+-- Time taken: 0.003779 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local tracers_upvr = script.Parent.Parent:FindFirstChild("tracers")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local function setAvailableEspEnabled_upvr(arg1, arg2) -- Line 16, Named "setAvailableEspEnabled"
+    --[[ Upvalues[7]:
+        [1]: var7_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: tracers_upvr (readonly)
+    ]]
+    var7_upvw = arg1
+    local var8
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var8 = udim2_upvr
+        return var8
+    end
+    if not var7_upvw or not INLINED() then
+        var8 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var8;
+    }):Play()
+    if tracers_upvr then
+        tracers_upvr.Value = var7_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("skeletonesppp", var7_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 35
+    --[[ Upvalues[2]:
+        [1]: setAvailableEspEnabled_upvr (readonly)
+        [2]: var7_upvw (read and write)
+    ]]
+    setAvailableEspEnabled_upvr(not var7_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.skeletonesppp = var7_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 48
+        --[[ Upvalues[8]:
+            [1]: var7_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: tracers_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "skeletonesppp" then
+            var7_upvw = arg2
+            if not var7_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+            if tracers_upvr then
+                tracers_upvr.Value = var7_upvw
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame2.toggle15.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = skeletonesppp
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = skeletonesppp
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = tracers
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = skeletonesppp
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAvailableEspEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = tracers
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = skeletonesppp
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_tracerssssesp_1769302365.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame2.toggle14.LocalScript
+-- Took 0.29s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:52:41
+-- Luau version 6, Types version 3
+-- Time taken: 0.003777 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Frame2_upvr = script.Parent.Frame2
+local tracers_upvr = script.Parent.Parent:FindFirstChild("tracers")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var7_upvw = false
+local function setAvailableEspEnabled_upvr(arg1, arg2) -- Line 16, Named "setAvailableEspEnabled"
+    --[[ Upvalues[7]:
+        [1]: var7_upvw (read and write)
+        [2]: udim2_upvr (readonly)
+        [3]: udim2_upvr_2 (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+        [7]: tracers_upvr (readonly)
+    ]]
+    var7_upvw = arg1
+    local var8
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var8 = udim2_upvr
+        return var8
+    end
+    if not var7_upvw or not INLINED() then
+        var8 = udim2_upvr_2
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var8;
+    }):Play()
+    if tracers_upvr then
+        tracers_upvr.Value = var7_upvw
+    end
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("tracerssssesp", var7_upvw)
+    end
+end
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 35
+    --[[ Upvalues[2]:
+        [1]: setAvailableEspEnabled_upvr (readonly)
+        [2]: var7_upvw (read and write)
+    ]]
+    setAvailableEspEnabled_upvr(not var7_upvw, true)
+end)
+task.wait(1)
+if _G.ConfigSystem then
+    _G.ConfigSystem.settings.tracerssssesp = var7_upvw
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 48
+        --[[ Upvalues[8]:
+            [1]: var7_upvw (read and write)
+            [2]: udim2_upvr (readonly)
+            [3]: udim2_upvr_2 (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: tracers_upvr (readonly)
+            [8]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "tracerssssesp" then
+            var7_upvw = arg2
+            if not var7_upvw or not udim2_upvr then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr_2;
+            }):Play()
+            if tracers_upvr then
+                tracers_upvr.Value = var7_upvw
+            end
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame2.toggle14.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = tracerssssesp
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = tracerssssesp
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = tracers
+        8 [function] = Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = tracerssssesp
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+        6 [string] = Value
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setAvailableEspEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setAvailableEspEnabled
+
+Function Upvalues: setAvailableEspEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+        7 [Instance] = tracers
+
+Function Constants: setAvailableEspEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = Value
+        6 [string] = _G
+        8 [string] = ConfigSystem
+        9 [string] = onSettingChanged
+        10 [string] = tracerssssesp
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_trafccer_1769302517.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame6.toggle6.LocalScript
+-- Took 0.31s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:55:15
+-- Luau version 6, Types version 3
+-- Time taken: 0.019338 seconds
+
+local TweenService_upvr = game:GetService("TweenService")
+local Workspace_upvr = game:GetService("Workspace")
+local Debris_upvr = game:GetService("Debris")
+local TextButton = script.Parent:WaitForChild("TextButton", 5)
+if not TextButton then
+    TextButton = script.Parent.TextButton
+end
+local Frame2_upvr = script.Parent:WaitForChild("Frame2", 5)
+if not Frame2_upvr then
+    Frame2_upvr = script.Parent.Frame2
+end
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+local udim2_upvr_2 = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local var9_upvw = false
+local tbl_upvr = {
+    dur = 0.75;
+    tex = "rbxassetid://93746968407218";
+    alpha = 0.03;
+    wGlow = 0.35;
+    wCore = 0.1;
+    wStatic = 0.45;
+    col = ColorSequence.new(Color3.fromRGB(255, 255, 255));
+}
+local function _(arg1, arg2) -- Line 25, Named "anchor"
+    local Part = Instance.new("Part")
+    Part.Anchored = true
+    Part.Transparency = 1
+    Part.CanCollide = false
+    Part.CanQuery = false
+    Part.CanTouch = false
+    Part.Size = Vector3.new(0, 0, 0)
+    Part.Position = arg2
+    Part.Parent = arg1
+    return Part
+end
+local function beam_upvr(arg1, arg2, arg3, arg4, arg5, arg6, arg7) -- Line 38, Named "beam"
+    --[[ Upvalues[1]:
+        [1]: tbl_upvr (readonly)
+    ]]
+    local Beam = Instance.new("Beam")
+    Beam.Attachment0 = arg1
+    Beam.Attachment1 = arg2
+    Beam.Texture = tbl_upvr.tex
+    Beam.TextureMode = Enum.TextureMode.Wrap
+    Beam.TextureLength = arg6
+    Beam.TextureSpeed = arg5
+    Beam.LightEmission = 1
+    Beam.LightInfluence = 0
+    Beam.FaceCamera = true
+    Beam.Color = tbl_upvr.col
+    Beam.Transparency = NumberSequence.new(arg4)
+    Beam.Width0 = arg3
+    Beam.Width1 = arg3
+    Beam.CurveSize0 = 0
+    Beam.CurveSize1 = 0
+    Beam.ZOffset = arg7 or 0
+    return Beam
+end
+local function spawnImpact_upvr(arg1) -- Line 59, Named "spawnImpact"
+    --[[ Upvalues[2]:
+        [1]: Workspace_upvr (readonly)
+        [2]: Debris_upvr (readonly)
+    ]]
+    local Part_3 = Instance.new("Part")
+    Part_3.Anchored = true
+    Part_3.Transparency = 1
+    Part_3.CanCollide = false
+    Part_3.Position = arg1
+    Part_3.Parent = Workspace_upvr
+    Debris_upvr:AddItem(Part_3, 2)
+    for _, v in pairs({{
+        tex = "rbxassetid://3270017";
+        size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 2.5)});
+        drag = 0;
+    }, {
+        tex = "rbxassetid://242203166";
+        size = NumberSequence.new(1, 0);
+        drag = 0;
+    }, {
+        tex = "rbxassetid://243661300";
+        size = NumberSequence.new(0.2, 0);
+        drag = 8;
+        speed = NumberRange.new(10, 25);
+    }}) do
+        local ParticleEmitter = Instance.new("ParticleEmitter", Part_3)
+        ParticleEmitter.Texture = v.tex
+        ParticleEmitter.Size = v.size
+        ParticleEmitter.Drag = v.drag
+        ParticleEmitter.Lifetime = NumberRange.new(0.2, 0.5)
+        ParticleEmitter.Rate = 0
+        local speed = v.speed
+        if not speed then
+            speed = NumberRange.new(0)
+        end
+        ParticleEmitter.Speed = speed
+        ParticleEmitter.LightEmission = 1
+        ParticleEmitter:Emit(5)
+    end
+end
+local function spawnTracer_upvr(arg1, arg2) -- Line 85, Named "spawnTracer"
+    --[[ Upvalues[6]:
+        [1]: Workspace_upvr (readonly)
+        [2]: beam_upvr (readonly)
+        [3]: tbl_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: spawnImpact_upvr (readonly)
+        [6]: Debris_upvr (readonly)
+    ]]
+    local Folder = Instance.new("Folder")
+    Folder.Name = "Lightning_FX"
+    Folder.Parent = Workspace_upvr
+    local Part_2 = Instance.new("Part")
+    Part_2.Anchored = true
+    Part_2.Transparency = 1
+    Part_2.CanCollide = false
+    Part_2.CanQuery = false
+    Part_2.CanTouch = false
+    Part_2.Size = Vector3.new(0, 0, 0)
+    Part_2.Position = arg1
+    Part_2.Parent = Folder
+    local Part_4 = Instance.new("Part")
+    Part_4.Anchored = true
+    Part_4.Transparency = 1
+    Part_4.CanCollide = false
+    Part_4.CanQuery = false
+    Part_4.CanTouch = false
+    Part_4.Size = Vector3.new(0, 0, 0)
+    Part_4.Position = arg2
+    Part_4.Parent = Folder
+    local Attachment = Instance.new("Attachment")
+    Attachment.Parent = Part_2
+    local Attachment_2 = Instance.new("Attachment")
+    Attachment_2.Parent = Part_4
+    local beam_result1 = beam_upvr(Attachment, Attachment_2, tbl_upvr.wGlow, tbl_upvr.alpha, 14, 1.35, 0)
+    beam_result1.Parent = Folder
+    local beam_result1_2 = beam_upvr(Attachment, Attachment_2, tbl_upvr.wCore, 0, 0, 1.35, 0.12)
+    beam_result1_2.Parent = Folder
+    local beam_result1_3 = beam_upvr(Attachment, Attachment_2, tbl_upvr.wStatic, 0.35, 22, 0.9, -0.12)
+    beam_result1_3.Parent = Folder
+    local TweenInfo_new_result1 = TweenInfo.new(tbl_upvr.dur, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    TweenService_upvr:Create(beam_result1, TweenInfo_new_result1, {
+        Width0 = 0;
+        Width1 = 0;
+    }):Play()
+    TweenService_upvr:Create(beam_result1_2, TweenInfo_new_result1, {
+        Width0 = 0;
+        Width1 = 0;
+    }):Play()
+    TweenService_upvr:Create(beam_result1_3, TweenInfo_new_result1, {
+        Width0 = 0;
+        Width1 = 0;
+    }):Play()
+    spawnImpact_upvr(arg2)
+    Debris_upvr:AddItem(Folder, tbl_upvr.dur + 1.2)
+end
+Workspace_upvr.ChildAdded:Connect(function(arg1) -- Line 117
+    --[[ Upvalues[2]:
+        [1]: var9_upvw (read and write)
+        [2]: spawnTracer_upvr (readonly)
+    ]]
+    if not var9_upvw then
+    else
+        if arg1.Name ~= "bulletxdd_fx" or not arg1:IsA("Folder") then return end
+        task.spawn(function() -- Line 121
+            --[[ Upvalues[2]:
+                [1]: arg1 (readonly)
+                [2]: spawnTracer_upvr (copied, readonly)
+            ]]
+            task.wait()
+            if not arg1 or not arg1.Parent then
+            else
+                local Mover = arg1:FindFirstChild("Mover")
+                local Trace = arg1:FindFirstChild("Trace", true)
+                if not Mover or not Trace then return end
+                Trace.Enabled = false
+                local Attachment0 = Trace.Attachment0
+                if not Attachment0 or not Trace.Attachment1 then return end
+                local WorldPosition = Attachment0.WorldPosition
+                spawnTracer_upvr(WorldPosition, Mover.CFrame.LookVector * 1000 + WorldPosition)
+            end
+        end)
+    end
+end)
+local function setEnabled_upvr(arg1, arg2) -- Line 142, Named "setEnabled"
+    --[[ Upvalues[6]:
+        [1]: var9_upvw (read and write)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: Frame2_upvr (readonly)
+        [6]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    var9_upvw = arg1
+    local var46
+    local function INLINED() -- Internal function, doesn't exist in bytecode
+        var46 = udim2_upvr_2
+        return var46
+    end
+    if not var9_upvw or not INLINED() then
+        var46 = udim2_upvr
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = var46;
+    }):Play()
+    if arg2 and _G.ConfigSystem then
+        _G.ConfigSystem.onSettingChanged("trafccer", var9_upvw)
+    end
+end
+TextButton.MouseButton1Click:Connect(function() -- Line 149
+    --[[ Upvalues[2]:
+        [1]: setEnabled_upvr (readonly)
+        [2]: var9_upvw (read and write)
+    ]]
+    setEnabled_upvr(not var9_upvw, true)
+end)
+if _G.ConfigSystem then
+    local onConfigLoad_upvr = _G.ConfigSystem.onConfigLoad
+    _G.ConfigSystem.onConfigLoad = function(arg1, arg2) -- Line 153
+        --[[ Upvalues[7]:
+            [1]: var9_upvw (read and write)
+            [2]: udim2_upvr_2 (readonly)
+            [3]: udim2_upvr (readonly)
+            [4]: TweenService_upvr (readonly)
+            [5]: Frame2_upvr (readonly)
+            [6]: TweenInfo_new_result1_upvr (readonly)
+            [7]: onConfigLoad_upvr (readonly)
+        ]]
+        if arg1 == "trafccer" then
+            var9_upvw = arg2
+            if not var9_upvw or not udim2_upvr_2 then
+            end
+            TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+                Position = udim2_upvr;
+            }):Play()
+        end
+        if onConfigLoad_upvr then
+            onConfigLoad_upvr(arg1, arg2)
+        end
+    end
+end
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame6.toggle6.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = trafccer
+        2 [string] = Position
+        4 [string] = Create
+        5 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: setEnabled
+
+Function Upvalues: setEnabled
+
+Function Constants: setEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = trafccer
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Name
+        2 [string] = bulletxdd_fx
+        3 [string] = Folder
+        4 [string] = IsA
+        5 [string] = task
+        6 [string] = spawn
+
+====================================================================================================
+
+Function Dump: spawnTracer
+
+Function Upvalues: spawnTracer
+
+Function Constants: spawnTracer
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Folder
+        5 [string] = Lightning_FX
+        6 [string] = Name
+        7 [string] = Parent
+        8 [string] = Part
+        9 [string] = Anchored
+        10 [string] = Transparency
+        11 [string] = CanCollide
+        12 [string] = CanQuery
+        13 [string] = CanTouch
+        14 [Vector3] = 0, 0, 0
+        15 [string] = Size
+        16 [string] = Position
+        17 [string] = Attachment
+        18 [string] = wGlow
+        19 [string] = alpha
+        20 [number] = 1.35
+        21 [string] = wCore
+        22 [number] = 0.12
+        23 [string] = wStatic
+        24 [number] = 0.35
+        25 [number] = 0.9
+        26 [number] = -0.12
+        27 [string] = TweenInfo
+        29 [string] = dur
+        30 [string] = Enum
+        31 [string] = EasingStyle
+        32 [string] = Quad
+        34 [string] = EasingDirection
+        35 [string] = Out
+        37 [string] = Width0
+        38 [string] = Width1
+        40 [string] = Create
+        41 [string] = Play
+        42 [number] = 1.2
+        43 [string] = AddItem
+
+====================================================================================================
+
+Function Dump: spawnImpact
+
+Function Upvalues: spawnImpact
+
+Function Constants: spawnImpact
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Part
+        5 [string] = Anchored
+        6 [string] = Transparency
+        7 [string] = CanCollide
+        8 [string] = Position
+        9 [string] = Parent
+        10 [string] = AddItem
+        11 [string] = tex
+        12 [string] = size
+        13 [string] = drag
+        15 [string] = rbxassetid://3270017
+        16 [string] = NumberSequence
+        18 [string] = NumberSequenceKeypoint
+        20 [number] = 0.5
+        21 [number] = 2.5
+        22 [string] = rbxassetid://242203166
+        23 [string] = speed
+        25 [string] = rbxassetid://243661300
+        26 [number] = 0.2
+        27 [string] = NumberRange
+        29 [string] = pairs
+        31 [string] = ParticleEmitter
+        32 [string] = Texture
+        33 [string] = Size
+        34 [string] = Drag
+        35 [string] = Lifetime
+        36 [string] = Rate
+        37 [string] = Speed
+        38 [string] = LightEmission
+        39 [string] = Emit
+
+====================================================================================================
+
+Function Dump: beam
+
+Function Upvalues: beam
+
+Function Constants: beam
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Beam
+        5 [string] = Attachment0
+        6 [string] = Attachment1
+        7 [string] = tex
+        8 [string] = Texture
+        9 [string] = Enum
+        10 [string] = TextureMode
+        11 [string] = Wrap
+        13 [string] = TextureLength
+        14 [string] = TextureSpeed
+        15 [string] = LightEmission
+        16 [string] = LightInfluence
+        17 [string] = FaceCamera
+        18 [string] = col
+        19 [string] = Color
+        20 [string] = NumberSequence
+        22 [string] = Transparency
+        23 [string] = Width0
+        24 [string] = Width1
+        25 [string] = CurveSize0
+        26 [string] = CurveSize1
+        27 [number] = 0
+        28 [string] = ZOffset
+
+====================================================================================================
+
+Function Dump: anchor
+
+Function Upvalues: anchor
+
+Function Constants: anchor
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Part
+        5 [string] = Anchored
+        6 [string] = Transparency
+        7 [string] = CanCollide
+        8 [string] = CanQuery
+        9 [string] = CanTouch
+        10 [Vector3] = 0, 0, 0
+        11 [string] = Size
+        12 [string] = Position
+        13 [string] = Parent
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [function] = setEnabled
+        2 [boolean] = false
+
+Function Constants: Unknown Name
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [boolean] = false
+        2 [function] = spawnTracer
+
+Function Constants: Unknown Name
+        1 [string] = Name
+        2 [string] = bulletxdd_fx
+        3 [string] = Folder
+        4 [string] = IsA
+        5 [string] = task
+        6 [string] = spawn
+
+====================================================================================================
+
+Function Dump: spawnImpact
+
+Function Upvalues: spawnImpact
+        1 [Instance] = Workspace
+        2 [Instance] = Debris
+
+Function Constants: spawnImpact
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Part
+        5 [string] = Anchored
+        6 [string] = Transparency
+        7 [string] = CanCollide
+        8 [string] = Position
+        9 [string] = Parent
+        10 [string] = AddItem
+        11 [string] = tex
+        12 [string] = size
+        13 [string] = drag
+        15 [string] = rbxassetid://3270017
+        16 [string] = NumberSequence
+        18 [string] = NumberSequenceKeypoint
+        20 [number] = 0.5
+        21 [number] = 2.5
+        22 [string] = rbxassetid://242203166
+        23 [string] = speed
+        25 [string] = rbxassetid://243661300
+        26 [number] = 0.2
+        27 [string] = NumberRange
+        29 [string] = pairs
+        31 [string] = ParticleEmitter
+        32 [string] = Texture
+        33 [string] = Size
+        34 [string] = Drag
+        35 [string] = Lifetime
+        36 [string] = Rate
+        37 [string] = Speed
+        38 [string] = LightEmission
+        39 [string] = Emit
+
+====================================================================================================
+
+Function Dump: beam
+
+Function Upvalues: beam
+        1 [table]:
+        1 [table] table: 0x82f9aaea471de055
+                1 [number] = 0.35
+                2 [number] = 0.75
+                3 [ColorSequence] = 0 1 1 1 0 1 1 1 1 0 
+                4 [string] = rbxassetid://93746968407218
+                5 [number] = 0.45
+                6 [number] = 0.03
+                7 [number] = 0.1
+
+Function Constants: beam
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Beam
+        5 [string] = Attachment0
+        6 [string] = Attachment1
+        7 [string] = tex
+        8 [string] = Texture
+        9 [string] = Enum
+        10 [string] = TextureMode
+        11 [string] = Wrap
+        12 [EnumItem] = Enum.TextureMode.Wrap
+        13 [string] = TextureLength
+        14 [string] = TextureSpeed
+        15 [string] = LightEmission
+        16 [string] = LightInfluence
+        17 [string] = FaceCamera
+        18 [string] = col
+        19 [string] = Color
+        20 [string] = NumberSequence
+        22 [string] = Transparency
+        23 [string] = Width0
+        24 [string] = Width1
+        25 [string] = CurveSize0
+        26 [string] = CurveSize1
+        27 [number] = 0
+        28 [string] = ZOffset
+
+====================================================================================================
+
+Function Dump: setEnabled
+
+Function Upvalues: setEnabled
+        1 [boolean] = false
+        2 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [Instance] = Frame2
+        6 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: setEnabled
+        1 [string] = Position
+        3 [string] = Create
+        4 [string] = Play
+        5 [string] = _G
+        7 [string] = ConfigSystem
+        8 [string] = onSettingChanged
+        9 [string] = trafccer
+
+====================================================================================================
+
+Function Dump: spawnTracer
+
+Function Upvalues: spawnTracer
+        1 [Instance] = Workspace
+        2 [function] = beam
+        3 [table] (Recursive table detected)
+        4 [Instance] = TweenService
+        5 [function] = spawnImpact
+        6 [Instance] = Debris
+
+Function Constants: spawnTracer
+        1 [string] = Instance
+        2 [string] = new
+        4 [string] = Folder
+        5 [string] = Lightning_FX
+        6 [string] = Name
+        7 [string] = Parent
+        8 [string] = Part
+        9 [string] = Anchored
+        10 [string] = Transparency
+        11 [string] = CanCollide
+        12 [string] = CanQuery
+        13 [string] = CanTouch
+        14 [Vector3] = 0, 0, 0
+        15 [string] = Size
+        16 [string] = Position
+        17 [string] = Attachment
+        18 [string] = wGlow
+        19 [string] = alpha
+        20 [number] = 1.35
+        21 [string] = wCore
+        22 [number] = 0.12
+        23 [string] = wStatic
+        24 [number] = 0.35
+        25 [number] = 0.9
+        26 [number] = -0.12
+        27 [string] = TweenInfo
+        29 [string] = dur
+        30 [string] = Enum
+        31 [string] = EasingStyle
+        32 [string] = Quad
+        33 [EnumItem] = Enum.EasingStyle.Quad
+        34 [string] = EasingDirection
+        35 [string] = Out
+        36 [EnumItem] = Enum.EasingDirection.Out
+        37 [string] = Width0
+        38 [string] = Width1
+        40 [string] = Create
+        41 [string] = Play
+        42 [number] = 1.2
+        43 [string] = AddItem
+
+====================================================================================================
+]]
+
+
+----// XEClient/visual_unknown_1769302305.lua
+-- Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame.toggle4.LocalScript
+-- Took 0.28s to decompile.
+-- Executor: Delta (1.1.704.1060)
+
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/brNTY8nX8t)
+-- Decompiled on 2026-01-25 00:51:43
+-- Luau version 6, Types version 3
+-- Time taken: 0.002494 seconds
+
+local Frame2_upvr = script.Parent.Frame2
+local udim2_upvr_2 = UDim2.new(0, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local udim2_upvr = UDim2.new(0.609, 0, Frame2_upvr.Position.Y.Scale, Frame2_upvr.Position.Y.Offset)
+local TweenService_upvr = game:GetService("TweenService")
+local TweenInfo_new_result1_upvr = TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+script.Parent.TextButton.MouseButton1Click:Connect(function() -- Line 9
+    --[[ Upvalues[5]:
+        [1]: Frame2_upvr (readonly)
+        [2]: udim2_upvr_2 (readonly)
+        [3]: udim2_upvr (readonly)
+        [4]: TweenService_upvr (readonly)
+        [5]: TweenInfo_new_result1_upvr (readonly)
+    ]]
+    -- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable assignments
+    local var7
+    if 0.1 >= Frame2_upvr.Position.X.Scale then
+        var7 = false
+    else
+        var7 = true
+    end
+    if not var7 or not udim2_upvr_2 then
+    end
+    TweenService_upvr:Create(Frame2_upvr, TweenInfo_new_result1_upvr, {
+        Position = udim2_upvr;
+    }):Play()
+end)
+
+-- // Function Dumper made by King.Kevin
+-- // Script Path: game:GetService("Players").quit_xyz.PlayerGui.ScreenGui.Frame.Components.visual.ScrollingFrame.Frame.toggle4.LocalScript
+
+--[[
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+
+Function Constants: Unknown Name
+        1 [string] = Position
+        2 [string] = X
+        3 [string] = Scale
+        4 [number] = 0.1
+        6 [string] = Create
+        7 [string] = Play
+
+====================================================================================================
+
+Function Dump: Unknown Name
+
+Function Upvalues: Unknown Name
+        1 [Instance] = Frame2
+        2 [UDim2] = {0, 0}, {-0.191819623, 0}
+        3 [UDim2] = {0.609000027, 0}, {-0.191819623, 0}
+        4 [Instance] = TweenService
+        5 [TweenInfo] = Time:0.35 DelayTime:0 RepeatCount:0 Reverses:False EasingDirection:Out EasingStyle:Quint
+
+Function Constants: Unknown Name
+        1 [string] = Position
+        2 [string] = X
+        3 [string] = Scale
+        4 [number] = 0.1
+        6 [string] = Create
+        7 [string] = Play
+
+====================================================================================================
+]]
+
+
+
 
 
 
