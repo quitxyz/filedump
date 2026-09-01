@@ -295,12 +295,19 @@
             or input.UserInputType == Enum.UserInputType.Touch
     end
 
+    local function get_scale()
+        local scale_object = frame:FindFirstChildOfClass("UIScale")
+        return scale_object and scale_object.Scale or 1
+    end
+
     frame.InputBegan:Connect(function(input)
-        if is_primary_input(input) then
-            dragging = true
-            start_input = input.Position
-            start_position = frame.Position
+        if not is_primary_input(input) then
+            return
         end
+
+        dragging = true
+        start_input = input.Position
+        start_position = frame.AbsolutePosition
     end)
 
     frame.InputEnded:Connect(function(input)
@@ -321,26 +328,33 @@
             return
         end
 
-        local scale_object = frame:FindFirstChildOfClass("UIScale")
-        local scale = scale_object and scale_object.Scale or 1
-
+        local scale = get_scale()
+        local viewport = camera.ViewportSize
         local delta = input.Position - start_input
 
-        local x = start_position.X.Offset + delta.X / scale
-        local y = start_position.Y.Offset + delta.Y / scale
+        local target_x = start_position.X + delta.X
+        local target_y = start_position.Y + delta.Y
 
-        local viewport_x = camera.ViewportSize.X
-        local viewport_y = camera.ViewportSize.Y
+        local frame_size = frame.AbsoluteSize
 
-        x = math.clamp(x, 0, viewport_x - frame.Size.X.Offset)
-        y = math.clamp(y, 0, viewport_y - frame.Size.Y.Offset)
+        -- A window larger than the viewport cannot be fully clamped.
+        -- In that case, keep it at the viewport edge instead of passing
+        -- an invalid range to math.clamp.
+        local max_x = math.max(0, viewport.X - frame_size.X)
+        local max_y = math.max(0, viewport.Y - frame_size.Y)
 
-        frame.Position = dim2(
-            start_position.X.Scale,
-            x,
-            start_position.Y.Scale,
-            y
-        )
+        target_x = math.clamp(target_x, 0, max_x)
+        target_y = math.clamp(target_y, 0, max_y)
+
+        -- Convert the absolute target position back into parent-local space.
+        local parent = frame.Parent
+        local parent_position = parent.AbsolutePosition
+
+        local local_x = (target_x - parent_position.X) / scale
+        local local_y = (target_y - parent_position.Y) / scale
+
+        frame.AnchorPoint = vec2(0, 0)
+        frame.Position = dim2(0, local_x, 0, local_y)
 
         library:close_element()
     end)
