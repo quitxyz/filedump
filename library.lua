@@ -286,63 +286,65 @@
         end
 
         function library:draggify(frame)
-            local dragging = false 
-            local start_size = frame.Position
-            local start 
+    local dragging = false
+    local start_input
+    local start_position
 
-            frame.InputBegan:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    dragging = true
-                    start = input.Position
-                    start_size = frame.Position
-                end
-            end)
+    local function is_primary_input(input)
+        return input.UserInputType == Enum.UserInputType.MouseButton1
+            or input.UserInputType == Enum.UserInputType.Touch
+    end
 
-            frame.InputEnded:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    dragging = false
-                end
-            end)
-
-            library:connection(uis.InputChanged, function(input, game_event) 
-                if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-                    local viewport_x = camera.ViewportSize.X
-                    local viewport_y = camera.ViewportSize.Y
-
-                    local current_position = dim2(
-                        0,
-                        clamp(
-                            start_size.X.Offset + (input.Position.X - start.X),
-                            0,
-                            viewport_x - frame.Size.X.Offset
-                        ),
-                        0,
-                        math.clamp(
-                            start_size.Y.Offset + (input.Position.Y - start.Y),
-                            0,
-                            viewport_y - frame.Size.Y.Offset
-                        )
-                    )
-
-                    library:tween(frame, {Position = current_position}, Enum.EasingStyle.Linear, 0.05)
-                    library:close_element()
-                end
-            end)
-        end 
-
-        function library:convert(str)
-            local values = {}
-
-            for value in string.gmatch(str, "[^,]+") do
-                insert(values, tonumber(value))
-            end
-            
-            if #values == 4 then              
-                return unpack(values)
-            else 
-                return
-            end
+    frame.InputBegan:Connect(function(input)
+        if is_primary_input(input) then
+            dragging = true
+            start_input = input.Position
+            start_position = frame.Position
         end
+    end)
+
+    frame.InputEnded:Connect(function(input)
+        if is_primary_input(input) then
+            dragging = false
+        end
+    end)
+
+    library:connection(uis.InputChanged, function(input)
+        if not dragging then
+            return
+        end
+
+        local valid_mouse = input.UserInputType == Enum.UserInputType.MouseMovement
+        local valid_touch = input.UserInputType == Enum.UserInputType.Touch
+
+        if not (valid_mouse or valid_touch) then
+            return
+        end
+
+        local scale_object = frame:FindFirstChildOfClass("UIScale")
+        local scale = scale_object and scale_object.Scale or 1
+
+        local delta = input.Position - start_input
+
+        local x = start_position.X.Offset + delta.X / scale
+        local y = start_position.Y.Offset + delta.Y / scale
+
+        local viewport_x = camera.ViewportSize.X
+        local viewport_y = camera.ViewportSize.Y
+
+        x = math.clamp(x, 0, viewport_x - frame.Size.X.Offset)
+        y = math.clamp(y, 0, viewport_y - frame.Size.Y.Offset)
+
+        frame.Position = dim2(
+            start_position.X.Scale,
+            x,
+            start_position.Y.Scale,
+            y
+        )
+
+        library:close_element()
+    end)
+end
         
         function library:convert_enum(enum)
             local enum_parts = {}
