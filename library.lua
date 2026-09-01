@@ -285,10 +285,12 @@
             return (y_cond and x_cond)
         end
 
-        function library:draggify(frame)
+        function library:draggify(drag_object, target_frame)
+    target_frame = target_frame or drag_object
+
     local dragging = false
     local start_input
-    local start_position
+    local start_offset  -- offset between input and target_frame top-left
 
     local function is_primary_input(input)
         return input.UserInputType == Enum.UserInputType.MouseButton1
@@ -296,21 +298,24 @@
     end
 
     local function get_scale()
-        local scale_object = frame:FindFirstChildOfClass("UIScale")
+        local scale_object = target_frame:FindFirstChildOfClass("UIScale")
         return scale_object and scale_object.Scale or 1
     end
 
-    frame.InputBegan:Connect(function(input)
+    drag_object.InputBegan:Connect(function(input)
         if not is_primary_input(input) then
             return
         end
 
         dragging = true
         start_input = input.Position
-        start_position = frame.AbsolutePosition
+
+        -- Store the offset between the input and the target frame's top-left
+        local target_pos = target_frame.AbsolutePosition
+        start_offset = start_input - target_pos
     end)
 
-    frame.InputEnded:Connect(function(input)
+    drag_object.InputEnded:Connect(function(input)
         if is_primary_input(input) then
             dragging = false
         end
@@ -330,35 +335,40 @@
 
         local scale = get_scale()
         local viewport = camera.ViewportSize
-        local delta = input.Position - start_input
 
-        local target_x = start_position.X + delta.X
-        local target_y = start_position.Y + delta.Y
+        -- Desired top-left position in screen space
+        local desired_pos = input.Position - start_offset
 
-        local frame_size = frame.AbsoluteSize
+        -- Allow going off-screen, but add a soft clamp so it doesn't fly infinitely far.
+        -- Example: allow up to 80% of viewport size beyond each edge.
+        local margin_x = viewport.X * 0.8
+        local margin_y = viewport.Y * 0.8
 
-        -- A window larger than the viewport cannot be fully clamped.
-        -- In that case, keep it at the viewport edge instead of passing
-        -- an invalid range to math.clamp.
-        local max_x = math.max(0, viewport.X - frame_size.X)
-        local max_y = math.max(0, viewport.Y - frame_size.Y)
+        local min_x = -margin_x
+        local min_y = -margin_y
+        local max_x = viewport.X + margin_x
+        local max_y = viewport.Y + margin_y
 
-        target_x = math.clamp(target_x, 0, max_x)
-        target_y = math.clamp(target_y, 0, max_y)
+        desired_pos = Vector2.new(
+            math.clamp(desired_pos.X, min_x, max_x),
+            math.clamp(desired_pos.Y, min_y, max_y)
+        )
 
-        -- Convert the absolute target position back into parent-local space.
-        local parent = frame.Parent
-        local parent_position = parent.AbsolutePosition
+        -- Convert desired screen-space position back into parent-local space.
+        local parent = target_frame.Parent
+        local parent_pos = parent.AbsolutePosition
 
-        local local_x = (target_x - parent_position.X) / scale
-        local local_y = (target_y - parent_position.Y) / scale
+        local local_x = (desired_pos.X - parent_pos.X) / scale
+        local local_y = (desired_pos.Y - parent_pos.Y) / scale
 
-        frame.AnchorPoint = vec2(0, 0)
-        frame.Position = dim2(0, local_x, 0, local_y)
+        -- Keep AnchorPoint at (0,0) for dragging
+        target_frame.AnchorPoint = vec2(0, 0)
+        target_frame.Position = dim2(0, local_x, 0, local_y)
 
         library:close_element()
     end)
 end
+
         
         function library:convert_enum(enum)
             local enum_parts = {}
@@ -564,6 +574,18 @@ end
             Scale = cfg.scale
         });
 
+        -- Drag header (invisible but covers the top bar)
+items["drag_header"] = library:create("TextButton", {
+    Parent = items["main"];
+    Name = "DragHeader";
+    BackgroundTransparency = 1;
+    Text = "";
+    AutoButtonColor = false;
+    Position = dim2(0, 0, 0, 0);
+    Size = dim2(1, 0, 0, 56);  -- same height as your title area
+    ZIndex = 50;
+})
+
         library:create("UICorner", {
             Parent = items["main"];
             CornerRadius = dim(0, 10)
@@ -757,7 +779,7 @@ end
     end
 
     do -- Other
-        library:draggify(items["main"])
+library:draggify(items["drag_header"], items["main"])
         library:resizify(items["main"])
     end
 
